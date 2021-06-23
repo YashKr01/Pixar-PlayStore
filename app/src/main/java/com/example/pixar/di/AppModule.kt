@@ -1,6 +1,7 @@
 package com.example.pixar.di
 
 import android.content.Context
+import com.example.pixar.network.ApiInterface
 import com.example.pixar.utils.Constants.Companion.BASE_URL
 import com.readystatesoftware.chuck.ChuckInterceptor
 import dagger.Module
@@ -32,5 +33,10 @@ object AppModule {
             .addConverterFactory(GsonConverterFactory.create())
             .baseUrl(BASE_URL)
             .build()
+
+    @Provides
+    @Singleton
+    fun provideApi(retrofit: Retrofit): ApiInterface =
+        retrofit.create(ApiInterface::class.java)
 
 }
