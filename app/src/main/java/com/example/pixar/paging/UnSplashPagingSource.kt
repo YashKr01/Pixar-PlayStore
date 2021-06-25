@@ -4,6 +4,7 @@ import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.pixar.model.UnsplashPhoto
 import com.example.pixar.network.ApiInterface
+import com.example.pixar.utils.Constants.Companion.CLIENT_ID
 import retrofit2.HttpException
 import java.io.IOException
 
@@ -18,7 +19,7 @@ class UnSplashPagingSource(
         val position = params.key ?: UNSPLASH_STARTING_PAGE_INDEX
 
         return try {
-            val response = apiInterface.searchPhotos(query, position, params.loadSize)
+            val response = apiInterface.searchPhotos(query, position, params.loadSize,CLIENT_ID)
             val photos = response.results
 
             LoadResult.Page(

@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import com.example.pixar.adapters.UnsplashPhotoAdapter
 import com.example.pixar.databinding.FragmentSearchBinding
 import com.example.pixar.viewmodel.ImagesViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -25,8 +26,13 @@ class SearchFragment : Fragment() {
     ): View {
         _binding = FragmentSearchBinding.inflate(inflater, container, false)
 
-        viewModel.photos.observe(viewLifecycleOwner){
-            Log.d("TAG", "onCreateView: $it")
+        val adapter = UnsplashPhotoAdapter()
+        binding.apply {
+            recyclerView.adapter = adapter
+        }
+
+        viewModel.photos.observe(viewLifecycleOwner) {
+            adapter.submitData(viewLifecycleOwner.lifecycle,it)
         }
 
         return binding.root
