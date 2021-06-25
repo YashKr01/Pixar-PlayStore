@@ -5,7 +5,6 @@
     android:layout_height="wrap_content"
     android:background="@drawable/placeholder_image"
     android:contentDescription="@string/app_name"
-    android:layout_margin="@dimen/_4sdp"
-    android:padding="@dimen/_4sdp">
+    android:layout_margin="@dimen/_4sdp">
 
 </ImageView>

@@ -26,6 +26,7 @@ class UnsplashPhotoAdapter :
         if (currentItem != null) {
             holder.bind(currentItem)
         }
+
     }
 
     class PhotoViewHolder(private val binding: ItemSearchImageBinding) :

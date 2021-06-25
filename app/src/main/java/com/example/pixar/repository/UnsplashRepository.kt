@@ -12,7 +12,6 @@ class UnsplashRepository @Inject constructor(private val apiInterface: ApiInterf
     fun getResults(query: String) = Pager(
         config = PagingConfig(
             pageSize = 20,
-            maxSize = 100,
             enablePlaceholders = false
         ),
         pagingSourceFactory = { UnSplashPagingSource(apiInterface, query) }
