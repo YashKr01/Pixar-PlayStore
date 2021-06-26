@@ -2,12 +2,12 @@ package com.example.pixar.fragments
 
 import android.os.Bundle
 import android.util.Log
+import android.view.*
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.pixar.R
 import com.example.pixar.adapters.UnsplashPhotoAdapter
 import com.example.pixar.databinding.FragmentSearchBinding
 import com.example.pixar.paging.UnsplashLoadStateAdapter
@@ -28,14 +28,14 @@ class SearchFragment : Fragment() {
     ): View {
         _binding = FragmentSearchBinding.inflate(inflater, container, false)
 
-
+        // paging and footer adapter
         val adapter = UnsplashPhotoAdapter()
         val footerAdapter = UnsplashLoadStateAdapter { adapter.retry() }
 
         val gridLayoutManager = GridLayoutManager(context, 2)
         gridLayoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
             override fun getSpanSize(position: Int): Int {
-                return if (position == adapter.itemCount && footerAdapter.itemCount > 0) 2
+                return if (position == adapter.itemCount - 1 && footerAdapter.itemCount > 0) 2
                 else 1
             }
         }
@@ -49,7 +49,31 @@ class SearchFragment : Fragment() {
             adapter.submitData(viewLifecycleOwner.lifecycle, it)
         }
 
+        setHasOptionsMenu(true)
+
         return binding.root
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.menu_gallery, menu)
+
+        val searchItem = menu.findItem(R.id.actionSearch)
+        val searchView = searchItem.actionView as SearchView
+
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                binding.recyclerView.scrollToPosition(0)
+
+                if (query != null) viewModel.searchPhotos(query)
+                searchView.clearFocus()
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean = true
+        })
+
     }
 
     override fun onDestroyView() {

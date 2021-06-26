@@ -2,7 +2,7 @@
 <resources>
 
     <style name="roundCorners">
-        <item name="cornerSize">5%</item>
+        <item name="cornerSize">3%</item>
     </style>
 
 </resources>

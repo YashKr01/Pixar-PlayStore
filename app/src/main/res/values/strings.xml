@@ -5,4 +5,5 @@
     <string name="retry">RETRY</string>
     <string name="results_could_not_be_loaded">Results could not be loaded</string>
     <string name="further_results_could_not_be_loaded">Further results could not be loaded</string>
+    <string name="search">Search</string>
 </resources>
