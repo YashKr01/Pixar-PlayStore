@@ -42,8 +42,7 @@ class SearchFragment : Fragment() {
 
         binding.apply {
             recyclerView.layoutManager = gridLayoutManager
-            recyclerView.adapter =
-                adapter.withLoadStateFooter(footer = footerAdapter)
+            recyclerView.adapter = adapter.withLoadStateFooter(footer = footerAdapter)
         }
 
         viewModel.photos.observe(viewLifecycleOwner) {
