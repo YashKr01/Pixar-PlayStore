@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.example.pixar.adapters.UnsplashPhotoAdapter
 import com.example.pixar.databinding.FragmentSearchBinding
+import com.example.pixar.paging.UnsplashLoadStateAdapter
 import com.example.pixar.viewmodel.ImagesViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -28,11 +29,12 @@ class SearchFragment : Fragment() {
 
         val adapter = UnsplashPhotoAdapter()
         binding.apply {
-            recyclerView.adapter = adapter
+            recyclerView.adapter =
+                adapter.withLoadStateFooter(footer = UnsplashLoadStateAdapter { adapter.retry() })
         }
 
         viewModel.photos.observe(viewLifecycleOwner) {
-            adapter.submitData(viewLifecycleOwner.lifecycle,it)
+            adapter.submitData(viewLifecycleOwner.lifecycle, it)
         }
 
         return binding.root
