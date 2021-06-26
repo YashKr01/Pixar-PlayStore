@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.GridLayoutManager
 import com.example.pixar.adapters.UnsplashPhotoAdapter
 import com.example.pixar.databinding.FragmentSearchBinding
 import com.example.pixar.paging.UnsplashLoadStateAdapter
@@ -27,10 +28,22 @@ class SearchFragment : Fragment() {
     ): View {
         _binding = FragmentSearchBinding.inflate(inflater, container, false)
 
+
         val adapter = UnsplashPhotoAdapter()
+        val footerAdapter = UnsplashLoadStateAdapter { adapter.retry() }
+
+        val gridLayoutManager = GridLayoutManager(context, 2)
+        gridLayoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
+            override fun getSpanSize(position: Int): Int {
+                return if (position == adapter.itemCount && footerAdapter.itemCount > 0) 2
+                else 1
+            }
+        }
+
         binding.apply {
+            recyclerView.layoutManager = gridLayoutManager
             recyclerView.adapter =
-                adapter.withLoadStateFooter(footer = UnsplashLoadStateAdapter { adapter.retry() })
+                adapter.withLoadStateFooter(footer = footerAdapter)
         }
 
         viewModel.photos.observe(viewLifecycleOwner) {

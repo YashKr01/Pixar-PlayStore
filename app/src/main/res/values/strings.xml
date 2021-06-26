@@ -2,4 +2,7 @@
     <string name="app_name">Pixar</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="retry">RETRY</string>
+    <string name="results_could_not_be_loaded">Results could not be loaded</string>
+    <string name="further_results_could_not_be_loaded">Further results could not be loaded</string>
 </resources>
