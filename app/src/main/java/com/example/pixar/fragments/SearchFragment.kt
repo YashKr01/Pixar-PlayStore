@@ -3,6 +3,7 @@ package com.example.pixar.fragments
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -35,7 +36,7 @@ class SearchFragment : Fragment() {
         val gridLayoutManager = GridLayoutManager(context, 2)
         gridLayoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
             override fun getSpanSize(position: Int): Int {
-                return if (position == adapter.itemCount - 1 && footerAdapter.itemCount > 0) 2
+                return if (position == adapter.itemCount && footerAdapter.itemCount > 0) 2
                 else 1
             }
         }
@@ -49,6 +50,7 @@ class SearchFragment : Fragment() {
             adapter.submitData(viewLifecycleOwner.lifecycle, it)
         }
 
+        (activity as AppCompatActivity).setSupportActionBar(binding.toolbar)
         setHasOptionsMenu(true)
 
         return binding.root
@@ -61,6 +63,7 @@ class SearchFragment : Fragment() {
         val searchItem = menu.findItem(R.id.actionSearch)
         val searchView = searchItem.actionView as SearchView
 
+        searchView.isSubmitButtonEnabled = true
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
 
             override fun onQueryTextSubmit(query: String?): Boolean {
@@ -68,6 +71,7 @@ class SearchFragment : Fragment() {
 
                 if (query != null) viewModel.searchPhotos(query)
                 searchView.clearFocus()
+                Log.d("TAG", "onQueryTextSubmit: $query")
                 return true
             }
 
