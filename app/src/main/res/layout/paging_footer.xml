@@ -16,20 +16,20 @@
     <TextView
         android:id="@+id/textError"
         android:layout_width="match_parent"
-        android:padding="@dimen/_4sdp"
-        android:textAlignment="center"
-        android:textSize="@dimen/_14ssp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/ubuntu_medium"
+        android:padding="@dimen/_4sdp"
         android:text="@string/further_results_could_not_be_loaded"
-        android:textColor="@color/colorTextSecondary" />
+        android:textAlignment="center"
+        android:textColor="@color/colorTextSecondary"
+        android:textSize="@dimen/_14ssp" />
 
     <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonRetry"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/ubuntu_bold"
         android:text="@string/retry"
-        android:id="@+id/buttonRetry"
         android:textColor="@color/colorPrimaryBlue"
         app:backgroundTint="@color/colorYellow" />
 

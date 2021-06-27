@@ -5,8 +5,10 @@ import android.util.Log
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.paging.LoadState
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.pixar.R
 import com.example.pixar.adapters.UnsplashPhotoAdapter
@@ -43,11 +45,37 @@ class SearchFragment : Fragment() {
 
         binding.apply {
             recyclerView.layoutManager = gridLayoutManager
+            recyclerView.itemAnimator = null
             recyclerView.adapter = adapter.withLoadStateFooter(footer = footerAdapter)
+            buttonError.setOnClickListener {
+                adapter.retry()
+            }
         }
 
         viewModel.photos.observe(viewLifecycleOwner) {
             adapter.submitData(viewLifecycleOwner.lifecycle, it)
+        }
+
+        adapter.addLoadStateListener { loadState ->
+            binding.apply {
+
+                progressBar.isVisible = loadState.source.refresh is LoadState.Loading
+                recyclerView.isVisible = loadState.source.refresh is LoadState.NotLoading
+                textViewError.isVisible = loadState.source.refresh is LoadState.Error
+                imageError.isVisible = loadState.source.refresh is LoadState.Error
+
+                // if view is empty
+                if (loadState.source.refresh is LoadState.NotLoading &&
+                    loadState.append.endOfPaginationReached &&
+                    adapter.itemCount < 1
+                ) {
+                    textViewEmpty.isVisible = true
+                    recyclerView.isVisible = false
+                } else {
+                    textViewEmpty.isVisible = false
+                }
+
+            }
         }
 
         (activity as AppCompatActivity).setSupportActionBar(binding.toolbar)
@@ -71,7 +99,6 @@ class SearchFragment : Fragment() {
 
                 if (query != null) viewModel.searchPhotos(query)
                 searchView.clearFocus()
-                Log.d("TAG", "onQueryTextSubmit: $query")
                 return true
             }
 
