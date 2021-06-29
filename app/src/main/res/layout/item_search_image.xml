@@ -6,6 +6,7 @@
     android:layout_height="wrap_content"
     android:background="@drawable/placeholder_image"
     android:contentDescription="@string/app_name"
+    android:foreground="?android:attr/selectableItemBackgroundBorderless"
     app:shapeAppearanceOverlay="@style/roundCorners"
     android:layout_margin="@dimen/_3sdp">
 
