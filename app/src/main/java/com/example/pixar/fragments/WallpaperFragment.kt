@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.navArgs
+import com.bumptech.glide.Glide
 import com.example.pixar.R
 import com.example.pixar.databinding.FragmentWallpaperBinding
 
@@ -12,6 +14,8 @@ class WallpaperFragment : Fragment() {
 
     private var _binding: FragmentWallpaperBinding? = null
     private val binding get() = _binding!!
+
+    private val args by navArgs<WallpaperFragmentArgs>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -22,7 +26,20 @@ class WallpaperFragment : Fragment() {
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
+        binding.apply {
+            val photo = args.photo
+
+            Glide.with(this@WallpaperFragment)
+                .load(photo.urls.regular)
+                .error(R.drawable.ic_error)
+                .centerCrop()
+                .into(binding.imageWallpaper)
+        }
+
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()
