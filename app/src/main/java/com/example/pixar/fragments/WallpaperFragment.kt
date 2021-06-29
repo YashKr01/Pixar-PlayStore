@@ -19,9 +19,10 @@ class WallpaperFragment : Fragment() {
     ): View {
         _binding = FragmentWallpaperBinding.inflate(inflater, container, false)
 
-
         return binding.root
     }
+
+
 
     override fun onDestroyView() {
         super.onDestroyView()

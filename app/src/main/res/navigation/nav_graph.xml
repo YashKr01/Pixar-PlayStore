@@ -9,6 +9,19 @@
         android:id="@+id/searchFragment"
         android:name="com.example.pixar.fragments.SearchFragment"
         android:label="fragment_search"
-        tools:layout="@layout/fragment_search" />
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/action_searchFragment_to_wallpaperFragment"
+            app:destination="@id/wallpaperFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/wallpaperFragment"
+        android:name="com.example.pixar.fragments.WallpaperFragment"
+        android:label="fragment_wallpaper"
+        tools:layout="@layout/fragment_wallpaper" >
+        <argument
+            android:name="photo"
+            app:argType="com.example.pixar.model.UnsplashPhoto" />
+    </fragment>
 
 </navigation>

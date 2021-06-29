@@ -13,12 +13,13 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.example.pixar.R
 import com.example.pixar.adapters.UnsplashPhotoAdapter
 import com.example.pixar.databinding.FragmentSearchBinding
+import com.example.pixar.model.UnsplashPhoto
 import com.example.pixar.paging.UnsplashLoadStateAdapter
 import com.example.pixar.viewmodel.ImagesViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class SearchFragment : Fragment() {
+class SearchFragment : Fragment(), UnsplashPhotoAdapter.OnItemClickListener {
 
     private var _binding: FragmentSearchBinding? = null
     private val binding get() = _binding!!
@@ -32,7 +33,7 @@ class SearchFragment : Fragment() {
         _binding = FragmentSearchBinding.inflate(inflater, container, false)
 
         // paging and footer adapter
-        val adapter = UnsplashPhotoAdapter()
+        val adapter = UnsplashPhotoAdapter(this)
         val footerAdapter = UnsplashLoadStateAdapter { adapter.retry() }
 
         val gridLayoutManager = GridLayoutManager(context, 2)
@@ -82,6 +83,10 @@ class SearchFragment : Fragment() {
         setHasOptionsMenu(true)
 
         return binding.root
+    }
+
+    override fun onItemClicked(photo: UnsplashPhoto) {
+        val action = SearchFragmentDirections.actionSearchFragmentToWallpaperFragment(photo)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
