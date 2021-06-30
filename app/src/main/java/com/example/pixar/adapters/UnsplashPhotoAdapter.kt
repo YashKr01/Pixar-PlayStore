@@ -1,12 +1,19 @@
 package com.example.pixar.adapters
 
+import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.DataSource
+import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
+import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.target.Target
+import com.example.pixar.R
 import com.example.pixar.databinding.ItemSearchImageBinding
 import com.example.pixar.model.UnsplashPhoto
 
@@ -43,12 +50,36 @@ class UnsplashPhotoAdapter(private val listener: OnItemClickListener) :
         }
 
         fun bind(photo: UnsplashPhoto) {
+
             Glide.with(itemView).load(photo.urls.regular)
                 .centerCrop()
                 .transition(DrawableTransitionOptions.withCrossFade())
+                .listener(object : RequestListener<Drawable> {
+                    override fun onLoadFailed(
+                        e: GlideException?,
+                        model: Any?,
+                        target: Target<Drawable>?,
+                        isFirstResource: Boolean
+                    ): Boolean {
+                        binding.username.isVisible = false
+                        return false
+                    }
+
+                    override fun onResourceReady(
+                        resource: Drawable?,
+                        model: Any?,
+                        target: Target<Drawable>?,
+                        dataSource: DataSource?,
+                        isFirstResource: Boolean
+                    ): Boolean {
+                        binding.username.isVisible = true
+                        binding.username.text = photo.user.name
+                        return false
+                    }
+                })
+                .error(R.drawable.ic_no_connection)
                 .into(binding.image)
 
-            binding.username.text = photo.user.name
         }
 
     }
