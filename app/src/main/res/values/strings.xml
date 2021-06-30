@@ -10,4 +10,6 @@
     <string name="no_connection">No Connection</string>
     <string name="wallpaper">wallpaper</string>
     <string name="an_error_occurred">An error occurred</string>
+    <string name="download">Download</string>
+    <string name="save">SAVE</string>
 </resources>

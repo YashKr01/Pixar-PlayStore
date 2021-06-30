@@ -14,7 +14,7 @@ data class UnsplashPhoto(
     @Parcelize
     data class UnsplashPhotoUrls(
         val regular: String,
-        val small: String,
+        val full: String
     ) : Parcelable
 
     @Parcelize
