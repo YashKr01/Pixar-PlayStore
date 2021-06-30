@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
-import com.example.pixar.R
 import com.example.pixar.databinding.ItemSearchImageBinding
 import com.example.pixar.model.UnsplashPhoto
 
@@ -48,6 +47,8 @@ class UnsplashPhotoAdapter(private val listener: OnItemClickListener) :
                 .centerCrop()
                 .transition(DrawableTransitionOptions.withCrossFade())
                 .into(binding.image)
+
+            binding.username.text = photo.user.name
         }
 
     }

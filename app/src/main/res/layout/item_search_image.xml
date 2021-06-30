@@ -1,13 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.imageview.ShapeableImageView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/image"
-    android:layout_height="wrap_content"
-    android:background="@drawable/placeholder_image"
-    android:contentDescription="@string/app_name"
-    android:foreground="?android:attr/selectableItemBackgroundBorderless"
-    app:shapeAppearanceOverlay="@style/roundCorners"
-    android:layout_margin="@dimen/_3sdp">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
-</com.google.android.material.imageview.ShapeableImageView>
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/image"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_240sdp"
+        android:layout_margin="@dimen/_3sdp"
+        android:background="@drawable/placeholder_image"
+        android:contentDescription="@string/app_name"
+        android:foreground="?android:attr/selectableItemBackgroundBorderless"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/roundCorners" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_40sdp"
+        android:background="@drawable/gradient_background"
+        app:layout_constraintBottom_toBottomOf="@id/image"
+        app:layout_constraintEnd_toEndOf="@id/image"
+        app:layout_constraintStart_toStartOf="@id/image" />
+
+    <TextView
+        android:id="@+id/username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_4sdp"
+        android:drawablePadding="@dimen/_2sdp"
+        android:ellipsize="end"
+        android:fontFamily="@font/ubuntu_medium"
+        android:gravity="center"
+        android:maxLines="1"
+        android:textAlignment="center"
+        android:textColor="@color/colorWhite"
+        app:drawableStartCompat="@drawable/ic_person"
+        app:drawableTint="@color/colorWhite"
+        app:layout_constraintBottom_toBottomOf="@id/image"
+        app:layout_constraintEnd_toEndOf="@id/image"
+        app:layout_constraintStart_toStartOf="@id/image"
+        tools:text="Username" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
