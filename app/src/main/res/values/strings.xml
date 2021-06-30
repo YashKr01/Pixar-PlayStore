@@ -12,4 +12,7 @@
     <string name="an_error_occurred">An error occurred</string>
     <string name="download">Download</string>
     <string name="save">SAVE</string>
+    <string name="lorem_ipsum">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s,</string>
+    <string name="photo_by">Photo by -</string>
+    <string name="unsplash">UnSplash</string>
 </resources>

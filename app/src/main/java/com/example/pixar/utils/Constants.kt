@@ -9,6 +9,7 @@ class Constants {
     companion object {
         const val BASE_URL = "https://api.unsplash.com/"
         const val CLIENT_ID = "tLc3BkhA9BbLGzziRGNpc4mHem6AKRgUxIX5K8mcemw"
+        const val UNSPLASH_URL = "https://unsplash.com/?utm_source=Pixar&utm_medium=referral"
 
         fun showSnackBar(context: Context, view: View, message: String, duration: Int) {
             Snackbar.make(context, view, message, duration)

@@ -68,7 +68,7 @@
         android:layout_height="@dimen/_48sdp"
         android:layout_marginBottom="@dimen/_8sdp"
         android:contentDescription="@string/no_connection"
-        android:src="@drawable/ic_error"
+        android:src="@drawable/ic_error2"
         app:layout_constraintBottom_toTopOf="@id/textViewError"
         app:layout_constraintEnd_toEndOf="@id/textViewError"
         app:layout_constraintStart_toStartOf="@id/textViewError"

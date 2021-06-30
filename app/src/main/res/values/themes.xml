@@ -1,10 +1,10 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!-- Base application theme. -->
     <style name="Theme.Pixar" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/colorPrimaryBlue</item>
 
-        <item name="android:navigationBarColor">@color/colorPrimaryBlue</item>
+        <item name="android:navigationBarColor">@color/colorBlack</item>
         <item name="android:statusBarColor">@color/colorPrimaryBlue</item>
 
     </style>
