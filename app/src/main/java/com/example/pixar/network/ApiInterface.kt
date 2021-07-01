@@ -3,6 +3,7 @@ package com.example.pixar.network
 import com.example.pixar.model.UnsplashResponse
 import retrofit2.http.GET
 import retrofit2.http.Headers
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface ApiInterface {

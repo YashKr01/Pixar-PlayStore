@@ -45,10 +45,23 @@
         app:layout_constraintStart_toStartOf="@id/imageError"
         app:layout_constraintTop_toBottomOf="@id/imageError" />
 
+    <ImageButton
+        android:id="@+id/buttonDownload"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_4sdp"
+        android:background="@drawable/circular_button_background"
+        android:contentDescription="@string/download"
+        android:padding="@dimen/_8sdp"
+        android:src="@drawable/ic_download"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/colorWhite" />
+
     <View
         android:id="@+id/gradientBackground"
         android:layout_width="0dp"
-        android:layout_height="@dimen/_80sdp"
+        android:layout_height="@dimen/_70sdp"
         android:background="@drawable/gradient_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -60,6 +73,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_8sdp"
         android:layout_marginEnd="@dimen/_8sdp"
+        android:layout_marginBottom="@dimen/_4sdp"
         android:drawablePadding="@dimen/_4sdp"
         android:ellipsize="end"
         android:fontFamily="@font/ubuntu_medium"
@@ -68,20 +82,22 @@
         android:textSize="@dimen/_12ssp"
         app:drawableStartCompat="@drawable/ic_likes"
         app:drawableTint="@color/colorWhite"
-        app:layout_constraintBottom_toBottomOf="@id/gradientBackground"
+        app:layout_constraintBottom_toTopOf="@id/linearLayout"
         app:layout_constraintEnd_toEndOf="@id/gradientBackground"
         app:layout_constraintStart_toStartOf="@id/gradientBackground"
-        app:layout_constraintTop_toTopOf="@id/gradientBackground"
         tools:text="Likes" />
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_4sdp"
         android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/textLikes"
         app:layout_constraintStart_toStartOf="@id/textLikes"
-        app:layout_constraintTop_toBottomOf="@id/textLikes">
+        app:layout_constraintTop_toTopOf="@id/gradientBackground"
+        app:layout_constraintVertical_bias="0.65">
 
         <TextView
             android:layout_width="wrap_content"
@@ -101,8 +117,8 @@
             android:textColor="@color/colorWhite"
             android:textSize="@dimen/_13ssp"
             android:textStyle="italic"
-            tools:text="user name"
-            tools:ignore="RtlSymmetry" />
+            tools:ignore="RtlSymmetry"
+            tools:text="user name" />
 
         <TextView
             android:layout_width="wrap_content"

@@ -9,7 +9,6 @@ data class UnsplashPhoto(
     val urls: UnsplashPhotoUrls,
     val links: UnsplashLinks,
     val user: UnsplashUser,
-    val description: String?,
     val likes: Int
 ) : Parcelable {
 
