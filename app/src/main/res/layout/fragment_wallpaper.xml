@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimaryBlue"
     tools:context=".fragments.WallpaperFragment">
 
     <com.google.android.material.imageview.ShapeableImageView
@@ -18,10 +19,36 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageView
+        android:id="@+id/imageError"
+        android:layout_width="@dimen/_44sdp"
+        android:layout_height="@dimen/_44sdp"
+        android:contentDescription="@string/an_error_occurred"
+        android:src="@drawable/ic_error"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/imageWallpaper"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/colorThemeExtra" />
+
+    <TextView
+        android:id="@+id/textError"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/ubuntu_medium"
+        android:text="@string/no_connection"
+        android:textColor="@color/colorTextSecondary"
+        android:textSize="@dimen/_16ssp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="@id/imageError"
+        app:layout_constraintStart_toStartOf="@id/imageError"
+        app:layout_constraintTop_toBottomOf="@id/imageError" />
+
     <View
         android:id="@+id/gradientBackground"
         android:layout_width="0dp"
-        android:layout_height="@dimen/_100sdp"
+        android:layout_height="@dimen/_80sdp"
         android:background="@drawable/gradient_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -33,14 +60,14 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_8sdp"
         android:layout_marginEnd="@dimen/_8sdp"
+        android:drawablePadding="@dimen/_4sdp"
         android:ellipsize="end"
         android:fontFamily="@font/ubuntu_medium"
-        android:textColor="@color/colorWhite"
         android:gravity="center|start"
+        android:textColor="@color/colorWhite"
         android:textSize="@dimen/_12ssp"
         app:drawableStartCompat="@drawable/ic_likes"
         app:drawableTint="@color/colorWhite"
-        android:drawablePadding="@dimen/_2sdp"
         app:layout_constraintBottom_toBottomOf="@id/gradientBackground"
         app:layout_constraintEnd_toEndOf="@id/gradientBackground"
         app:layout_constraintStart_toStartOf="@id/gradientBackground"
@@ -70,10 +97,12 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_4sdp"
             android:fontFamily="@font/ubuntu_medium"
+            android:paddingEnd="@dimen/_2sdp"
             android:textColor="@color/colorWhite"
             android:textSize="@dimen/_13ssp"
             android:textStyle="italic"
-            tools:text="user name" />
+            tools:text="user name"
+            tools:ignore="RtlSymmetry" />
 
         <TextView
             android:layout_width="wrap_content"
