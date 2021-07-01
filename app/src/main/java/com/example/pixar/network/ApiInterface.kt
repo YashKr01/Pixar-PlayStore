@@ -1,10 +1,7 @@
 package com.example.pixar.network
 
 import com.example.pixar.model.UnsplashResponse
-import retrofit2.http.GET
-import retrofit2.http.Headers
-import retrofit2.http.Path
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface ApiInterface {
 
@@ -15,5 +12,8 @@ interface ApiInterface {
         @Query("per_page") perPage: Int,
         @Query("client_id") id: String
     ): UnsplashResponse
+
+    @GET
+    suspend fun trackDownload(@Url url: String, @Query("client_id") id: String)
 
 }

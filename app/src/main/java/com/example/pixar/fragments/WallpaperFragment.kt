@@ -13,6 +13,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
@@ -23,18 +24,23 @@ import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.example.pixar.databinding.FragmentWallpaperBinding
 import com.example.pixar.utils.Constants.Companion.UNSPLASH_URL
+import com.example.pixar.viewmodel.WallpaperViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.net.HttpURLConnection
 import java.net.URL
 
+@AndroidEntryPoint
 class WallpaperFragment : Fragment() {
 
     private var _binding: FragmentWallpaperBinding? = null
     private val binding get() = _binding!!
 
     private val args by navArgs<WallpaperFragmentArgs>()
+
+    private val viewModel by viewModels<WallpaperViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -99,9 +105,9 @@ class WallpaperFragment : Fragment() {
                 startActivity(intent)
             }
 
-            // TODO : track download and download/save to gallery
+            // TODO : download/save to gallery
             binding.buttonDownload.setOnClickListener {
-
+                viewModel.trackDownloads(photo.links.download_location)
             }
 
         }

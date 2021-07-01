@@ -1,10 +1,7 @@
 package com.example.pixar.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.*
-import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.example.pixar.model.UnsplashPhoto
 import com.example.pixar.repository.UnsplashRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
