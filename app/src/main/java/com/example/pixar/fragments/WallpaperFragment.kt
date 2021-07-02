@@ -31,6 +31,7 @@ import com.example.pixar.viewmodel.WallpaperViewModel
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -109,16 +110,25 @@ class WallpaperFragment : Fragment() {
 
         }
 
-        // TODO : download/save to gallery
         binding.buttonDownload.setOnClickListener {
             if (isOnline(requireContext())) {
 
                 // make network call for downloads
                 viewModel.trackDownloads(photo.links.download_location)
 
-                lifecycleScope.launch(Dispatchers.IO) {
+                val job = lifecycleScope.launch(Dispatchers.IO) {
                     val imageBitmap = imageToBitmap(photo.urls.small)
                     saveImage(imageBitmap!!, requireContext(), IMAGE_DOWNLOAD_FOLDER_NAME)
+                }
+
+                GlobalScope.launch(Dispatchers.Main) {
+                    job.join()
+                    showSnackBar(
+                        requireContext(),
+                        binding.root,
+                        "Image Downloaded to gallery",
+                        Snackbar.LENGTH_SHORT
+                    )
                 }
 
             } else {

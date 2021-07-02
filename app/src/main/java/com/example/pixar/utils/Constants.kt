@@ -90,21 +90,20 @@ class Constants {
 
             }
             else {
-                val directory = File(Environment.getExternalStorageDirectory().toString() + separator + folderName)
+                val directory = File(Environment.getExternalStorageState().toString() + separator + folderName)
                 // getExternalStorageDirectory is deprecated in API 29
 
-                if (!directory.exists()) {
-                    directory.mkdirs()
-                }
+                if (!directory.exists()) directory.mkdirs()
+
                 val fileName = System.currentTimeMillis().toString() + ".png"
                 val file = File(directory, fileName)
+
                 saveImageToStream(bitmap, FileOutputStream(file))
-                if (file.absolutePath != null) {
-                    val values = contentValues()
-                    values.put(MediaStore.Images.Media.DATA, file.absolutePath)
-                    // .DATA is deprecated in API 29
-                    context.contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values)
-                }
+
+                val values = contentValues()
+                values.put(MediaStore.Images.Media.DESCRIPTION, file.absolutePath)
+                // .DATA is deprecated in API 29
+                context.contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values)
             }
         }
 
@@ -112,7 +111,6 @@ class Constants {
             val values = ContentValues()
             values.put(MediaStore.Images.Media.MIME_TYPE, "image/png")
             values.put(MediaStore.Images.Media.DATE_ADDED, System.currentTimeMillis() / 1000)
-            values.put(MediaStore.Images.Media.DATE_TAKEN, System.currentTimeMillis())
             return values
         }
 
