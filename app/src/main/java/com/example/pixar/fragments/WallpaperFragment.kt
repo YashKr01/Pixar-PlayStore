@@ -5,7 +5,6 @@ import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -21,16 +20,18 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.example.pixar.databinding.FragmentWallpaperBinding
+import com.example.pixar.utils.Constants
+import com.example.pixar.utils.Constants.Companion.IMAGE_DOWNLOAD_FOLDER_NAME
 import com.example.pixar.utils.Constants.Companion.UNSPLASH_URL
 import com.example.pixar.utils.Constants.Companion.imageToBitmap
 import com.example.pixar.utils.Constants.Companion.isOnline
+import com.example.pixar.utils.Constants.Companion.saveImage
 import com.example.pixar.utils.Constants.Companion.showSnackBar
 import com.example.pixar.viewmodel.WallpaperViewModel
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 @AndroidEntryPoint
 class WallpaperFragment : Fragment() {
@@ -106,29 +107,27 @@ class WallpaperFragment : Fragment() {
                 startActivity(intent)
             }
 
-            // TODO : download/save to gallery
-//            binding.buttonDownload.setOnClickListener {
-//
-//                if (isOnline()) {
-//
-//                }
-//
-//                // network call being made in background thread
-//                viewModel.trackDownloads(photo.links.download_location)
-//
-//                lifecycleScope.launch(Dispatchers.IO) {
-//                    val imageBitmap = imageToBitmap(photo.urls.regular)
-//                }
-//
-//            }
-
         }
 
+        // TODO : download/save to gallery
         binding.buttonDownload.setOnClickListener {
-            if (isOnline(context)) {
+            if (isOnline(requireContext())) {
+
+                // make network call for downloads
+                viewModel.trackDownloads(photo.links.download_location)
+
+                lifecycleScope.launch(Dispatchers.IO) {
+                    val imageBitmap = imageToBitmap(photo.urls.small)
+                    saveImage(imageBitmap!!, requireContext(), IMAGE_DOWNLOAD_FOLDER_NAME)
+                }
 
             } else {
-                showSnackBar(context, binding.root, "No Connection...", Snackbar.LENGTH_SHORT)
+                showSnackBar(
+                    requireContext(),
+                    binding.root,
+                    "No Connection...",
+                    Snackbar.LENGTH_SHORT
+                )
             }
         }
 
