@@ -2,8 +2,6 @@ package com.example.pixar.fragments
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
@@ -24,13 +22,15 @@ import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.example.pixar.databinding.FragmentWallpaperBinding
 import com.example.pixar.utils.Constants.Companion.UNSPLASH_URL
+import com.example.pixar.utils.Constants.Companion.imageToBitmap
+import com.example.pixar.utils.Constants.Companion.isOnline
+import com.example.pixar.utils.Constants.Companion.showSnackBar
 import com.example.pixar.viewmodel.WallpaperViewModel
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import java.net.HttpURLConnection
-import java.net.URL
+import kotlinx.coroutines.withContext
 
 @AndroidEntryPoint
 class WallpaperFragment : Fragment() {
@@ -55,8 +55,9 @@ class WallpaperFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val photo = args.photo
+
         binding.apply {
-            val photo = args.photo
 
             Glide.with(this@WallpaperFragment)
                 .load(photo.urls.regular)
@@ -106,10 +107,29 @@ class WallpaperFragment : Fragment() {
             }
 
             // TODO : download/save to gallery
-            binding.buttonDownload.setOnClickListener {
-                viewModel.trackDownloads(photo.links.download_location)
-            }
+//            binding.buttonDownload.setOnClickListener {
+//
+//                if (isOnline()) {
+//
+//                }
+//
+//                // network call being made in background thread
+//                viewModel.trackDownloads(photo.links.download_location)
+//
+//                lifecycleScope.launch(Dispatchers.IO) {
+//                    val imageBitmap = imageToBitmap(photo.urls.regular)
+//                }
+//
+//            }
 
+        }
+
+        binding.buttonDownload.setOnClickListener {
+            if (isOnline(context)) {
+
+            } else {
+                showSnackBar(context, binding.root, "No Connection...", Snackbar.LENGTH_SHORT)
+            }
         }
 
     }
