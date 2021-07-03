@@ -12,15 +12,17 @@ import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.pixar.R
+import com.example.pixar.adapters.PixabayPhotoAdapter
 import com.example.pixar.adapters.UnsplashPhotoAdapter
 import com.example.pixar.databinding.FragmentSearchBinding
+import com.example.pixar.model.PixabayPhoto
 import com.example.pixar.model.UnsplashPhoto
 import com.example.pixar.paging.UnsplashLoadStateAdapter
 import com.example.pixar.viewmodel.ImagesViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class SearchFragment : Fragment(), UnsplashPhotoAdapter.OnItemClickListener {
+class SearchFragment : Fragment(), PixabayPhotoAdapter.OnItemClickListener {
 
     private var _binding: FragmentSearchBinding? = null
     private val binding get() = _binding!!
@@ -34,7 +36,7 @@ class SearchFragment : Fragment(), UnsplashPhotoAdapter.OnItemClickListener {
         _binding = FragmentSearchBinding.inflate(inflater, container, false)
 
         // paging and footer adapter
-        val adapter = UnsplashPhotoAdapter(this)
+        val adapter = PixabayPhotoAdapter(this)
         val footerAdapter = UnsplashLoadStateAdapter { adapter.retry() }
 
         val gridLayoutManager = GridLayoutManager(context, 2)
@@ -86,11 +88,6 @@ class SearchFragment : Fragment(), UnsplashPhotoAdapter.OnItemClickListener {
         return binding.root
     }
 
-    override fun onItemClicked(photo: UnsplashPhoto) {
-        val action = SearchFragmentDirections.actionSearchFragmentToWallpaperFragment(photo)
-        findNavController().navigate(action)
-    }
-
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.menu_gallery, menu)
@@ -117,6 +114,10 @@ class SearchFragment : Fragment(), UnsplashPhotoAdapter.OnItemClickListener {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onItemClicked(photo: PixabayPhoto) {
+
     }
 
 }
