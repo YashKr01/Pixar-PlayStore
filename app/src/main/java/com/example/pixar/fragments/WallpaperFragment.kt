@@ -70,7 +70,7 @@ class WallpaperFragment : Fragment() {
 
         }
 
-        binding.buttonDownload.setOnClickListener {
+        binding.fabDownload.setOnClickListener {
             if (isOnline(requireContext())) {
 
                 val job = lifecycleScope.launch(Dispatchers.IO) {

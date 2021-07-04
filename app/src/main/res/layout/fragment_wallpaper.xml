@@ -61,9 +61,9 @@
         android:id="@+id/progressBar"
         android:layout_width="@dimen/_40sdp"
         android:layout_height="@dimen/_40sdp"
+        android:indeterminateTint="@color/colorPink"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:indeterminateTint="@color/colorPink"
         app:layout_constraintStart_toStartOf="@id/imageWallpaper"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -123,5 +123,64 @@
             tools:ignore="RtlSymmetry" />
 
     </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_open"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/_8sdp"
+        android:clickable="true"
+        android:contentDescription="@string/open_options"
+        android:focusable="true"
+        android:src="@drawable/ic_add"
+        app:backgroundTint="@color/colorYellow"
+        app:layout_constraintBottom_toTopOf="@id/gradientBackground"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:tint="@color/colorWhite"
+        tools:layout_editor_absoluteX="335dp"
+        tools:layout_editor_absoluteY="634dp" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_download"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:contentDescription="@string/download"
+        android:focusable="true"
+        android:src="@drawable/ic_download"
+        app:backgroundTint="@color/colorThemeExtra"
+        app:fabSize="mini"
+        app:layout_constraintBottom_toTopOf="@+id/fab_open"
+        app:layout_constraintEnd_toEndOf="@+id/fab_open"
+        app:layout_constraintStart_toStartOf="@+id/fab_open"
+        app:tint="@color/colorWhite" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_wallpaper"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:contentDescription="@string/download"
+        android:focusable="true"
+        android:src="@drawable/ic_wallpapaper"
+        app:backgroundTint="@color/colorThemeExtra"
+        app:fabSize="mini"
+        app:layout_constraintBottom_toTopOf="@+id/fab_download"
+        app:layout_constraintEnd_toEndOf="@+id/fab_download"
+        app:tint="@color/colorWhite" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:contentDescription="@string/download"
+        android:focusable="true"
+        android:src="@drawable/ic_save_hollow"
+        app:backgroundTint="@color/colorThemeExtra"
+        app:fabSize="mini"
+        app:layout_constraintBottom_toTopOf="@+id/fab_wallpaper"
+        app:layout_constraintEnd_toEndOf="@+id/fab_wallpaper"
+        app:tint="@color/colorWhite" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

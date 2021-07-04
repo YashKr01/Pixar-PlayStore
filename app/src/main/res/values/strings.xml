@@ -17,4 +17,5 @@
     <string name="unsplash">UnSplash</string>
     <string name="pixabay">Pixabay</string>
     <string name="loading">Loading…</string>
+    <string name="open_options">open options</string>
 </resources>
