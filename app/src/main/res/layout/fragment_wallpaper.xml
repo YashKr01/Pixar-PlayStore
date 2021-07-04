@@ -61,31 +61,11 @@
     <View
         android:id="@+id/gradientBackground"
         android:layout_width="0dp"
-        android:layout_height="@dimen/_70sdp"
+        android:layout_height="@dimen/_50sdp"
         android:background="@drawable/gradient_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/textLikes"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_8sdp"
-        android:layout_marginEnd="@dimen/_8sdp"
-        android:layout_marginBottom="@dimen/_4sdp"
-        android:drawablePadding="@dimen/_4sdp"
-        android:ellipsize="end"
-        android:fontFamily="@font/ubuntu_medium"
-        android:gravity="center|start"
-        android:textColor="@color/colorWhite"
-        android:textSize="@dimen/_12ssp"
-        app:drawableStartCompat="@drawable/ic_likes"
-        app:drawableTint="@color/colorWhite"
-        app:layout_constraintBottom_toTopOf="@id/linearLayout"
-        app:layout_constraintEnd_toEndOf="@id/gradientBackground"
-        app:layout_constraintStart_toStartOf="@id/gradientBackground"
-        tools:text="Likes" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -93,11 +73,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_4sdp"
         android:orientation="horizontal"
+        android:layout_marginStart="@dimen/_8sdp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@id/textLikes"
-        app:layout_constraintStart_toStartOf="@id/textLikes"
-        app:layout_constraintTop_toTopOf="@id/gradientBackground"
-        app:layout_constraintVertical_bias="0.65">
+        app:layout_constraintEnd_toEndOf="@id/gradientBackground"
+        app:layout_constraintStart_toStartOf="@id/gradientBackground"
+        app:layout_constraintTop_toTopOf="@id/gradientBackground">
 
         <TextView
             android:layout_width="wrap_content"
@@ -108,7 +88,7 @@
             android:textSize="@dimen/_13ssp" />
 
         <TextView
-            android:id="@+id/textUsername"
+            android:id="@+id/textPixabay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_4sdp"
@@ -118,26 +98,7 @@
             android:textSize="@dimen/_13ssp"
             android:textStyle="italic"
             tools:ignore="RtlSymmetry"
-            tools:text="user name" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/ubuntu_medium"
-            android:text=" on "
-            android:textColor="@color/colorWhite"
-            android:textSize="@dimen/_13ssp"
-            tools:ignore="HardcodedText" />
-
-        <TextView
-            android:id="@+id/textUnSplash"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/ubuntu_medium"
-            android:text="@string/unsplash"
-            android:textColor="@color/colorWhite"
-            android:textSize="@dimen/_13ssp"
-            android:textStyle="italic" />
+            android:text="@string/pixabay" />
 
     </LinearLayout>
 

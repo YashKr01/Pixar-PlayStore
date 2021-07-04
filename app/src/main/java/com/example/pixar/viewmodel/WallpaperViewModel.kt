@@ -14,10 +14,4 @@ class WallpaperViewModel @Inject constructor(
     private val repository: UnsplashRepository
 ) : ViewModel() {
 
-    fun trackDownloads(url: String) {
-        viewModelScope.launch(Dispatchers.IO) {
-            repository.trackDownloads(url)
-        }
-    }
-
 }

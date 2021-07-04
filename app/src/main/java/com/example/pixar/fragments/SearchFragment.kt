@@ -117,7 +117,8 @@ class SearchFragment : Fragment(), PixabayPhotoAdapter.OnItemClickListener {
     }
 
     override fun onItemClicked(photo: PixabayPhoto) {
-
+        val action = SearchFragmentDirections.actionSearchFragmentToWallpaperFragment(photo)
+        findNavController().navigate(action)
     }
 
 }

@@ -21,7 +21,7 @@
         tools:layout="@layout/fragment_wallpaper" >
         <argument
             android:name="photo"
-            app:argType="com.example.pixar.model.UnsplashPhoto" />
+            app:argType="com.example.pixar.model.PixabayPhoto" />
     </fragment>
 
 </navigation>

@@ -31,6 +31,7 @@ class Constants {
 
         const val PIXABAY_BASE_URL = "https://pixabay.com/"
         const val PIXABAY_API_KEY = "22334015-60e39ae86b8350d24ae7f52c6"
+        const val PIXABAY_URL = "https://pixabay.com/"
 
         // Methods
         fun showSnackBar(context: Context, view: View, message: String, duration: Int) {
