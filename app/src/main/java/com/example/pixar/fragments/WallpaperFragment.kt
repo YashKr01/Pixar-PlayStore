@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
@@ -19,6 +20,7 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.example.pixar.databinding.FragmentWallpaperBinding
+import com.example.pixar.model.PixabayPhoto
 import com.example.pixar.utils.Constants.Companion.IMAGE_DOWNLOAD_FOLDER_NAME
 import com.example.pixar.utils.Constants.Companion.PIXABAY_URL
 import com.example.pixar.utils.Constants.Companion.imageToBitmap
@@ -54,37 +56,9 @@ class WallpaperFragment : Fragment() {
 
         val photo = args.photo
 
+        loadLargeImage(photo)
+
         binding.apply {
-
-            Glide.with(this@WallpaperFragment)
-                .load(photo.webformatURL)
-                .centerCrop()
-                .listener(object : RequestListener<Drawable> {
-                    override fun onLoadFailed(
-                        e: GlideException?,
-                        model: Any?,
-                        target: Target<Drawable>?,
-                        isFirstResource: Boolean
-                    ): Boolean {
-                        imageError.isVisible = true
-                        textError.isVisible = true
-                        return false
-                    }
-
-                    override fun onResourceReady(
-                        resource: Drawable?,
-                        model: Any?,
-                        target: Target<Drawable>?,
-                        dataSource: DataSource?,
-                        isFirstResource: Boolean
-                    ): Boolean {
-                        imageError.isVisible = false
-                        textError.isVisible = false
-                        return false
-                    }
-                })
-                .transition(DrawableTransitionOptions.withCrossFade())
-                .into(binding.imageWallpaper)
 
             textPixabay.paint.isUnderlineText = true
 
@@ -123,6 +97,44 @@ class WallpaperFragment : Fragment() {
                 )
             }
         }
+
+    }
+
+    private fun loadLargeImage(source: PixabayPhoto) {
+
+        Glide.with(this@WallpaperFragment)
+            .load(source.largeImageURL)
+            .centerCrop()
+            .listener(object : RequestListener<Drawable> {
+                override fun onLoadFailed(
+                    e: GlideException?,
+                    model: Any?,
+                    target: Target<Drawable>?,
+                    isFirstResource: Boolean
+                ): Boolean {
+                    binding.progressBar.isVisible = false
+                    binding.textLoading.isVisible = false
+                    binding.imageError.isVisible = true
+                    binding.textError.isVisible = true
+                    return false
+                }
+
+                override fun onResourceReady(
+                    resource: Drawable?,
+                    model: Any?,
+                    target: Target<Drawable>?,
+                    dataSource: DataSource?,
+                    isFirstResource: Boolean
+                ): Boolean {
+                    binding.progressBar.isVisible = false
+                    binding.textLoading.isVisible = false
+                    binding.imageError.isVisible = false
+                    binding.textError.isVisible = false
+                    return false
+                }
+            })
+            .transition(DrawableTransitionOptions.withCrossFade())
+            .into(binding.imageWallpaper)
 
     }
 

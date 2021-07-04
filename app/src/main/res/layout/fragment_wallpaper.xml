@@ -7,7 +7,7 @@
     android:background="@color/colorPrimaryBlue"
     tools:context=".fragments.WallpaperFragment">
 
-    <com.google.android.material.imageview.ShapeableImageView
+    <ImageView
         android:id="@+id/imageWallpaper"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -45,6 +45,28 @@
         app:layout_constraintStart_toStartOf="@id/imageError"
         app:layout_constraintTop_toBottomOf="@id/imageError" />
 
+    <TextView
+        android:id="@+id/textLoading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/ubuntu_medium"
+        android:text="@string/loading"
+        android:textColor="@color/colorTextSecondary"
+        android:textSize="@dimen/_16ssp"
+        app:layout_constraintEnd_toEndOf="@id/imageError"
+        app:layout_constraintStart_toStartOf="@id/imageError"
+        app:layout_constraintTop_toBottomOf="@id/imageError" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="@dimen/_40sdp"
+        android:layout_height="@dimen/_40sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:indeterminateTint="@color/colorPink"
+        app:layout_constraintStart_toStartOf="@id/imageWallpaper"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ImageButton
         android:id="@+id/buttonDownload"
         android:layout_width="wrap_content"
@@ -71,9 +93,9 @@
         android:id="@+id/linearLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_8sdp"
         android:layout_marginTop="@dimen/_4sdp"
         android:orientation="horizontal"
-        android:layout_marginStart="@dimen/_8sdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/gradientBackground"
         app:layout_constraintStart_toStartOf="@id/gradientBackground"
@@ -94,11 +116,11 @@
             android:layout_marginStart="@dimen/_4sdp"
             android:fontFamily="@font/ubuntu_medium"
             android:paddingEnd="@dimen/_2sdp"
+            android:text="@string/pixabay"
             android:textColor="@color/colorWhite"
             android:textSize="@dimen/_13ssp"
             android:textStyle="italic"
-            tools:ignore="RtlSymmetry"
-            android:text="@string/pixabay" />
+            tools:ignore="RtlSymmetry" />
 
     </LinearLayout>
 

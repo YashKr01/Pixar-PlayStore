@@ -16,4 +16,5 @@
     <string name="photo_by">Photo by -</string>
     <string name="unsplash">UnSplash</string>
     <string name="pixabay">Pixabay</string>
+    <string name="loading">Loading…</string>
 </resources>
