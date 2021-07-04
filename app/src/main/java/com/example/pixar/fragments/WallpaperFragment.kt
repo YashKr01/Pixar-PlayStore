@@ -87,6 +87,7 @@ class WallpaperFragment : Fragment() {
                 .into(binding.imageWallpaper)
 
             textPixabay.paint.isUnderlineText = true
+
             textPixabay.setOnClickListener {
                 val uri = Uri.parse(PIXABAY_URL)
                 val intent = Intent(Intent.ACTION_VIEW, uri)
