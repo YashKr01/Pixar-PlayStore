@@ -67,19 +67,6 @@
         app:layout_constraintStart_toStartOf="@id/imageWallpaper"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageButton
-        android:id="@+id/buttonDownload"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/_4sdp"
-        android:background="@drawable/circular_button_background"
-        android:contentDescription="@string/download"
-        android:padding="@dimen/_8sdp"
-        android:src="@drawable/ic_download"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:tint="@color/colorWhite" />
-
     <View
         android:id="@+id/gradientBackground"
         android:layout_width="0dp"
@@ -148,6 +135,7 @@
         android:contentDescription="@string/download"
         android:focusable="true"
         android:src="@drawable/ic_download"
+        android:visibility="invisible"
         app:backgroundTint="@color/colorThemeExtra"
         app:fabSize="mini"
         app:layout_constraintBottom_toTopOf="@+id/fab_open"
@@ -163,7 +151,8 @@
         android:contentDescription="@string/download"
         android:focusable="true"
         android:src="@drawable/ic_wallpapaper"
-        app:backgroundTint="@color/colorThemeExtra"
+        android:visibility="invisible"
+        app:backgroundTint="@color/colorPink"
         app:fabSize="mini"
         app:layout_constraintBottom_toTopOf="@+id/fab_download"
         app:layout_constraintEnd_toEndOf="@+id/fab_download"
@@ -177,7 +166,7 @@
         android:contentDescription="@string/download"
         android:focusable="true"
         android:src="@drawable/ic_save_hollow"
-        app:backgroundTint="@color/colorThemeExtra"
+        android:visibility="invisible"
         app:fabSize="mini"
         app:layout_constraintBottom_toTopOf="@+id/fab_wallpaper"
         app:layout_constraintEnd_toEndOf="@+id/fab_wallpaper"

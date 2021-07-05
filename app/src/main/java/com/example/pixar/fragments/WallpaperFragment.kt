@@ -1,7 +1,9 @@
 package com.example.pixar.fragments
 
 import android.annotation.SuppressLint
+import android.app.WallpaperManager
 import android.content.Intent
+import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
@@ -9,6 +11,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
@@ -19,6 +23,7 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
+import com.example.pixar.R
 import com.example.pixar.databinding.FragmentWallpaperBinding
 import com.example.pixar.model.PixabayPhoto
 import com.example.pixar.utils.Constants.Companion.IMAGE_DOWNLOAD_FOLDER_NAME
@@ -29,6 +34,7 @@ import com.example.pixar.utils.Constants.Companion.saveImage
 import com.example.pixar.utils.Constants.Companion.showSnackBar
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.fragment_wallpaper.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -36,10 +42,40 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class WallpaperFragment : Fragment() {
 
+    // binding
     private var _binding: FragmentWallpaperBinding? = null
     private val binding get() = _binding!!
 
+    // nav args
     private val args by navArgs<WallpaperFragmentArgs>()
+
+    // animations
+    private val rotateOpen: Animation by lazy {
+        AnimationUtils.loadAnimation(
+            requireContext(),
+            R.anim.rotate_open_anim
+        )
+    }
+    private val rotateClose: Animation by lazy {
+        AnimationUtils.loadAnimation(
+            requireContext(),
+            R.anim.rotate_close_anim
+        )
+    }
+    private val fromBottom: Animation by lazy {
+        AnimationUtils.loadAnimation(
+            requireContext(),
+            R.anim.from_bottom_anim
+        )
+    }
+    private val toBottom: Animation by lazy {
+        AnimationUtils.loadAnimation(
+            requireContext(),
+            R.anim.to_bottom_anim
+        )
+    }
+
+    private var clicked = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -50,12 +86,16 @@ class WallpaperFragment : Fragment() {
         return binding.root
     }
 
-    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        fab_open.setOnClickListener {
+            openButtonCLicked()
+        }
+
         val photo = args.photo
 
+        // load wallpaper
         loadLargeImage(photo)
 
         binding.apply {
@@ -70,12 +110,13 @@ class WallpaperFragment : Fragment() {
 
         }
 
+        // download button on click
         binding.fabDownload.setOnClickListener {
             if (isOnline(requireContext())) {
 
+                // download image after getting bitmap
                 val job = lifecycleScope.launch(Dispatchers.IO) {
-                    val imageBitmap = imageToBitmap(photo.webformatURL)
-                    saveImage(imageBitmap!!, requireContext(), IMAGE_DOWNLOAD_FOLDER_NAME)
+                    downloadImage(photo.largeImageURL)
                 }
 
                 GlobalScope.launch(Dispatchers.Main) {
@@ -89,15 +130,34 @@ class WallpaperFragment : Fragment() {
                 }
 
             } else {
-                showSnackBar(
-                    requireContext(),
-                    binding.root,
-                    "No Connection...",
-                    Snackbar.LENGTH_SHORT
-                )
+                showNoConnectionSnackBar()
             }
         }
 
+        // wallpaper button on click
+        binding.fabWallpaper.setOnClickListener {
+            if (isOnline(requireContext())) {
+
+
+            } else {
+                showNoConnectionSnackBar()
+            }
+        }
+
+    }
+
+    private fun showNoConnectionSnackBar() {
+        showSnackBar(
+            requireContext(),
+            binding.root,
+            "No Connection...",
+            Snackbar.LENGTH_SHORT
+        )
+    }
+
+    private fun downloadImage(url: String) {
+        val imageBitmap = imageToBitmap(url)
+        saveImage(imageBitmap!!, requireContext(), IMAGE_DOWNLOAD_FOLDER_NAME)
     }
 
     private fun loadLargeImage(source: PixabayPhoto) {
@@ -136,6 +196,39 @@ class WallpaperFragment : Fragment() {
             .transition(DrawableTransitionOptions.withCrossFade())
             .into(binding.imageWallpaper)
 
+    }
+
+    private fun openButtonCLicked() {
+        setVisibility(clicked)
+        setAnimation(clicked)
+        clicked = !clicked
+    }
+
+    private fun setAnimation(clicked: Boolean) {
+        if (!clicked) {
+            fab_save.startAnimation(fromBottom)
+            fab_wallpaper.startAnimation(fromBottom)
+            fab_download.startAnimation(fromBottom)
+            fab_open.startAnimation(rotateOpen)
+        } else {
+            fab_save.startAnimation(toBottom)
+            fab_wallpaper.startAnimation(toBottom)
+            fab_download.startAnimation(toBottom)
+            fab_open.startAnimation(rotateClose)
+        }
+    }
+
+    private fun setVisibility(clicked: Boolean) {
+        if (!clicked) {
+            fab_download.visibility = View.VISIBLE
+            fab_save.visibility = View.VISIBLE
+            fab_save.visibility = View.VISIBLE
+        }
+        else{
+            fab_download.visibility = View.INVISIBLE
+            fab_save.visibility = View.INVISIBLE
+            fab_save.visibility = View.INVISIBLE
+        }
     }
 
     override fun onDestroyView() {
