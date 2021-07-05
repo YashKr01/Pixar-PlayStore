@@ -116,16 +116,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/_8sdp"
+        android:layout_marginBottom="@dimen/_8sdp"
         android:clickable="true"
         android:contentDescription="@string/open_options"
         android:focusable="true"
         android:src="@drawable/ic_add"
         app:backgroundTint="@color/colorYellow"
-        app:layout_constraintBottom_toTopOf="@id/gradientBackground"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:tint="@color/colorWhite"
-        tools:layout_editor_absoluteX="335dp"
-        tools:layout_editor_absoluteY="634dp" />
+        app:tint="@color/colorWhite" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_download"

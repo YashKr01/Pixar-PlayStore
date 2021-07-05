@@ -32,31 +32,4 @@
         app:layout_constraintTop_toTopOf="parent"
         app:tint="@color/colorThemeExtra" />
 
-    <View
-        android:layout_width="0dp"
-        android:layout_height="@dimen/_40sdp"
-        android:background="@drawable/gradient_background"
-        app:layout_constraintBottom_toBottomOf="@id/image"
-        app:layout_constraintEnd_toEndOf="@id/image"
-        app:layout_constraintStart_toStartOf="@id/image" />
-
-    <TextView
-        android:id="@+id/username"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/_4sdp"
-        android:drawablePadding="@dimen/_2sdp"
-        android:ellipsize="end"
-        android:fontFamily="@font/ubuntu_medium"
-        android:gravity="center"
-        android:maxLines="1"
-        android:textAlignment="center"
-        android:textColor="@color/colorWhite"
-        app:drawableStartCompat="@drawable/ic_person"
-        app:drawableTint="@color/colorWhite"
-        app:layout_constraintBottom_toBottomOf="@id/image"
-        app:layout_constraintEnd_toEndOf="@id/image"
-        app:layout_constraintStart_toStartOf="@id/image"
-        tools:text="Username" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

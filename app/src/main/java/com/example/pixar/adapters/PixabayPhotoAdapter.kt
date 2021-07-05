@@ -59,7 +59,6 @@ class PixabayPhotoAdapter(private val listener: OnItemClickListener) :
                         target: Target<Drawable>?,
                         isFirstResource: Boolean
                     ): Boolean {
-                        binding.username.isVisible = false
                         binding.imageError.isVisible = true
                         return false
                     }
@@ -72,8 +71,6 @@ class PixabayPhotoAdapter(private val listener: OnItemClickListener) :
                         isFirstResource: Boolean
                     ): Boolean {
                         binding.imageError.isVisible = false
-                        binding.username.isVisible = true
-                        binding.username.text = photo.user
                         return false
                     }
                 })
