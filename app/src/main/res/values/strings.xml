@@ -18,4 +18,13 @@
     <string name="pixabay">Pixabay</string>
     <string name="loading">Loading…</string>
     <string name="open_options">open options</string>
+    <string name="pick_quality">Pick Quality</string>
+    <string name="normal_resolution">Normal Resolution</string>
+    <string name="high_resolution">High Resolution</string>
+    <string name="cancel">Cancel</string>
+    <string name="choose_action">Set Wallpaper As</string>
+    <string name="home_screen">Home Screen</string>
+    <string name="lock_screen">Lock Screen</string>
+    <string name="set_as_both">Set As Both</string>
+    <string name="set_wallpaper">Set Wallpaper</string>
 </resources>

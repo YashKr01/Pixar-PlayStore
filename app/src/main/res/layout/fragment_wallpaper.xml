@@ -136,7 +136,7 @@
         android:src="@drawable/ic_download"
         android:visibility="invisible"
         app:backgroundTint="@color/colorThemeExtra"
-        app:fabSize="mini"
+        app:fabSize="normal"
         app:layout_constraintBottom_toTopOf="@+id/fab_open"
         app:layout_constraintEnd_toEndOf="@+id/fab_open"
         app:layout_constraintStart_toStartOf="@+id/fab_open"
@@ -152,7 +152,7 @@
         android:src="@drawable/ic_wallpapaper"
         android:visibility="invisible"
         app:backgroundTint="@color/colorPink"
-        app:fabSize="mini"
+        app:fabSize="normal"
         app:layout_constraintBottom_toTopOf="@+id/fab_download"
         app:layout_constraintEnd_toEndOf="@+id/fab_download"
         app:tint="@color/colorWhite" />
@@ -166,7 +166,7 @@
         android:focusable="true"
         android:src="@drawable/ic_save_hollow"
         android:visibility="invisible"
-        app:fabSize="mini"
+        app:fabSize="normal"
         app:layout_constraintBottom_toTopOf="@+id/fab_wallpaper"
         app:layout_constraintEnd_toEndOf="@+id/fab_wallpaper"
         app:tint="@color/colorWhite" />
