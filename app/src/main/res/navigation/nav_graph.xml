@@ -22,6 +22,30 @@
         <argument
             android:name="photo"
             app:argType="com.example.pixar.model.PixabayPhoto" />
+        <action
+            android:id="@+id/action_wallpaperFragment_to_downloadBottomSheetFragment"
+            app:destination="@id/downloadBottomSheetFragment" />
+        <action
+            android:id="@+id/action_wallpaperFragment_to_wallpaperBottomSheetFragment"
+            app:destination="@id/wallpaperBottomSheetFragment" />
     </fragment>
+    <dialog
+        android:id="@+id/downloadBottomSheetFragment"
+        android:name="com.example.pixar.bottomsheets.DownloadBottomSheetFragment"
+        android:label="download_bottom_sheet"
+        tools:layout="@layout/download_bottom_sheet" >
+        <argument
+            android:name="photo"
+            app:argType="com.example.pixar.model.PixabayPhoto" />
+    </dialog>
+    <dialog
+        android:id="@+id/wallpaperBottomSheetFragment"
+        android:name="com.example.pixar.bottomsheets.WallpaperBottomSheetFragment"
+        android:label="wallpaper_bottom_sheet"
+        tools:layout="@layout/wallpaper_bottom_sheet" >
+        <argument
+            android:name="photo"
+            app:argType="com.example.pixar.model.PixabayPhoto" />
+    </dialog>
 
 </navigation>

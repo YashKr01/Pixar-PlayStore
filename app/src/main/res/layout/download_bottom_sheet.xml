@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorBlueLight">
+    android:layout_height="wrap_content"
+    android:padding="@dimen/_4sdp"
+    android:background="@color/colorBlueLight"
+    tools:context=".bottomsheets.DownloadBottomSheetFragment">
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -75,11 +78,13 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_32sdp"
         android:layout_marginEnd="@dimen/_32sdp"
+        android:layout_marginBottom="@dimen/_12sdp"
         android:fontFamily="@font/ubuntu_medium"
         android:padding="@dimen/_6sdp"
         android:text="@string/cancel"
         android:textColor="@color/colorWhite"
         app:backgroundTint="@color/colorThemeExtra"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/buttonDownload" />

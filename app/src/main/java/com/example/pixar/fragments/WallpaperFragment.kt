@@ -16,6 +16,7 @@ import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
@@ -112,36 +113,24 @@ class WallpaperFragment : Fragment() {
 
         // download button on click
         binding.fabDownload.setOnClickListener {
-            if (isOnline(requireContext())) {
 
-                // download image after getting bitmap
-                val job = lifecycleScope.launch(Dispatchers.IO) {
-                    downloadImage(photo.largeImageURL)
-                }
+            val action =
+                WallpaperFragmentDirections.actionWallpaperFragmentToDownloadBottomSheetFragment(
+                    photo
+                )
 
-                GlobalScope.launch(Dispatchers.Main) {
-                    job.join()
-                    showSnackBar(
-                        requireContext(),
-                        binding.root,
-                        "Image Downloaded to gallery",
-                        Snackbar.LENGTH_SHORT
-                    )
-                }
-
-            } else {
-                showNoConnectionSnackBar()
-            }
+            findNavController().navigate(action)
         }
 
         // wallpaper button on click
         binding.fabWallpaper.setOnClickListener {
-            if (isOnline(requireContext())) {
 
+            val action =
+                WallpaperFragmentDirections.actionWallpaperFragmentToWallpaperBottomSheetFragment(
+                    photo
+                )
 
-            } else {
-                showNoConnectionSnackBar()
-            }
+            findNavController().navigate(action)
         }
 
     }
@@ -223,8 +212,7 @@ class WallpaperFragment : Fragment() {
             fab_download.visibility = View.VISIBLE
             fab_save.visibility = View.VISIBLE
             fab_save.visibility = View.VISIBLE
-        }
-        else{
+        } else {
             fab_download.visibility = View.INVISIBLE
             fab_save.visibility = View.INVISIBLE
             fab_save.visibility = View.INVISIBLE
