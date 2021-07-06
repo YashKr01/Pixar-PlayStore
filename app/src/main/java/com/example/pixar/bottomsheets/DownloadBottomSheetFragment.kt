@@ -57,6 +57,8 @@ class DownloadBottomSheetFragment : BottomSheetDialogFragment() {
                                 withContext(Dispatchers.Main) {
                                     progressDialog.dismiss()
                                     snackBar(getString(R.string.downloaded_to_gallery))
+                                    withContext(Dispatchers.IO) { delay(1000L) }
+                                    dismiss()
                                 }
                             }
                         } catch (e: TimeoutCancellationException) {
@@ -76,6 +78,8 @@ class DownloadBottomSheetFragment : BottomSheetDialogFragment() {
                                 withContext(Dispatchers.Main) {
                                     progressDialog.dismiss()
                                     snackBar(getString(R.string.downloaded_to_gallery))
+                                    withContext(Dispatchers.IO) { delay(1000L) }
+                                    dismiss()
                                 }
                             }
                         } catch (e: TimeoutCancellationException) {
@@ -91,6 +95,10 @@ class DownloadBottomSheetFragment : BottomSheetDialogFragment() {
             } else {
                 snackBar(getString(R.string.no_connection))
             }
+        }
+
+        binding.buttonDownloadCancel.setOnClickListener {
+            dismiss()
         }
 
     }

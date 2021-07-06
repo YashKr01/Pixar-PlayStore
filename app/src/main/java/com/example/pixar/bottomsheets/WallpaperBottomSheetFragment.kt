@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import com.example.pixar.R
@@ -17,7 +16,7 @@ import com.example.pixar.utils.Constants.Companion.isOnline
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.io.IOException
@@ -46,6 +45,7 @@ class WallpaperBottomSheetFragment : BottomSheetDialogFragment() {
         binding.buttonSetWallpaper.setOnClickListener {
 
             if (isOnline(requireContext())) {
+
                 when {
 
                     // if only home screen is selected
@@ -62,6 +62,8 @@ class WallpaperBottomSheetFragment : BottomSheetDialogFragment() {
                                 } else {
                                     withContext(Dispatchers.Main) {
                                         snackBar(getString(R.string.wallpaper_has_been_set))
+                                        withContext(Dispatchers.IO) { delay(1000L) }
+                                        dismiss()
                                     }
                                 }
                             } else {
@@ -87,6 +89,8 @@ class WallpaperBottomSheetFragment : BottomSheetDialogFragment() {
                                 } else {
                                     withContext(Dispatchers.Main) {
                                         snackBar(getString(R.string.wallpaper_has_been_set))
+                                        withContext(Dispatchers.IO) { delay(1000L) }
+                                        dismiss()
                                     }
                                 }
                             } else {
@@ -111,7 +115,11 @@ class WallpaperBottomSheetFragment : BottomSheetDialogFragment() {
                                 setWallpaperOnHomeScreen(bitmap)
                                 setWallpaperOnLockScreen(bitmap)
 
-                                withContext(Dispatchers.Main) { snackBar(getString(R.string.wallpaper_has_been_set)) }
+                                withContext(Dispatchers.Main) {
+                                    snackBar(getString(R.string.wallpaper_has_been_set))
+                                    withContext(Dispatchers.IO) { delay(1000L) }
+                                    dismiss()
+                                }
 
                             } else {
                                 withContext(Dispatchers.Main) { snackBar(getString(R.string.an_error_occurred)) }
@@ -125,6 +133,10 @@ class WallpaperBottomSheetFragment : BottomSheetDialogFragment() {
                 snackBar(getString(R.string.no_connection))
             }
 
+        }
+
+        binding.buttonCancel.setOnClickListener {
+            dismiss()
         }
 
     }
