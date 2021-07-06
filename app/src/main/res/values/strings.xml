@@ -27,4 +27,6 @@
     <string name="lock_screen">Lock Screen</string>
     <string name="set_as_both">Set As Both</string>
     <string name="set_wallpaper">Set Wallpaper</string>
+    <string name="timeout_error">Process timed out due to slow connection</string>
+    <string name="downloaded_to_gallery">Downloaded to gallery</string>
 </resources>

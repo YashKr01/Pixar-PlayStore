@@ -144,10 +144,7 @@ class WallpaperFragment : Fragment() {
         )
     }
 
-    private fun downloadImage(url: String) {
-        val imageBitmap = imageToBitmap(url)
-        saveImage(imageBitmap!!, requireContext(), IMAGE_DOWNLOAD_FOLDER_NAME)
-    }
+
 
     private fun loadLargeImage(source: PixabayPhoto) {
 
