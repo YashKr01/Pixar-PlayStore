@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,99 +8,105 @@
     android:padding="@dimen/_4sdp"
     tools:context=".bottomsheets.WallpaperBottomSheetFragment">
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="@dimen/_8sdp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        <TextView
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/_8sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/ubuntu_bold"
+                android:padding="@dimen/_4sdp"
+                android:text="@string/choose_action"
+                android:textAlignment="center"
+                android:textColor="@color/colorTextSecondary"
+                android:textSize="@dimen/_18ssp" />
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/radioButtonHome"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:fontFamily="@font/ubuntu_medium"
+                    android:text="@string/home_screen"
+                    android:textColor="@color/colorTextSecondary"
+                    android:textSize="@dimen/_14ssp"
+                    app:buttonTint="@color/colorYellow" />
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/radioButtonLock"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/ubuntu_medium"
+                    android:text="@string/lock_screen"
+                    android:textColor="@color/colorTextSecondary"
+                    android:textSize="@dimen/_14ssp"
+                    app:buttonTint="@color/colorYellow" />
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/radioButtonBoth"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/ubuntu_medium"
+                    android:text="@string/set_as_both"
+                    android:textColor="@color/colorTextSecondary"
+                    android:textSize="@dimen/_14ssp"
+                    app:buttonTint="@color/colorYellow" />
+
+            </RadioGroup>
+
+        </LinearLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonSetWallpaper"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_32sdp"
+            android:layout_marginEnd="@dimen/_32sdp"
             android:fontFamily="@font/ubuntu_bold"
-            android:padding="@dimen/_4sdp"
-            android:text="@string/choose_action"
-            android:textAlignment="center"
-            android:textColor="@color/colorTextSecondary"
-            android:textSize="@dimen/_18ssp" />
+            android:paddingTop="@dimen/_8sdp"
+            android:paddingBottom="@dimen/_8sdp"
+            android:text="@string/set_wallpaper"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/_12ssp"
+            app:backgroundTint="@color/colorYellow"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/linearLayout" />
 
-        <RadioGroup
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonCancel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_32sdp"
+            android:layout_marginEnd="@dimen/_32sdp"
+            android:layout_marginBottom="@dimen/_48sdp"
+            android:fontFamily="@font/ubuntu_bold"
+            android:paddingTop="@dimen/_8sdp"
+            android:paddingBottom="@dimen/_8sdp"
+            android:text="@string/cancel"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/_12ssp"
+            app:backgroundTint="@color/colorThemeExtra"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/buttonSetWallpaper" />
 
-            <com.google.android.material.radiobutton.MaterialRadioButton
-                android:id="@+id/radioButtonHome"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:checked="true"
-                android:fontFamily="@font/ubuntu_medium"
-                android:text="@string/home_screen"
-                android:textColor="@color/colorTextSecondary"
-                android:textSize="@dimen/_14ssp"
-                app:buttonTint="@color/colorYellow" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <com.google.android.material.radiobutton.MaterialRadioButton
-                android:id="@+id/radioButtonLock"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/ubuntu_medium"
-                android:text="@string/lock_screen"
-                android:textColor="@color/colorTextSecondary"
-                android:textSize="@dimen/_14ssp"
-                app:buttonTint="@color/colorYellow" />
-
-            <com.google.android.material.radiobutton.MaterialRadioButton
-                android:id="@+id/radioButtonBoth"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/ubuntu_medium"
-                android:text="@string/set_as_both"
-                android:textColor="@color/colorTextSecondary"
-                android:textSize="@dimen/_14ssp"
-                app:buttonTint="@color/colorYellow" />
-
-        </RadioGroup>
-
-    </LinearLayout>
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/buttonSetWallpaper"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_32sdp"
-        android:layout_marginEnd="@dimen/_32sdp"
-        android:fontFamily="@font/ubuntu_bold"
-        android:paddingTop="@dimen/_8sdp"
-        android:paddingBottom="@dimen/_8sdp"
-        android:text="@string/set_wallpaper"
-        android:textColor="@color/colorWhite"
-        android:textSize="@dimen/_12ssp"
-        app:backgroundTint="@color/colorYellow"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/linearLayout" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/buttonCancel"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_32sdp"
-        android:layout_marginEnd="@dimen/_32sdp"
-        android:layout_marginBottom="@dimen/_32sdp"
-        android:fontFamily="@font/ubuntu_bold"
-        android:paddingTop="@dimen/_8sdp"
-        android:paddingBottom="@dimen/_8sdp"
-        android:text="@string/cancel"
-        android:textColor="@color/colorWhite"
-        android:textSize="@dimen/_12ssp"
-        app:backgroundTint="@color/colorThemeExtra"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/buttonSetWallpaper" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

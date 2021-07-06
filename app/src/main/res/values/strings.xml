@@ -29,4 +29,5 @@
     <string name="set_wallpaper">Set Wallpaper</string>
     <string name="timeout_error">Process timed out due to slow connection</string>
     <string name="downloaded_to_gallery">Downloaded to gallery</string>
+    <string name="wallpaper_has_been_set">Wallpaper has been set</string>
 </resources>

@@ -148,7 +148,7 @@ class WallpaperFragment : Fragment() {
 
     private fun loadLargeImage(source: PixabayPhoto) {
 
-        Glide.with(this@WallpaperFragment)
+        Glide.with(requireContext())
             .load(source.largeImageURL)
             .centerCrop()
             .listener(object : RequestListener<Drawable> {
