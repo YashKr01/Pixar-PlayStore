@@ -71,41 +71,47 @@
 
         </LinearLayout>
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/buttonSetWallpaper"
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_32sdp"
-            android:layout_marginEnd="@dimen/_32sdp"
-            android:fontFamily="@font/ubuntu_bold"
-            android:paddingTop="@dimen/_8sdp"
-            android:paddingBottom="@dimen/_8sdp"
-            android:text="@string/set_wallpaper"
-            android:textColor="@color/colorWhite"
-            android:textSize="@dimen/_12ssp"
-            app:backgroundTint="@color/colorYellow"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/linearLayout" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/buttonCancel"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_32sdp"
-            android:layout_marginEnd="@dimen/_32sdp"
             android:layout_marginBottom="@dimen/_48sdp"
-            android:fontFamily="@font/ubuntu_bold"
-            android:paddingTop="@dimen/_8sdp"
-            android:paddingBottom="@dimen/_8sdp"
-            android:text="@string/cancel"
-            android:textColor="@color/colorWhite"
-            android:textSize="@dimen/_12ssp"
-            app:backgroundTint="@color/colorThemeExtra"
+            android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/buttonSetWallpaper" />
+            app:layout_constraintTop_toBottomOf="@id/linearLayout">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonSetWallpaper"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_4sdp"
+                android:layout_weight="1"
+                android:fontFamily="@font/ubuntu_bold"
+                android:paddingTop="@dimen/_8sdp"
+                android:paddingBottom="@dimen/_8sdp"
+                android:text="@string/set_wallpaper"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/_14ssp"
+                app:backgroundTint="@color/colorYellow"
+                app:cornerRadius="@dimen/_8sdp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonCancel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_4sdp"
+                android:layout_weight="1"
+                android:fontFamily="@font/ubuntu_bold"
+                android:paddingTop="@dimen/_8sdp"
+                android:paddingBottom="@dimen/_8sdp"
+                android:text="@string/cancel"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/_14ssp"
+                app:backgroundTint="@color/colorThemeExtra"
+                app:cornerRadius="@dimen/_8sdp" />
+
+        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
