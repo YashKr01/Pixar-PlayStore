@@ -31,4 +31,5 @@
     <string name="downloaded_to_gallery">Downloaded to gallery</string>
     <string name="wallpaper_has_been_set">Wallpaper has been set</string>
     <string name="on">On</string>
+    <string name="downloading">Downloading…</string>
 </resources>

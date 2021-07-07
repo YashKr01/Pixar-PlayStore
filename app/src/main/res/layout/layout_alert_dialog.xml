@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/colorBlueLight"
@@ -14,12 +13,12 @@
         android:layout_margin="@dimen/_8sdp"
         android:layout_marginTop="@dimen/_8sdp"
         android:fontFamily="@font/ubuntu_medium"
+        android:text="@string/downloading"
         android:textColor="@color/colorWhite"
-        android:textSize="@dimen/_16ssp"
+        android:textSize="@dimen/_14ssp"
         app:layout_constraintBottom_toBottomOf="@id/progress_circular"
         app:layout_constraintStart_toEndOf="@id/progress_circular"
-        app:layout_constraintTop_toTopOf="@id/progress_circular"
-        tools:text="Downloading..." />
+        app:layout_constraintTop_toTopOf="@id/progress_circular" />
 
     <ProgressBar
         android:id="@+id/progress_circular"
@@ -28,23 +27,5 @@
         android:indeterminateTint="@color/colorPink"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/buttonAlertDialogCancel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_4sdp"
-        android:layout_marginEnd="@dimen/_8sdp"
-        android:layout_marginBottom="@dimen/_8sdp"
-        android:fontFamily="@font/ubuntu_bold"
-        android:paddingStart="@dimen/_8sdp"
-        android:paddingEnd="@dimen/_8sdp"
-        android:text="@string/cancel"
-        android:textColor="@color/colorWhite"
-        android:textSize="@dimen/_12ssp"
-        app:backgroundTint="@color/colorThemeExtra"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/progress_circular" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,10 +1,10 @@
 package com.example.pixar.bottomsheets
 
-import android.app.ProgressDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import com.example.pixar.R
@@ -15,6 +15,7 @@ import com.example.pixar.utils.Constants.Companion.isOnline
 import com.example.pixar.utils.Constants.Companion.saveImage
 import com.example.pixar.utils.Constants.Companion.showSnackBar
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.google.android.material.button.MaterialButton
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.*
@@ -27,7 +28,7 @@ class DownloadBottomSheetFragment : BottomSheetDialogFragment() {
 
     private val args by navArgs<DownloadBottomSheetFragmentArgs>()
 
-//    private val viewModel by viewModels<WallpaperViewModel>()
+    private lateinit var alertDialog: AlertDialog
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,6 +36,11 @@ class DownloadBottomSheetFragment : BottomSheetDialogFragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = DownloadBottomSheetBinding.inflate(inflater, container, false)
+        alertDialog = AlertDialog.Builder(requireActivity()).create()
+        alertDialog.apply {
+            setCancelable(false)
+            setView(LayoutInflater.from(activity).inflate(R.layout.layout_alert_dialog, container))
+        }
         return binding.root
     }
 
@@ -45,23 +51,16 @@ class DownloadBottomSheetFragment : BottomSheetDialogFragment() {
 
         binding.buttonDownload.setOnClickListener {
             if (isOnline(requireContext())) {
-
-                val progressDialog = ProgressDialog(requireContext())
-                progressDialog.apply {
-                    setCancelable(false)
-                    setMessage("Downloading")
-                }.show()
+                alertDialog.show()
 
                 if (binding.radioButtonNormal.isChecked) {
-
-//                    trackDownloads(photo)
 
                     lifecycleScope.launch(Dispatchers.IO) {
                         try {
                             withTimeout(4000L) {
                                 downloadImage(photo.urls.small)
                                 withContext(Dispatchers.Main) {
-                                    progressDialog.dismiss()
+                                    alertDialog.dismiss()
                                     snackBar(getString(R.string.downloaded_to_gallery))
                                     withContext(Dispatchers.IO) { delay(1000L) }
                                     dismiss()
@@ -69,7 +68,7 @@ class DownloadBottomSheetFragment : BottomSheetDialogFragment() {
                             }
                         } catch (e: TimeoutCancellationException) {
                             withContext(Dispatchers.Main) {
-                                progressDialog.dismiss()
+                                alertDialog.dismiss()
                                 snackBar(getString(R.string.timeout_error))
                             }
                         }
@@ -77,14 +76,12 @@ class DownloadBottomSheetFragment : BottomSheetDialogFragment() {
 
                 } else {
 
-//                    trackDownloads(photo)
-
                     lifecycleScope.launch(Dispatchers.IO) {
                         try {
                             withTimeout(4000L) {
                                 downloadImage(photo.urls.regular)
                                 withContext(Dispatchers.Main) {
-                                    progressDialog.dismiss()
+                                    alertDialog.dismiss()
                                     snackBar(getString(R.string.downloaded_to_gallery))
                                     withContext(Dispatchers.IO) { delay(1000L) }
                                     dismiss()
@@ -92,7 +89,7 @@ class DownloadBottomSheetFragment : BottomSheetDialogFragment() {
                             }
                         } catch (e: TimeoutCancellationException) {
                             withContext(Dispatchers.Main) {
-                                progressDialog.dismiss()
+                                alertDialog.dismiss()
                                 snackBar(getString(R.string.timeout_error))
                             }
                         }
@@ -110,14 +107,6 @@ class DownloadBottomSheetFragment : BottomSheetDialogFragment() {
         }
 
     }
-
-//    private fun trackDownloads(photo: UnsplashPhoto) {
-//        lifecycleScope.launch {
-//            viewModel.trackDownloads(photo.links.download_location).observe(viewLifecycleOwner) {
-//
-//            }
-//        }
-//    }
 
     private fun snackBar(message: String) {
         showSnackBar(requireContext(), binding.root, message, Snackbar.LENGTH_SHORT)
