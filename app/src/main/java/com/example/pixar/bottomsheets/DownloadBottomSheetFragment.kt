@@ -116,7 +116,8 @@ class DownloadBottomSheetFragment : BottomSheetDialogFragment() {
 
     private fun trackDownloads(photo: UnsplashPhoto) {
         lifecycleScope.launch {
-            viewModel.trackDownloads(photo.urls.small)
+            viewModel.trackDownloads(photo.links.download_location).observe(viewLifecycleOwner) {
+            }
         }
     }
 
