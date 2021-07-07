@@ -27,4 +27,8 @@ class UnsplashRepository @Inject constructor(private val apiInterface: ApiInterf
         pagingSourceFactory = { PixabayPagingSource(apiInterface, query) }
     ).liveData
 
+    suspend fun trackDownloads(url:String){
+        apiInterface.trackDownload(url,CLIENT_ID)
+    }
+
 }

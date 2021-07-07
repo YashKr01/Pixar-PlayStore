@@ -1,6 +1,5 @@
 package com.example.pixar.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.pixar.repository.UnsplashRepository
@@ -13,5 +12,11 @@ import javax.inject.Inject
 class WallpaperViewModel @Inject constructor(
     private val repository: UnsplashRepository
 ) : ViewModel() {
+
+    fun trackDownloads(url: String) {
+        viewModelScope.launch {
+            repository.trackDownloads(url)
+        }
+    }
 
 }

@@ -167,4 +167,9 @@ class WallpaperBottomSheetFragment : BottomSheetDialogFragment() {
         Constants.showSnackBar(requireContext(), binding.root, message, Snackbar.LENGTH_SHORT)
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
 }

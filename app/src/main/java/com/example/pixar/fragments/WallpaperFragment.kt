@@ -1,9 +1,6 @@
 package com.example.pixar.fragments
 
-import android.annotation.SuppressLint
-import android.app.WallpaperManager
 import android.content.Intent
-import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
@@ -13,9 +10,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
-import android.widget.ImageView
 import androidx.core.view.isVisible
-import androidx.lifecycle.lifecycleScope
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
@@ -26,23 +22,14 @@ import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.example.pixar.R
 import com.example.pixar.databinding.FragmentWallpaperBinding
-import com.example.pixar.model.PixabayPhoto
 import com.example.pixar.model.UnsplashPhoto
-import com.example.pixar.utils.Constants.Companion.IMAGE_DOWNLOAD_FOLDER_NAME
-import com.example.pixar.utils.Constants.Companion.PIXABAY_URL
 import com.example.pixar.utils.Constants.Companion.UNSPLASH_URL
-import com.example.pixar.utils.Constants.Companion.imageToBitmap
-import com.example.pixar.utils.Constants.Companion.isOnline
-import com.example.pixar.utils.Constants.Companion.saveImage
 import com.example.pixar.utils.Constants.Companion.showSnackBar
+import com.example.pixar.viewmodel.WallpaperViewModel
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_wallpaper.*
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 
-@AndroidEntryPoint
 class WallpaperFragment : Fragment() {
 
     // binding
