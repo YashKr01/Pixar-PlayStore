@@ -87,14 +87,14 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/_4sdp"
                 android:layout_weight="1"
-                android:fontFamily="@font/ubuntu_bold"
-                android:paddingTop="@dimen/_8sdp"
-                android:paddingBottom="@dimen/_8sdp"
+                android:fontFamily="@font/ubuntu_medium"
+                android:paddingTop="@dimen/_10sdp"
+                android:paddingBottom="@dimen/_10sdp"
                 android:text="@string/set_wallpaper"
                 android:textColor="@color/colorWhite"
                 android:textSize="@dimen/_14ssp"
                 app:backgroundTint="@color/colorYellow"
-                app:cornerRadius="@dimen/_8sdp" />
+                app:cornerRadius="@dimen/_6sdp" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/buttonCancel"
@@ -102,14 +102,14 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/_4sdp"
                 android:layout_weight="1"
-                android:fontFamily="@font/ubuntu_bold"
-                android:paddingTop="@dimen/_8sdp"
-                android:paddingBottom="@dimen/_8sdp"
+                android:fontFamily="@font/ubuntu_medium"
+                android:paddingTop="@dimen/_10sdp"
+                android:paddingBottom="@dimen/_10sdp"
                 android:text="@string/cancel"
                 android:textColor="@color/colorWhite"
                 android:textSize="@dimen/_14ssp"
                 app:backgroundTint="@color/colorThemeExtra"
-                app:cornerRadius="@dimen/_8sdp" />
+                app:cornerRadius="@dimen/_6sdp" />
 
         </LinearLayout>
 
