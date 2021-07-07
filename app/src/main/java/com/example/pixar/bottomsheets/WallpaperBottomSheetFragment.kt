@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import com.example.pixar.R
@@ -28,12 +30,22 @@ class WallpaperBottomSheetFragment : BottomSheetDialogFragment() {
 
     private val args by navArgs<WallpaperBottomSheetFragmentArgs>()
 
+    private lateinit var alertDialog: AlertDialog
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = WallpaperBottomSheetBinding.inflate(inflater, container, false)
+        alertDialog = AlertDialog.Builder(requireActivity()).create()
+        val view = LayoutInflater.from(activity).inflate(R.layout.layout_alert_dialog, container)
+        val textTitle: TextView = view.findViewById(R.id.alertDialog_text)
+        textTitle.text = getString(R.string.setting_wallpaper)
+        alertDialog.apply {
+            setCancelable(false)
+            setView(view)
+        }
         return binding.root
     }
 
@@ -46,8 +58,9 @@ class WallpaperBottomSheetFragment : BottomSheetDialogFragment() {
 
             if (isOnline(requireContext())) {
 
-                when {
+                alertDialog.show()
 
+                when {
                     // if only home screen is selected
                     binding.radioButtonHome.isChecked -> {
 
@@ -61,6 +74,7 @@ class WallpaperBottomSheetFragment : BottomSheetDialogFragment() {
                                     snackBar(e)
                                 } else {
                                     withContext(Dispatchers.Main) {
+                                        alertDialog.dismiss()
                                         snackBar(getString(R.string.wallpaper_has_been_set))
                                         withContext(Dispatchers.IO) { delay(1000L) }
                                         dismiss()
@@ -68,6 +82,7 @@ class WallpaperBottomSheetFragment : BottomSheetDialogFragment() {
                                 }
                             } else {
                                 withContext(Dispatchers.Main) {
+                                    alertDialog.dismiss()
                                     snackBar(getString(R.string.an_error_occurred))
                                 }
                             }
@@ -88,6 +103,7 @@ class WallpaperBottomSheetFragment : BottomSheetDialogFragment() {
                                     snackBar(e)
                                 } else {
                                     withContext(Dispatchers.Main) {
+                                        alertDialog.dismiss()
                                         snackBar(getString(R.string.wallpaper_has_been_set))
                                         withContext(Dispatchers.IO) { delay(1000L) }
                                         dismiss()
@@ -95,6 +111,7 @@ class WallpaperBottomSheetFragment : BottomSheetDialogFragment() {
                                 }
                             } else {
                                 withContext(Dispatchers.Main) {
+                                    alertDialog.dismiss()
                                     snackBar(getString(R.string.an_error_occurred))
                                 }
                             }
@@ -116,13 +133,17 @@ class WallpaperBottomSheetFragment : BottomSheetDialogFragment() {
                                 setWallpaperOnLockScreen(bitmap)
 
                                 withContext(Dispatchers.Main) {
+                                    alertDialog.dismiss()
                                     snackBar(getString(R.string.wallpaper_has_been_set))
                                     withContext(Dispatchers.IO) { delay(1000L) }
                                     dismiss()
                                 }
 
                             } else {
-                                withContext(Dispatchers.Main) { snackBar(getString(R.string.an_error_occurred)) }
+                                withContext(Dispatchers.Main) {
+                                    alertDialog.dismiss()
+                                    snackBar(getString(R.string.an_error_occurred))
+                                }
                             }
 
                         }

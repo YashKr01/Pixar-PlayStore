@@ -8,6 +8,8 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.net.Uri
 import android.os.Environment
+import android.os.VibrationEffect
+import android.os.Vibrator
 import android.provider.MediaStore
 import android.util.Log
 import android.view.View
@@ -81,16 +83,19 @@ class Constants {
                 values.put(MediaStore.Images.Media.IS_PENDING, true)
                 // RELATIVE_PATH and IS_PENDING are introduced in API 29.
 
-                val uri: Uri? = context.contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values)
+                val uri: Uri? = context.contentResolver.insert(
+                    MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                    values
+                )
                 if (uri != null) {
                     saveImageToStream(bitmap, context.contentResolver.openOutputStream(uri))
                     values.put(MediaStore.Images.Media.IS_PENDING, false)
                     context.contentResolver.update(uri, values, null, null)
                 }
 
-            }
-            else {
-                val directory = File(Environment.getExternalStorageState().toString() + separator + folderName)
+            } else {
+                val directory =
+                    File(Environment.getExternalStorageState().toString() + separator + folderName)
                 // getExternalStorageDirectory is deprecated in API 29
 
                 if (!directory.exists()) directory.mkdirs()
@@ -107,7 +112,7 @@ class Constants {
             }
         }
 
-        private fun contentValues() : ContentValues {
+        private fun contentValues(): ContentValues {
             val values = ContentValues()
             values.put(MediaStore.Images.Media.MIME_TYPE, "image/png")
             values.put(MediaStore.Images.Media.DATE_ADDED, System.currentTimeMillis() / 1000)

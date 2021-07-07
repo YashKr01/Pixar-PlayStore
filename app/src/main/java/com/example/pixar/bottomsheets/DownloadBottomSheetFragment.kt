@@ -15,7 +15,6 @@ import com.example.pixar.utils.Constants.Companion.isOnline
 import com.example.pixar.utils.Constants.Companion.saveImage
 import com.example.pixar.utils.Constants.Companion.showSnackBar
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.google.android.material.button.MaterialButton
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.*
