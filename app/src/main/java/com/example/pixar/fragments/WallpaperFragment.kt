@@ -27,8 +27,10 @@ import com.bumptech.glide.request.target.Target
 import com.example.pixar.R
 import com.example.pixar.databinding.FragmentWallpaperBinding
 import com.example.pixar.model.PixabayPhoto
+import com.example.pixar.model.UnsplashPhoto
 import com.example.pixar.utils.Constants.Companion.IMAGE_DOWNLOAD_FOLDER_NAME
 import com.example.pixar.utils.Constants.Companion.PIXABAY_URL
+import com.example.pixar.utils.Constants.Companion.UNSPLASH_URL
 import com.example.pixar.utils.Constants.Companion.imageToBitmap
 import com.example.pixar.utils.Constants.Companion.isOnline
 import com.example.pixar.utils.Constants.Companion.saveImage
@@ -101,10 +103,19 @@ class WallpaperFragment : Fragment() {
 
         binding.apply {
 
-            textPixabay.paint.isUnderlineText = true
+            textUnsplash.paint.isUnderlineText = true
 
-            textPixabay.setOnClickListener {
-                val uri = Uri.parse(PIXABAY_URL)
+            textUnsplash.setOnClickListener {
+                val uri = Uri.parse(UNSPLASH_URL)
+                val intent = Intent(Intent.ACTION_VIEW, uri)
+                startActivity(intent)
+            }
+
+            textUsername.text = photo.user.username
+            textUsername.paint.isUnderlineText = true
+
+            textUsername.setOnClickListener {
+                val uri = Uri.parse(photo.user.attributionUrl)
                 val intent = Intent(Intent.ACTION_VIEW, uri)
                 startActivity(intent)
             }
@@ -145,11 +156,10 @@ class WallpaperFragment : Fragment() {
     }
 
 
-
-    private fun loadLargeImage(source: PixabayPhoto) {
+    private fun loadLargeImage(source: UnsplashPhoto) {
 
         Glide.with(requireContext())
-            .load(source.largeImageURL)
+            .load(source.urls.regular)
             .centerCrop()
             .listener(object : RequestListener<Drawable> {
                 override fun onLoadFailed(

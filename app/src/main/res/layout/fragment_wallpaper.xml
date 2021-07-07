@@ -94,18 +94,38 @@
             android:fontFamily="@font/ubuntu_medium"
             android:text="@string/photo_by"
             android:textColor="@color/colorWhite"
-            android:textSize="@dimen/_13ssp" />
+            android:textSize="@dimen/_12ssp" />
 
         <TextView
-            android:id="@+id/textPixabay"
+            android:id="@+id/textUsername"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_4sdp"
+            android:fontFamily="@font/ubuntu_medium"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/_12ssp"
+            android:textStyle="italic"
+            tools:text="John Doe" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_4sdp"
+            android:fontFamily="@font/ubuntu_medium"
+            android:text="@string/on"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/_12ssp" />
+
+        <TextView
+            android:id="@+id/textUnsplash"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_4sdp"
             android:fontFamily="@font/ubuntu_medium"
             android:paddingEnd="@dimen/_2sdp"
-            android:text="@string/pixabay"
+            android:text="@string/unsplash"
             android:textColor="@color/colorWhite"
-            android:textSize="@dimen/_13ssp"
+            android:textSize="@dimen/_12ssp"
             android:textStyle="italic"
             tools:ignore="RtlSymmetry" />
 
@@ -116,13 +136,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/_8sdp"
-        android:layout_marginBottom="@dimen/_8sdp"
         android:clickable="true"
         android:contentDescription="@string/open_options"
         android:focusable="true"
         android:src="@drawable/ic_add"
         app:backgroundTint="@color/colorYellow"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/gradientBackground"
         app:layout_constraintEnd_toEndOf="parent"
         app:tint="@color/colorWhite" />
 

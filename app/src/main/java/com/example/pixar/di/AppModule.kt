@@ -2,6 +2,7 @@ package com.example.pixar.di
 
 import android.content.Context
 import com.example.pixar.network.ApiInterface
+import com.example.pixar.utils.Constants
 import com.example.pixar.utils.Constants.Companion.BASE_URL
 import com.example.pixar.utils.Constants.Companion.PIXABAY_BASE_URL
 import com.readystatesoftware.chuck.ChuckInterceptor
@@ -32,7 +33,7 @@ object AppModule {
         Retrofit.Builder()
             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
-            .baseUrl(PIXABAY_BASE_URL)
+            .baseUrl(BASE_URL)
             .build()
 
     @Provides

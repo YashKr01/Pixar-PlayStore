@@ -53,7 +53,7 @@ class DownloadBottomSheetFragment : BottomSheetDialogFragment() {
                     lifecycleScope.launch(Dispatchers.IO) {
                         try {
                             withTimeout(4000L) {
-                                downloadImage(photo.webformatURL)
+                                downloadImage(photo.urls.regular)
                                 withContext(Dispatchers.Main) {
                                     progressDialog.dismiss()
                                     snackBar(getString(R.string.downloaded_to_gallery))
@@ -74,7 +74,7 @@ class DownloadBottomSheetFragment : BottomSheetDialogFragment() {
                     lifecycleScope.launch(Dispatchers.IO) {
                         try {
                             withTimeout(4000L) {
-                                downloadImage(photo.largeImageURL)
+                                downloadImage(photo.urls.regular)
                                 withContext(Dispatchers.Main) {
                                     progressDialog.dismiss()
                                     snackBar(getString(R.string.downloaded_to_gallery))

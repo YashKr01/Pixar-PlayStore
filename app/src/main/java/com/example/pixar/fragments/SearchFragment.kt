@@ -1,7 +1,6 @@
 package com.example.pixar.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
@@ -12,17 +11,15 @@ import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.pixar.R
-import com.example.pixar.adapters.PixabayPhotoAdapter
 import com.example.pixar.adapters.UnsplashPhotoAdapter
 import com.example.pixar.databinding.FragmentSearchBinding
-import com.example.pixar.model.PixabayPhoto
 import com.example.pixar.model.UnsplashPhoto
 import com.example.pixar.paging.UnsplashLoadStateAdapter
 import com.example.pixar.viewmodel.ImagesViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class SearchFragment : Fragment(), PixabayPhotoAdapter.OnItemClickListener {
+class SearchFragment : Fragment(), UnsplashPhotoAdapter.OnItemClickListener {
 
     private var _binding: FragmentSearchBinding? = null
     private val binding get() = _binding!!
@@ -36,7 +33,7 @@ class SearchFragment : Fragment(), PixabayPhotoAdapter.OnItemClickListener {
         _binding = FragmentSearchBinding.inflate(inflater, container, false)
 
         // paging and footer adapter
-        val adapter = PixabayPhotoAdapter(this)
+        val adapter = UnsplashPhotoAdapter(this)
         val footerAdapter = UnsplashLoadStateAdapter { adapter.retry() }
 
         val gridLayoutManager = GridLayoutManager(context, 2)
@@ -116,9 +113,10 @@ class SearchFragment : Fragment(), PixabayPhotoAdapter.OnItemClickListener {
         _binding = null
     }
 
-    override fun onItemClicked(photo: PixabayPhoto) {
+    override fun onItemClicked(photo: UnsplashPhoto) {
         val action = SearchFragmentDirections.actionSearchFragmentToWallpaperFragment(photo)
         findNavController().navigate(action)
     }
+
 
 }

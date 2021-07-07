@@ -53,7 +53,7 @@ class WallpaperBottomSheetFragment : BottomSheetDialogFragment() {
 
                         lifecycleScope.launch(Dispatchers.IO) {
 
-                            val bitmap = imageToBitmap(photo.largeImageURL)
+                            val bitmap = imageToBitmap(photo.urls.small)
 
                             if (bitmap != null) {
                                 val e = setWallpaperOnHomeScreen(bitmap)
@@ -80,7 +80,7 @@ class WallpaperBottomSheetFragment : BottomSheetDialogFragment() {
 
                         lifecycleScope.launch(Dispatchers.IO) {
 
-                            val bitmap = imageToBitmap(photo.largeImageURL)
+                            val bitmap = imageToBitmap(photo.urls.small)
 
                             if (bitmap != null) {
                                 val e = setWallpaperOnLockScreen(bitmap)
@@ -108,7 +108,7 @@ class WallpaperBottomSheetFragment : BottomSheetDialogFragment() {
 
                         lifecycleScope.launch(Dispatchers.IO) {
 
-                            val bitmap = imageToBitmap(photo.largeImageURL)
+                            val bitmap = imageToBitmap(photo.urls.small)
 
                             if (bitmap != null) {
 

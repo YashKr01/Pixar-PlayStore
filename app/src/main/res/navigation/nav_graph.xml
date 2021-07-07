@@ -19,15 +19,15 @@
         android:name="com.example.pixar.fragments.WallpaperFragment"
         android:label="fragment_wallpaper"
         tools:layout="@layout/fragment_wallpaper" >
-        <argument
-            android:name="photo"
-            app:argType="com.example.pixar.model.PixabayPhoto" />
         <action
             android:id="@+id/action_wallpaperFragment_to_downloadBottomSheetFragment"
             app:destination="@id/downloadBottomSheetFragment" />
         <action
             android:id="@+id/action_wallpaperFragment_to_wallpaperBottomSheetFragment"
             app:destination="@id/wallpaperBottomSheetFragment" />
+        <argument
+            android:name="photo"
+            app:argType="com.example.pixar.model.UnsplashPhoto" />
     </fragment>
     <dialog
         android:id="@+id/downloadBottomSheetFragment"
@@ -36,7 +36,7 @@
         tools:layout="@layout/download_bottom_sheet" >
         <argument
             android:name="photo"
-            app:argType="com.example.pixar.model.PixabayPhoto" />
+            app:argType="com.example.pixar.model.UnsplashPhoto" />
     </dialog>
     <dialog
         android:id="@+id/wallpaperBottomSheetFragment"
@@ -45,7 +45,7 @@
         tools:layout="@layout/wallpaper_bottom_sheet" >
         <argument
             android:name="photo"
-            app:argType="com.example.pixar.model.PixabayPhoto" />
+            app:argType="com.example.pixar.model.UnsplashPhoto" />
     </dialog>
 
 </navigation>
