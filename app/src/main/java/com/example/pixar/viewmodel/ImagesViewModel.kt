@@ -22,7 +22,7 @@ class ImagesViewModel @Inject constructor(
     }
 
     companion object {
-        private const val DEFAULT_QUERY = "wallpaper"
+        private const val DEFAULT_QUERY = "Pattern"
     }
 
 }

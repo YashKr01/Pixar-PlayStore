@@ -29,10 +29,6 @@ class Constants {
         const val UNSPLASH_URL = "https://unsplash.com/?utm_source=Pixar&utm_medium=referral"
         const val IMAGE_DOWNLOAD_FOLDER_NAME = "Pixar"
 
-        const val PIXABAY_BASE_URL = "https://pixabay.com/"
-        const val PIXABAY_API_KEY = "22334015-60e39ae86b8350d24ae7f52c6"
-        const val PIXABAY_URL = "https://pixabay.com/"
-
         // Methods
         fun showSnackBar(context: Context, view: View, message: String, duration: Int) {
             Snackbar.make(context, view, message, duration).show()

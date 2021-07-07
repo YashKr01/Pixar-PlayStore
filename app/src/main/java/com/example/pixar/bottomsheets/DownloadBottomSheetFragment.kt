@@ -5,18 +5,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import com.example.pixar.R
 import com.example.pixar.databinding.DownloadBottomSheetBinding
-import com.example.pixar.model.UnsplashPhoto
 import com.example.pixar.utils.Constants
 import com.example.pixar.utils.Constants.Companion.imageToBitmap
 import com.example.pixar.utils.Constants.Companion.isOnline
 import com.example.pixar.utils.Constants.Companion.saveImage
 import com.example.pixar.utils.Constants.Companion.showSnackBar
-import com.example.pixar.viewmodel.WallpaperViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
@@ -30,7 +27,7 @@ class DownloadBottomSheetFragment : BottomSheetDialogFragment() {
 
     private val args by navArgs<DownloadBottomSheetFragmentArgs>()
 
-    private val viewModel by viewModels<WallpaperViewModel>()
+//    private val viewModel by viewModels<WallpaperViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -57,7 +54,7 @@ class DownloadBottomSheetFragment : BottomSheetDialogFragment() {
 
                 if (binding.radioButtonNormal.isChecked) {
 
-                    trackDownloads(photo)
+//                    trackDownloads(photo)
 
                     lifecycleScope.launch(Dispatchers.IO) {
                         try {
@@ -80,7 +77,7 @@ class DownloadBottomSheetFragment : BottomSheetDialogFragment() {
 
                 } else {
 
-                    trackDownloads(photo)
+//                    trackDownloads(photo)
 
                     lifecycleScope.launch(Dispatchers.IO) {
                         try {
@@ -114,12 +111,13 @@ class DownloadBottomSheetFragment : BottomSheetDialogFragment() {
 
     }
 
-    private fun trackDownloads(photo: UnsplashPhoto) {
-        lifecycleScope.launch {
-            viewModel.trackDownloads(photo.links.download_location).observe(viewLifecycleOwner) {
-            }
-        }
-    }
+//    private fun trackDownloads(photo: UnsplashPhoto) {
+//        lifecycleScope.launch {
+//            viewModel.trackDownloads(photo.links.download_location).observe(viewLifecycleOwner) {
+//
+//            }
+//        }
+//    }
 
     private fun snackBar(message: String) {
         showSnackBar(requireContext(), binding.root, message, Snackbar.LENGTH_SHORT)

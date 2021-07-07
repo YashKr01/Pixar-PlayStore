@@ -2,9 +2,7 @@ package com.example.pixar.di
 
 import android.content.Context
 import com.example.pixar.network.ApiInterface
-import com.example.pixar.utils.Constants
 import com.example.pixar.utils.Constants.Companion.BASE_URL
-import com.example.pixar.utils.Constants.Companion.PIXABAY_BASE_URL
 import com.readystatesoftware.chuck.ChuckInterceptor
 import dagger.Module
 import dagger.Provides

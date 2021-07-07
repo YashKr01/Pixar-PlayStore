@@ -11,7 +11,6 @@ import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import androidx.core.view.isVisible
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
@@ -24,10 +23,6 @@ import com.example.pixar.R
 import com.example.pixar.databinding.FragmentWallpaperBinding
 import com.example.pixar.model.UnsplashPhoto
 import com.example.pixar.utils.Constants.Companion.UNSPLASH_URL
-import com.example.pixar.utils.Constants.Companion.showSnackBar
-import com.example.pixar.viewmodel.WallpaperViewModel
-import com.google.android.material.snackbar.Snackbar
-import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_wallpaper.*
 
 class WallpaperFragment : Fragment() {
@@ -132,16 +127,6 @@ class WallpaperFragment : Fragment() {
         }
 
     }
-
-    private fun showNoConnectionSnackBar() {
-        showSnackBar(
-            requireContext(),
-            binding.root,
-            "No Connection...",
-            Snackbar.LENGTH_SHORT
-        )
-    }
-
 
     private fun loadLargeImage(source: UnsplashPhoto) {
 
