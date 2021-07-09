@@ -8,6 +8,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.pixar.R
@@ -25,6 +26,8 @@ class SearchFragment : Fragment(), UnsplashPhotoAdapter.OnItemClickListener {
     private val binding get() = _binding!!
 
     private val viewModel by viewModels<ImagesViewModel>()
+
+    private val searchQuery by navArgs<SearchFragmentArgs>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -53,6 +56,9 @@ class SearchFragment : Fragment(), UnsplashPhotoAdapter.OnItemClickListener {
                 adapter.retry()
             }
         }
+
+        val categoryQuery = searchQuery.query
+        if (categoryQuery != null) viewModel.searchPhotos(searchQuery.query!!)
 
         viewModel.photos.observe(viewLifecycleOwner) {
             adapter.submitData(viewLifecycleOwner.lifecycle, it)

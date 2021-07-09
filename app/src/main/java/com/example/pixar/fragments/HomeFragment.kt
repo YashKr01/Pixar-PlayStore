@@ -18,7 +18,7 @@ import com.example.pixar.databinding.FragmentHomeBinding
 import com.example.pixar.model.Category
 import kotlinx.android.synthetic.main.fragment_search.*
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), CategoryAdapter.CategoryClickListener {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
@@ -31,18 +31,22 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        initList()
+        return binding.root
+    }
+
+    private fun initList() {
         list.add(Category("Nature", R.drawable.ic_nature))
         list.add(Category("Wildlife", R.drawable.ic_wildlife))
         list.add(Category("Sports", R.drawable.ic_sports))
         list.add(Category("Food", R.drawable.ic_food))
         list.add(Category("Cities", R.drawable.ic_cities))
-        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        categoryAdapter = CategoryAdapter(list, requireContext())
+        categoryAdapter = CategoryAdapter(list, requireContext(), this)
 
         binding.recyclerView.apply {
             setHasFixedSize(true)
@@ -57,6 +61,11 @@ class HomeFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onCategoryCLicked(item: Category) {
+        val action = HomeFragmentDirections.actionHomeFragmentToSearchFragment(item.title)
+        findNavController().navigate(action)
     }
 
 }

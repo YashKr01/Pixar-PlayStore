@@ -9,7 +9,11 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.example.pixar.databinding.ItemCattegoryBinding
 import com.example.pixar.model.Category
 
-class CategoryAdapter(private val list: List<Category>, private val context: Context) :
+class CategoryAdapter(
+    private val list: List<Category>,
+    private val context: Context,
+    private val listener: CategoryClickListener
+) :
     RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
 
 
@@ -34,11 +38,19 @@ class CategoryAdapter(private val list: List<Category>, private val context: Con
 
         holder.item.textCategoryName.text = item.title
 
+        holder.item.root.setOnClickListener {
+            listener.onCategoryCLicked(item)
+        }
+
     }
 
     override fun getItemCount(): Int = list.size
 
     inner class CategoryViewHolder(val item: ItemCattegoryBinding) :
         RecyclerView.ViewHolder(item.root)
+
+    interface CategoryClickListener {
+        fun onCategoryCLicked(item: Category)
+    }
 
 }

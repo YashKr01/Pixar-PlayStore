@@ -13,6 +13,10 @@
         <action
             android:id="@+id/action_searchFragment_to_wallpaperFragment"
             app:destination="@id/wallpaperFragment" />
+        <argument
+            android:name="query"
+            app:argType="string"
+            app:nullable="true" />
     </fragment>
     <fragment
         android:id="@+id/wallpaperFragment"
