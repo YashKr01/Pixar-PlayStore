@@ -5,4 +5,8 @@
         <item name="cornerSize">3%</item>
     </style>
 
+    <style name="categoryRoundCorners">
+        <item name="cornerSize">4%</item>
+    </style>
+
 </resources>

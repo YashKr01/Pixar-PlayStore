@@ -46,6 +46,7 @@ class SearchFragment : Fragment(), UnsplashPhotoAdapter.OnItemClickListener {
 
         binding.apply {
             recyclerView.layoutManager = gridLayoutManager
+            recyclerView.setHasFixedSize(true)
             recyclerView.itemAnimator = null
             recyclerView.adapter = adapter.withLoadStateFooter(footer = footerAdapter)
             buttonError.setOnClickListener {
