@@ -36,6 +36,7 @@ class HomeFragment : Fragment(), CategoryAdapter.CategoryClickListener {
     }
 
     private fun initList() {
+        list.clear()
         list.add(Category("Nature", R.drawable.ic_nature))
         list.add(Category("Wildlife", R.drawable.ic_wildlife))
         list.add(Category("Sports", R.drawable.ic_sports))

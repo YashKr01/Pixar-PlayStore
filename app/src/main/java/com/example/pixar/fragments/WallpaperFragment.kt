@@ -1,6 +1,8 @@
 package com.example.pixar.fragments
 
+import android.app.WallpaperManager
 import android.content.Intent
+import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
@@ -11,6 +13,7 @@ import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import androidx.core.view.isVisible
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
@@ -22,8 +25,16 @@ import com.bumptech.glide.request.target.Target
 import com.example.pixar.R
 import com.example.pixar.databinding.FragmentWallpaperBinding
 import com.example.pixar.model.UnsplashPhoto
+import com.example.pixar.utils.Constants
 import com.example.pixar.utils.Constants.Companion.UNSPLASH_URL
+import com.example.pixar.utils.Constants.Companion.imageToBitmap
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_wallpaper.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import java.io.IOException
 
 class WallpaperFragment : Fragment() {
 
@@ -81,7 +92,7 @@ class WallpaperFragment : Fragment() {
         val photo = args.photo
 
         // load wallpaper
-        loadLargeImage(photo)
+        loadImage(photo)
 
         binding.apply {
 
@@ -118,17 +129,53 @@ class WallpaperFragment : Fragment() {
         // wallpaper button on click
         binding.fabWallpaper.setOnClickListener {
 
-            val action =
-                WallpaperFragmentDirections.actionWallpaperFragmentToWallpaperBottomSheetFragment(
-                    photo
-                )
+            // if device version is enough
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+                val action =
+                    WallpaperFragmentDirections.actionWallpaperFragmentToWallpaperBottomSheetFragment(
+                        photo
+                    )
+                findNavController().navigate(action)
+            } else {
+                // else set wallpaper on home screen
+                lifecycleScope.launch(Dispatchers.IO) {
+                    val bitmap = imageToBitmap(photo.urls.regular)
 
-            findNavController().navigate(action)
+                    if (bitmap != null) {
+                        val e = setWallpaperOnHomeScreen(bitmap)
+                        if (e != null) withContext(Dispatchers.Main) {
+                            snackBar(e)
+                        } else {
+                            withContext(Dispatchers.Main) {
+                                snackBar(getString(R.string.wallpaper_has_been_set))
+                                withContext(Dispatchers.IO) { delay(1000L) }
+                            }
+                        }
+                    }
+
+                }
+
+            }
+
         }
 
     }
 
-    private fun loadLargeImage(source: UnsplashPhoto) {
+    private fun setWallpaperOnHomeScreen(bitmap: Bitmap): String? {
+        val wallpaperManager = WallpaperManager.getInstance(requireContext())
+        return try {
+            wallpaperManager.setBitmap(bitmap)
+            null
+        } catch (e: IOException) {
+            e.message.toString()
+        }
+    }
+
+    private fun snackBar(message: String) {
+        Constants.showSnackBar(requireContext(), binding.root, message, Snackbar.LENGTH_SHORT)
+    }
+
+    private fun loadImage(source: UnsplashPhoto) {
 
         Glide.with(requireContext())
             .load(source.urls.regular)

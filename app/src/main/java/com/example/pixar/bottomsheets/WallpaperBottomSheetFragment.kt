@@ -38,6 +38,7 @@ class WallpaperBottomSheetFragment : BottomSheetDialogFragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = WallpaperBottomSheetBinding.inflate(inflater, container, false)
+
         alertDialog = AlertDialog.Builder(requireActivity()).create()
         val view = LayoutInflater.from(activity).inflate(R.layout.layout_alert_dialog, container)
         val textTitle: TextView = view.findViewById(R.id.alertDialog_text)
@@ -46,6 +47,7 @@ class WallpaperBottomSheetFragment : BottomSheetDialogFragment() {
             setCancelable(false)
             setView(view)
         }
+
         return binding.root
     }
 
