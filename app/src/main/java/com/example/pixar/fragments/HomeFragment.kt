@@ -1,22 +1,17 @@
 package com.example.pixar.fragments
 
-import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.LinearLayout
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.example.pixar.R
 import com.example.pixar.adapters.CategoryAdapter
 import com.example.pixar.databinding.FragmentHomeBinding
 import com.example.pixar.model.Category
-import kotlinx.android.synthetic.main.fragment_search.*
 
 class HomeFragment : Fragment(), CategoryAdapter.CategoryClickListener {
 

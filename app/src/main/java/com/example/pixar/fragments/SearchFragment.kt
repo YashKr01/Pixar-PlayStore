@@ -29,6 +29,8 @@ class SearchFragment : Fragment(), UnsplashPhotoAdapter.OnItemClickListener {
 
     private val searchQuery by navArgs<SearchFragmentArgs>()
 
+    private var categoryQuery: String? = null
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -57,11 +59,14 @@ class SearchFragment : Fragment(), UnsplashPhotoAdapter.OnItemClickListener {
             }
         }
 
-        val categoryQuery = searchQuery.query
-        if (categoryQuery != null) viewModel.searchPhotos(searchQuery.query!!)
-
         viewModel.photos.observe(viewLifecycleOwner) {
             adapter.submitData(viewLifecycleOwner.lifecycle, it)
+        }
+
+        categoryQuery = searchQuery.query
+        if (categoryQuery != null) {
+            binding.toolbar.title = categoryQuery
+            viewModel.searchPhotos(searchQuery.query!!)
         }
 
         adapter.addLoadStateListener { loadState ->
@@ -87,7 +92,7 @@ class SearchFragment : Fragment(), UnsplashPhotoAdapter.OnItemClickListener {
         }
 
         (activity as AppCompatActivity).setSupportActionBar(binding.toolbar)
-        setHasOptionsMenu(true)
+        if (categoryQuery == null) setHasOptionsMenu(true)
 
         return binding.root
     }
@@ -104,7 +109,6 @@ class SearchFragment : Fragment(), UnsplashPhotoAdapter.OnItemClickListener {
 
             override fun onQueryTextSubmit(query: String?): Boolean {
                 binding.recyclerView.scrollToPosition(0)
-
                 if (query != null) viewModel.searchPhotos(query)
                 searchView.clearFocus()
                 return true
@@ -124,6 +128,5 @@ class SearchFragment : Fragment(), UnsplashPhotoAdapter.OnItemClickListener {
         val action = SearchFragmentDirections.actionSearchFragmentToWallpaperFragment(photo)
         findNavController().navigate(action)
     }
-
 
 }
