@@ -222,11 +222,17 @@ class WallpaperFragment : Fragment() {
 
     private fun setAnimation(clicked: Boolean) {
         if (!clicked) {
+            fab_download.isClickable = true
+            fab_save.isClickable = true
+            fab_wallpaper.isClickable = true
             fab_save.startAnimation(fromBottom)
             fab_wallpaper.startAnimation(fromBottom)
             fab_download.startAnimation(fromBottom)
             fab_open.startAnimation(rotateOpen)
         } else {
+            fab_download.isClickable = false
+            fab_save.isClickable = false
+            fab_wallpaper.isClickable = false
             fab_save.startAnimation(toBottom)
             fab_wallpaper.startAnimation(toBottom)
             fab_download.startAnimation(toBottom)
