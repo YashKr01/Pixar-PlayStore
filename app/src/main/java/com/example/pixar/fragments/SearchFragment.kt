@@ -59,8 +59,8 @@ class SearchFragment : Fragment(), UnsplashPhotoAdapter.OnItemClickListener {
             adapter.submitData(viewLifecycleOwner.lifecycle, it)
         }
 
-            binding.toolbar.title = searchQuery.query
-            viewModel.searchPhotos(searchQuery.query)
+        binding.toolbar.title = searchQuery.query
+        viewModel.searchPhotos(searchQuery.query)
 
         adapter.addLoadStateListener { loadState ->
             binding.apply {

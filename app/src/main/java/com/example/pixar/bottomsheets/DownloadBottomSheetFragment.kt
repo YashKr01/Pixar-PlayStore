@@ -54,46 +54,10 @@ class DownloadBottomSheetFragment : BottomSheetDialogFragment() {
 
                 if (binding.radioButtonNormal.isChecked) {
 
-                    lifecycleScope.launch(Dispatchers.IO) {
-                        try {
-                            withTimeout(4000L) {
-                                downloadImage(photo.urls.small)
-                                withContext(Dispatchers.Main) {
-                                    alertDialog.dismiss()
-                                    snackBar(getString(R.string.downloaded_to_gallery))
-                                    withContext(Dispatchers.IO) { delay(1000L) }
-                                    dismiss()
-                                }
-                            }
-                        } catch (e: TimeoutCancellationException) {
-                            withContext(Dispatchers.Main) {
-                                alertDialog.dismiss()
-                                snackBar(getString(R.string.timeout_error))
-                            }
-                        }
-                    }
+                    download(photo.urls.small)
 
                 } else {
-
-                    lifecycleScope.launch(Dispatchers.IO) {
-                        try {
-                            withTimeout(4000L) {
-                                downloadImage(photo.urls.regular)
-                                withContext(Dispatchers.Main) {
-                                    alertDialog.dismiss()
-                                    snackBar(getString(R.string.downloaded_to_gallery))
-                                    withContext(Dispatchers.IO) { delay(1000L) }
-                                    dismiss()
-                                }
-                            }
-                        } catch (e: TimeoutCancellationException) {
-                            withContext(Dispatchers.Main) {
-                                alertDialog.dismiss()
-                                snackBar(getString(R.string.timeout_error))
-                            }
-                        }
-                    }
-
+                    download(photo.urls.regular)
                 }
 
             } else {
@@ -103,6 +67,29 @@ class DownloadBottomSheetFragment : BottomSheetDialogFragment() {
 
         binding.buttonDownloadCancel.setOnClickListener {
             dismiss()
+        }
+
+    }
+
+    private fun download(url: String) {
+
+        lifecycleScope.launch(Dispatchers.IO) {
+            try {
+                withTimeout(4000L) {
+                    downloadImage(url)
+                    withContext(Dispatchers.Main) {
+                        alertDialog.dismiss()
+                        snackBar(getString(R.string.downloaded_to_gallery))
+                        withContext(Dispatchers.IO) { delay(1000L) }
+                        dismiss()
+                    }
+                }
+            } catch (e: TimeoutCancellationException) {
+                withContext(Dispatchers.Main) {
+                    alertDialog.dismiss()
+                    snackBar(getString(R.string.timeout_error))
+                }
+            }
         }
 
     }
