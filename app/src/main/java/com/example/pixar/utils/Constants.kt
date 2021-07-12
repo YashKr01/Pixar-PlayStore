@@ -31,6 +31,9 @@ class Constants {
         const val UNSPLASH_URL = "https://unsplash.com/?utm_source=Pixar&utm_medium=referral"
         const val IMAGE_DOWNLOAD_FOLDER_NAME = "Pixar"
 
+        // Permissions Codes
+        const val PERMISSION_WRITE_STORAGE_CODE = 1
+
         // Methods
         fun showSnackBar(context: Context, view: View, message: String, duration: Int) {
             Snackbar.make(context, view, message, duration).show()

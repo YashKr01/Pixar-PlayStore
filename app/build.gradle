@@ -83,4 +83,7 @@ dependencies {
     // Paging
     implementation "androidx.paging:paging-runtime:3.0.0"
 
+    // Easy Permissions
+    implementation 'com.vmadalin:easypermissions-ktx:1.0.0'
+
 }
