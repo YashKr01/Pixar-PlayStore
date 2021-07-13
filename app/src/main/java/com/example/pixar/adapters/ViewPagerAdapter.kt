@@ -4,6 +4,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.example.pixar.databinding.ItemViewPagerBinding
 import com.example.pixar.model.ViewPagerModel
 
@@ -28,10 +30,19 @@ class ViewPagerAdapter(
 
     override fun getItemCount(): Int = list.size
 
-    class ViewPagerViewHolder(private val binding: ItemViewPagerBinding) :
+    class ViewPagerViewHolder(private var binding: ItemViewPagerBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun setImage(item: ViewPagerModel) = binding.viewpagerImage.setImageResource(item.drawable)
+        fun setImage(item: ViewPagerModel) {
+
+            Glide.with(itemView)
+                .load(item.drawable)
+                .centerCrop()
+                .transition(DrawableTransitionOptions.withCrossFade())
+                .into(binding.viewpagerImage)
+
+            binding.viewPagerTitle.text = item.title
+        }
 
     }
 
