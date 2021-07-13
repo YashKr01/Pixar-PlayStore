@@ -21,19 +21,30 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewPager"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_180sdp"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:paddingStart="@dimen/_48sdp"
+            android:paddingEnd="@dimen/_48sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_4sdp"
-            android:layout_marginTop="@dimen/_44sdp"
+            android:layout_marginTop="@dimen/_24sdp"
             android:layout_marginEnd="@dimen/_4sdp"
             android:layout_marginBottom="@dimen/_32sdp"
             android:clipToPadding="false"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/toolbar"
+            app:layout_constraintTop_toBottomOf="@id/viewPager"
             app:spanCount="5" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
