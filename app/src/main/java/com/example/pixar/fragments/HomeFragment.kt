@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
@@ -59,7 +60,7 @@ class HomeFragment : Fragment(), CategoryAdapter.CategoryClickListener {
             adapter = CategoryAdapter(list, requireContext(), this@HomeFragment)
             setHasFixedSize(true)
             isNestedScrollingEnabled = false
-            layoutManager = LinearLayoutManager(requireContext())
+            layoutManager = GridLayoutManager(requireContext(),2)
         }
 
     }
