@@ -24,9 +24,9 @@
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/viewPager"
             android:layout_width="0dp"
-            android:layout_height="@dimen/_240sdp"
-            android:paddingStart="@dimen/_60sdp"
-            android:paddingEnd="@dimen/_60sdp"
+            android:layout_height="@dimen/_180sdp"
+            android:paddingStart="@dimen/_24sdp"
+            android:paddingEnd="@dimen/_24sdp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/toolbar" />
@@ -43,7 +43,7 @@
             android:gravity="center"
             android:text="@string/categories"
             android:textColor="@color/colorWhite"
-            android:textSize="@dimen/_16ssp"
+            android:textSize="@dimen/_14ssp"
             app:drawableEndCompat="@drawable/ic_category"
             app:drawableTint="@color/colorWhite"
             app:layout_constraintStart_toStartOf="parent"

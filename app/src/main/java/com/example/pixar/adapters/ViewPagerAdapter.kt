@@ -11,7 +11,8 @@ import com.example.pixar.model.ViewPagerModel
 
 class ViewPagerAdapter(
     private val list: ArrayList<ViewPagerModel>,
-    private val viewPager: ViewPager2
+    private val viewPager: ViewPager2,
+    private val listener: ViewPagerClickListener
 ) :
     RecyclerView.Adapter<ViewPagerAdapter.ViewPagerViewHolder>() {
 
@@ -26,15 +27,19 @@ class ViewPagerAdapter(
 
     override fun onBindViewHolder(holder: ViewPagerViewHolder, position: Int) {
         holder.setImage(list[position])
+
+        val item = list[position]
+        holder.binding.root.setOnClickListener {
+            listener.onViewPagerClick(item)
+        }
     }
 
     override fun getItemCount(): Int = list.size
 
-    class ViewPagerViewHolder(private var binding: ItemViewPagerBinding) :
+    class ViewPagerViewHolder(val binding: ItemViewPagerBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun setImage(item: ViewPagerModel) {
-
             Glide.with(itemView)
                 .load(item.drawable)
                 .centerCrop()
@@ -44,6 +49,10 @@ class ViewPagerAdapter(
             binding.viewPagerTitle.text = item.title
         }
 
+    }
+
+    interface ViewPagerClickListener {
+        fun onViewPagerClick(item: ViewPagerModel)
     }
 
 }

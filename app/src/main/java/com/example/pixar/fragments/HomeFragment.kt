@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
@@ -19,7 +18,8 @@ import com.example.pixar.model.Category
 import com.example.pixar.model.ViewPagerModel
 import kotlin.math.abs
 
-class HomeFragment : Fragment(), CategoryAdapter.CategoryClickListener {
+class HomeFragment : Fragment(), CategoryAdapter.CategoryClickListener,
+    ViewPagerAdapter.ViewPagerClickListener {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
@@ -46,7 +46,7 @@ class HomeFragment : Fragment(), CategoryAdapter.CategoryClickListener {
         }
 
         binding.viewPager.apply {
-            adapter = ViewPagerAdapter(viewPagerList, this)
+            adapter = ViewPagerAdapter(viewPagerList, this, this@HomeFragment)
             clipToPadding = false
             clipChildren = false
             offscreenPageLimit = 3
@@ -60,7 +60,7 @@ class HomeFragment : Fragment(), CategoryAdapter.CategoryClickListener {
             adapter = CategoryAdapter(list, requireContext(), this@HomeFragment)
             setHasFixedSize(true)
             isNestedScrollingEnabled = false
-            layoutManager = GridLayoutManager(requireContext(),2)
+            layoutManager = GridLayoutManager(requireContext(), 2)
         }
 
     }
@@ -89,6 +89,10 @@ class HomeFragment : Fragment(), CategoryAdapter.CategoryClickListener {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onViewPagerClick(item: ViewPagerModel) {
+
     }
 
 }
