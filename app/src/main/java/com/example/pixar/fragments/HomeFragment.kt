@@ -16,6 +16,8 @@ import com.example.pixar.adapters.ViewPagerAdapter
 import com.example.pixar.databinding.FragmentHomeBinding
 import com.example.pixar.model.Category
 import com.example.pixar.model.ViewPagerModel
+import com.example.pixar.utils.Constants.Companion.initList
+import com.example.pixar.utils.Constants.Companion.initViewPagerList
 import kotlin.math.abs
 
 class HomeFragment : Fragment(), CategoryAdapter.CategoryClickListener,
@@ -36,7 +38,7 @@ class HomeFragment : Fragment(), CategoryAdapter.CategoryClickListener,
         super.onViewCreated(view, savedInstanceState)
 
         val viewPagerList = ArrayList<ViewPagerModel>()
-        initViewPagerList(viewPagerList)
+        initViewPagerList(viewPagerList, requireContext())
 
         val transformer = CompositePageTransformer()
         transformer.addTransformer(MarginPageTransformer(40))
@@ -65,34 +67,34 @@ class HomeFragment : Fragment(), CategoryAdapter.CategoryClickListener,
 
     }
 
-    private fun initViewPagerList(viewPagerList: ArrayList<ViewPagerModel>) {
-        viewPagerList.add(ViewPagerModel(R.drawable.vp_search, "Search"))
-        viewPagerList.add(ViewPagerModel(R.drawable.vp_edit, "Edit"))
-        viewPagerList.add(ViewPagerModel(R.drawable.vp_rating, "Rate"))
-        viewPagerList.add(ViewPagerModel(R.drawable.vp_share, "Share"))
-    }
-
-    private fun initList(list: ArrayList<Category>) {
-        list.clear()
-        list.add(Category("Nature", R.drawable.ic_nature))
-        list.add(Category("Wildlife", R.drawable.ic_wildlife))
-        list.add(Category("Sports", R.drawable.ic_sports))
-        list.add(Category("Food", R.drawable.ic_food))
-        list.add(Category("Cities", R.drawable.ic_cities))
-    }
-
     override fun onCategoryCLicked(item: Category) {
         val action = HomeFragmentDirections.actionHomeFragmentToSearchFragment(item.title)
         findNavController().navigate(action)
     }
 
+    override fun onViewPagerClick(item: ViewPagerModel) {
+        when (item.title) {
+            getString(R.string.vp_search) -> {
+                val action = HomeFragmentDirections.actionHomeFragmentToSearchWallpaperFragment()
+                findNavController().navigate(action)
+            }
+            getString(R.string.vp_edit) -> {
+
+            }
+            getString(R.string.vp_rate) -> {
+                // TODO : Rate app on play store
+            }
+            else -> {
+                // TODO : share app using intent
+            }
+        }
+    }
+
+
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-
-    override fun onViewPagerClick(item: ViewPagerModel) {
-
     }
 
 }

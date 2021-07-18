@@ -9,7 +9,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import com.example.pixar.R
-import com.example.pixar.databinding.DownloadBottomSheetBinding
+import com.example.pixar.databinding.BottomSheetDownloadBinding
 import com.example.pixar.utils.Constants
 import com.example.pixar.utils.Constants.Companion.PERMISSION_WRITE_STORAGE_CODE
 import com.example.pixar.utils.Constants.Companion.imageToBitmap
@@ -27,7 +27,7 @@ import kotlinx.coroutines.*
 class DownloadBottomSheetFragment : BottomSheetDialogFragment(),
     EasyPermissions.PermissionCallbacks {
 
-    private var _binding: DownloadBottomSheetBinding? = null
+    private var _binding: BottomSheetDownloadBinding? = null
     private val binding get() = _binding!!
 
     private val args by navArgs<DownloadBottomSheetFragmentArgs>()
@@ -39,7 +39,7 @@ class DownloadBottomSheetFragment : BottomSheetDialogFragment(),
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = DownloadBottomSheetBinding.inflate(inflater, container, false)
+        _binding = BottomSheetDownloadBinding.inflate(inflater, container, false)
         alertDialog = AlertDialog.Builder(requireActivity()).create()
         alertDialog.apply {
             setCancelable(false)

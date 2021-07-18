@@ -9,7 +9,7 @@
         android:id="@+id/searchFragment"
         android:name="com.example.pixar.fragments.SearchFragment"
         android:label="fragment_search"
-        tools:layout="@layout/fragment_category" >
+        tools:layout="@layout/fragment_search" >
         <action
             android:id="@+id/action_searchFragment_to_wallpaperFragment"
             app:destination="@id/wallpaperFragment" />
@@ -39,7 +39,7 @@
         android:id="@+id/downloadBottomSheetFragment"
         android:name="com.example.pixar.bottomsheets.DownloadBottomSheetFragment"
         android:label="download_bottom_sheet"
-        tools:layout="@layout/download_bottom_sheet" >
+        tools:layout="@layout/bottom_sheet_download" >
         <argument
             android:name="photo"
             app:argType="com.example.pixar.model.UnsplashPhoto" />
@@ -48,7 +48,7 @@
         android:id="@+id/wallpaperBottomSheetFragment"
         android:name="com.example.pixar.bottomsheets.WallpaperBottomSheetFragment"
         android:label="wallpaper_bottom_sheet"
-        tools:layout="@layout/wallpaper_bottom_sheet" >
+        tools:layout="@layout/bottom_sheet_wallpaper" >
         <argument
             android:name="photo"
             app:argType="com.example.pixar.model.UnsplashPhoto" />
@@ -64,6 +64,9 @@
         <action
             android:id="@+id/action_homeFragment_to_searchWallpaperFragment"
             app:destination="@id/searchWallpaperFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_imageBottomSheetFragment"
+            app:destination="@id/imageBottomSheetFragment" />
     </fragment>
     <fragment
         android:id="@+id/searchWallpaperFragment"
@@ -74,5 +77,10 @@
             android:id="@+id/action_searchWallpaperFragment_to_wallpaperFragment"
             app:destination="@id/wallpaperFragment" />
     </fragment>
+    <dialog
+        android:id="@+id/imageBottomSheetFragment"
+        android:name="com.example.pixar.bottomsheets.ImageBottomSheetFragment"
+        android:label="bottom_sheet_image"
+        tools:layout="@layout/bottom_sheet_image" />
 
 </navigation>

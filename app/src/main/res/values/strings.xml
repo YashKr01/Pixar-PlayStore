@@ -35,4 +35,10 @@
     <string name="setting_wallpaper">Setting Wallpaper</string>
     <string name="write_storage_rationale">Storage Permission required</string>
     <string name="categories">Categories</string>
+    <string name="vp_search">Search</string>
+    <string name="vp_edit">Edit</string>
+    <string name="vp_rate">Rate</string>
+    <string name="vp_share">Share</string>
+    <string name="choose_from_gallery">Choose From Gallery</string>
+    <string name="take_a_photo">Take A Photo</string>
 </resources>

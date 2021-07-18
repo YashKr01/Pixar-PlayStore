@@ -13,6 +13,9 @@ import android.os.Vibrator
 import android.provider.MediaStore
 import android.util.Log
 import android.view.View
+import com.example.pixar.R
+import com.example.pixar.model.Category
+import com.example.pixar.model.ViewPagerModel
 import com.google.android.material.snackbar.Snackbar
 import java.io.File
 import java.io.File.separator
@@ -131,6 +134,42 @@ class Constants {
                     e.printStackTrace()
                 }
             }
+        }
+
+        fun initViewPagerList(viewPagerList: ArrayList<ViewPagerModel>, context: Context) {
+            viewPagerList.add(
+                ViewPagerModel(
+                    R.drawable.vp_search,
+                    context.getString(R.string.vp_search)
+                )
+            )
+            viewPagerList.add(
+                ViewPagerModel(
+                    R.drawable.vp_edit,
+                    context.getString(R.string.vp_edit)
+                )
+            )
+            viewPagerList.add(
+                ViewPagerModel(
+                    R.drawable.vp_rating,
+                    context.getString(R.string.vp_rate)
+                )
+            )
+            viewPagerList.add(
+                ViewPagerModel(
+                    R.drawable.vp_share,
+                    context.getString(R.string.vp_share)
+                )
+            )
+        }
+
+        fun initList(list: ArrayList<Category>) {
+            list.clear()
+            list.add(Category("Nature", R.drawable.ic_nature))
+            list.add(Category("Wildlife", R.drawable.ic_wildlife))
+            list.add(Category("Sports", R.drawable.ic_sports))
+            list.add(Category("Food", R.drawable.ic_food))
+            list.add(Category("Cities", R.drawable.ic_cities))
         }
 
     }

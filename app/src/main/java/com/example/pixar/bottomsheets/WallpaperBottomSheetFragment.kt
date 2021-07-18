@@ -11,7 +11,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import com.example.pixar.R
-import com.example.pixar.databinding.WallpaperBottomSheetBinding
+import com.example.pixar.databinding.BottomSheetWallpaperBinding
 import com.example.pixar.utils.Constants
 import com.example.pixar.utils.Constants.Companion.imageToBitmap
 import com.example.pixar.utils.Constants.Companion.isOnline
@@ -25,7 +25,7 @@ import java.io.IOException
 
 class WallpaperBottomSheetFragment : BottomSheetDialogFragment() {
 
-    private var _binding: WallpaperBottomSheetBinding? = null
+    private var _binding: BottomSheetWallpaperBinding? = null
     private val binding get() = _binding!!
 
     private val args by navArgs<WallpaperBottomSheetFragmentArgs>()
@@ -37,7 +37,7 @@ class WallpaperBottomSheetFragment : BottomSheetDialogFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = WallpaperBottomSheetBinding.inflate(inflater, container, false)
+        _binding = BottomSheetWallpaperBinding.inflate(inflater, container, false)
 
         alertDialog = AlertDialog.Builder(requireActivity()).create()
         val view = LayoutInflater.from(activity).inflate(R.layout.layout_alert_dialog, container)
