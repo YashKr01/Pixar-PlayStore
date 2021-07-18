@@ -79,7 +79,8 @@ class HomeFragment : Fragment(), CategoryAdapter.CategoryClickListener,
                 findNavController().navigate(action)
             }
             getString(R.string.vp_edit) -> {
-
+                val action = HomeFragmentDirections.actionHomeFragmentToImageBottomSheetFragment()
+                findNavController().navigate(action)
             }
             getString(R.string.vp_rate) -> {
                 // TODO : Rate app on play store
@@ -89,7 +90,6 @@ class HomeFragment : Fragment(), CategoryAdapter.CategoryClickListener,
             }
         }
     }
-
 
 
     override fun onDestroyView() {

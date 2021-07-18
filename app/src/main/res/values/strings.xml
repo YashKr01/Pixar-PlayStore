@@ -41,4 +41,5 @@
     <string name="vp_share">Share</string>
     <string name="choose_from_gallery">Choose From Gallery</string>
     <string name="take_a_photo">Take A Photo</string>
+    <string name="choose_an_action">Choose An Action</string>
 </resources>
