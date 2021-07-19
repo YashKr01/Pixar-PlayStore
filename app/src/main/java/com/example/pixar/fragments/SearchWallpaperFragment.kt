@@ -115,7 +115,8 @@ class SearchWallpaperFragment : Fragment(), UnsplashPhotoAdapter.OnItemClickList
     }
 
     override fun onItemClicked(photo: UnsplashPhoto) {
-        val action = SearchFragmentDirections.actionSearchFragmentToWallpaperFragment(photo)
+        val action =
+            SearchWallpaperFragmentDirections.actionSearchWallpaperFragmentToWallpaperFragment(photo)
         findNavController().navigate(action)
     }
 
