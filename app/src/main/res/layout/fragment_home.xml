@@ -48,7 +48,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_8sdp"
-            android:layout_marginTop="@dimen/_18sdp"
+            android:layout_marginTop="@dimen/_14sdp"
             android:layout_marginBottom="@dimen/_8sdp"
             android:drawablePadding="@dimen/_4sdp"
             android:fontFamily="@font/ubuntu_bold"

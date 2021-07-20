@@ -83,9 +83,6 @@ dependencies {
     // Paging
     implementation "androidx.paging:paging-runtime-ktx:3.0.0"
 
-    // Easy Permissions
-    implementation 'com.vmadalin:easypermissions-ktx:1.0.0'
-
     // DS Photo Editor SDK
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation(name:'ds-photo-editor-sdk-v10', ext:'aar')

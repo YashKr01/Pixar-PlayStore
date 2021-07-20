@@ -21,7 +21,7 @@
 
     <View
         android:layout_width="0dp"
-        android:layout_height="@dimen/_200sdp"
+        android:layout_height="@dimen/_140sdp"
         android:background="@drawable/gradient_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -29,16 +29,29 @@
 
     <TextView
         android:id="@+id/viewPagerTitle"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/_8sdp"
         android:fontFamily="@font/ubuntu_medium"
         android:textAlignment="center"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/_12ssp"
+        app:layout_constraintBottom_toTopOf="@id/viewpagerDescription"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="Search" />
+
+    <TextView
+        android:id="@+id/viewpagerDescription"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_8sdp"
+        android:fontFamily="@font/ubuntu_medium"
+        android:textAlignment="viewStart"
         android:textColor="@color/colorTextSecondary"
         android:textSize="@dimen/_12ssp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:text="Search" />
+        tools:text="@string/lorem_ipsum" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

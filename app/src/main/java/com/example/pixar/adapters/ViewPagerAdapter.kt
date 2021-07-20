@@ -46,7 +46,8 @@ class ViewPagerAdapter(
                 .transition(DrawableTransitionOptions.withCrossFade())
                 .into(binding.viewpagerImage)
 
-            binding.viewPagerTitle.text = item.title
+//            binding.viewPagerTitle.text = item.title
+            binding.viewpagerDescription.text = item.description
         }
 
     }

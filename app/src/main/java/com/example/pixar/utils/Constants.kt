@@ -8,8 +8,6 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.net.Uri
 import android.os.Environment
-import android.os.VibrationEffect
-import android.os.Vibrator
 import android.provider.MediaStore
 import android.util.Log
 import android.view.View
@@ -136,25 +134,29 @@ class Constants {
             viewPagerList.add(
                 ViewPagerModel(
                     R.drawable.vp_search,
-                    context.getString(R.string.vp_search)
+                    context.getString(R.string.vp_search),
+                    "Search & Download free wallpapers/images"
                 )
             )
             viewPagerList.add(
                 ViewPagerModel(
                     R.drawable.vp_edit,
-                    context.getString(R.string.vp_edit)
+                    context.getString(R.string.vp_edit),
+                    "Edit a photo"
                 )
             )
             viewPagerList.add(
                 ViewPagerModel(
                     R.drawable.vp_rating,
-                    context.getString(R.string.vp_rate)
+                    context.getString(R.string.vp_rate),
+                    "Rate PIXAR on PlayStore"
                 )
             )
             viewPagerList.add(
                 ViewPagerModel(
                     R.drawable.vp_share,
-                    context.getString(R.string.vp_share)
+                    context.getString(R.string.vp_share),
+                    "Share PIXAR with your peers"
                 )
             )
         }
