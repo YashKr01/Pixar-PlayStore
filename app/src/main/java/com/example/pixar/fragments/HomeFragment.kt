@@ -18,6 +18,7 @@ import com.example.pixar.model.Category
 import com.example.pixar.model.ViewPagerModel
 import com.example.pixar.utils.Constants.Companion.initList
 import com.example.pixar.utils.Constants.Companion.initViewPagerList
+import com.google.android.material.tabs.TabLayoutMediator
 import kotlin.math.abs
 
 class HomeFragment : Fragment(), CategoryAdapter.CategoryClickListener,
@@ -55,6 +56,10 @@ class HomeFragment : Fragment(), CategoryAdapter.CategoryClickListener,
             getChildAt(0).overScrollMode = RecyclerView.OVER_SCROLL_NEVER
             setPageTransformer(transformer)
         }
+
+        TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
+
+        }.attach()
 
         val list = ArrayList<Category>()
         initList(list)
