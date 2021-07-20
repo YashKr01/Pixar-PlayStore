@@ -34,13 +34,9 @@ class Constants {
         const val UNSPLASH_URL = "https://unsplash.com/?utm_source=Pixar&utm_medium=referral"
         const val IMAGE_DOWNLOAD_FOLDER_NAME = "Pixar"
 
-        // Permissions Codes
-        const val PERMISSION_WRITE_STORAGE_CODE = 1
-
         // Methods
-        fun showSnackBar(context: Context, view: View, message: String, duration: Int) {
+        fun showSnackBar(context: Context, view: View, message: String, duration: Int) =
             Snackbar.make(context, view, message, duration).show()
-        }
 
         fun imageToBitmap(imageUrl: String): Bitmap? {
 
@@ -166,6 +162,7 @@ class Constants {
         fun initList(list: ArrayList<Category>) {
             list.clear()
             list.add(Category("Nature", R.drawable.ic_nature))
+            list.add(Category("Patterns", R.drawable.ic_patterns))
             list.add(Category("Wildlife", R.drawable.ic_wildlife))
             list.add(Category("Sports", R.drawable.ic_sports))
             list.add(Category("Food", R.drawable.ic_food))
