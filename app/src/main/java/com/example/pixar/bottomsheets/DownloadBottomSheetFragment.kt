@@ -1,31 +1,29 @@
 package com.example.pixar.bottomsheets
 
 import android.Manifest
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import com.example.pixar.R
 import com.example.pixar.databinding.BottomSheetDownloadBinding
 import com.example.pixar.utils.Constants
-import com.example.pixar.utils.Constants.Companion.PERMISSION_WRITE_STORAGE_CODE
 import com.example.pixar.utils.Constants.Companion.imageToBitmap
 import com.example.pixar.utils.Constants.Companion.isOnline
 import com.example.pixar.utils.Constants.Companion.saveImage
 import com.example.pixar.utils.Constants.Companion.showSnackBar
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.snackbar.Snackbar
-import com.vmadalin.easypermissions.EasyPermissions
-import com.vmadalin.easypermissions.dialogs.SettingsDialog
-import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.*
 
-@AndroidEntryPoint
-class DownloadBottomSheetFragment : BottomSheetDialogFragment(),
-    EasyPermissions.PermissionCallbacks {
+class DownloadBottomSheetFragment : BottomSheetDialogFragment() {
 
     private var _binding: BottomSheetDownloadBinding? = null
     private val binding get() = _binding!!
@@ -39,12 +37,14 @@ class DownloadBottomSheetFragment : BottomSheetDialogFragment(),
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
         _binding = BottomSheetDownloadBinding.inflate(inflater, container, false)
         alertDialog = AlertDialog.Builder(requireActivity()).create()
         alertDialog.apply {
             setCancelable(false)
             setView(LayoutInflater.from(activity).inflate(R.layout.layout_alert_dialog, container))
         }
+
         return binding.root
     }
 
@@ -53,30 +53,26 @@ class DownloadBottomSheetFragment : BottomSheetDialogFragment(),
 
         val photo = args.photo
 
-        binding.buttonDownload.setOnClickListener {
+        val permission =
+            registerForActivityResult(ActivityResultContracts.RequestPermission()) { granted ->
 
-            if (isOnline(requireContext())) {
-
-                if (hasStoragePermission()) {
+                if (granted) {
                     alertDialog.show()
 
-                    if (binding.radioButtonNormal.isChecked) {
-                        if (hasStoragePermission()) download(photo.urls.small)
-                        else requestPermission()
-                    } else {
-                        if (hasStoragePermission()) download(photo.urls.regular)
-                        else requestPermission()
-                    }
+                    if (binding.radioButtonNormal.isChecked) download(photo.urls.small)
+                    else download(photo.urls.regular)
 
-                } else requestPermission()
+                } else displaySnackBar()
 
-            } else snackBar(getString(R.string.no_connection))
 
+            }
+
+        binding.buttonDownload.setOnClickListener {
+            if (isOnline(requireContext())) permission.launch(Manifest.permission.READ_EXTERNAL_STORAGE)
+            else snackBar(getString(R.string.no_connection))
         }
 
-        binding.buttonDownloadCancel.setOnClickListener {
-            dismiss()
-        }
+        binding.buttonDownloadCancel.setOnClickListener { dismiss() }
 
     }
 
@@ -103,46 +99,32 @@ class DownloadBottomSheetFragment : BottomSheetDialogFragment(),
 
     }
 
+    private fun displaySnackBar() {
+        Snackbar.make(
+            requireContext(),
+            binding.root,
+            "Permission Required",
+            Snackbar.LENGTH_INDEFINITE
+        ).setAction("Allow") {
+            redirectToPermissionScreen()
+        }
+            .setActionTextColor(resources.getColor(R.color.colorYellow, null))
+            .show()
+    }
+
+    private fun redirectToPermissionScreen() {
+        val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+        val uri = Uri.fromParts("package", requireContext().packageName, null)
+        intent.data = uri
+        startActivity(intent)
+    }
+
     private fun snackBar(message: String) =
         showSnackBar(requireContext(), binding.root, message, Snackbar.LENGTH_SHORT)
-
 
     private fun downloadImage(url: String) {
         val imageBitmap = imageToBitmap(url)
         saveImage(imageBitmap!!, requireContext(), Constants.IMAGE_DOWNLOAD_FOLDER_NAME)
-    }
-
-    private fun hasStoragePermission() =
-        EasyPermissions.hasPermissions(requireContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE)
-
-    private fun requestPermission() =
-        EasyPermissions.requestPermissions(
-            this,
-            getString(R.string.write_storage_rationale),
-            PERMISSION_WRITE_STORAGE_CODE,
-            Manifest.permission.WRITE_EXTERNAL_STORAGE
-        )
-
-    override fun onPermissionsDenied(requestCode: Int, perms: List<String>) {
-        if (EasyPermissions.somePermissionPermanentlyDenied(this, perms)) {
-            SettingsDialog.Builder(requireActivity()).build().show()
-        } else {
-            requestPermission()
-        }
-    }
-
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this)
-    }
-
-    override fun onPermissionsGranted(requestCode: Int, perms: List<String>) {
-        if (isOnline(requireContext())) download(args.photo.urls.regular)
-        else snackBar(getString(R.string.no_connection))
     }
 
     override fun onDestroyView() {
