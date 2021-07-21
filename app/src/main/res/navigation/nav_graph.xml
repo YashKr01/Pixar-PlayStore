@@ -9,22 +9,30 @@
         android:id="@+id/searchFragment"
         android:name="com.example.pixar.fragments.SearchFragment"
         android:label="fragment_search"
-        tools:layout="@layout/fragment_search" >
+        tools:layout="@layout/fragment_search">
         <action
             android:id="@+id/action_searchFragment_to_wallpaperFragment"
-            app:destination="@id/wallpaperFragment" />
+            app:destination="@id/wallpaperFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
         <argument
             android:name="query"
             app:argType="string" />
         <action
             android:id="@+id/action_searchFragment_to_searchWallpaperFragment"
-            app:destination="@id/searchWallpaperFragment" />
+            app:destination="@id/searchWallpaperFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/wallpaperFragment"
         android:name="com.example.pixar.fragments.WallpaperFragment"
         android:label="fragment_wallpaper"
-        tools:layout="@layout/fragment_wallpaper" >
+        tools:layout="@layout/fragment_wallpaper">
         <action
             android:id="@+id/action_wallpaperFragment_to_downloadBottomSheetFragment"
             app:destination="@id/downloadBottomSheetFragment" />
@@ -39,7 +47,7 @@
         android:id="@+id/downloadBottomSheetFragment"
         android:name="com.example.pixar.bottomsheets.DownloadBottomSheetFragment"
         android:label="download_bottom_sheet"
-        tools:layout="@layout/bottom_sheet_download" >
+        tools:layout="@layout/bottom_sheet_download">
         <argument
             android:name="photo"
             app:argType="com.example.pixar.model.UnsplashPhoto" />
@@ -48,7 +56,7 @@
         android:id="@+id/wallpaperBottomSheetFragment"
         android:name="com.example.pixar.bottomsheets.WallpaperBottomSheetFragment"
         android:label="wallpaper_bottom_sheet"
-        tools:layout="@layout/bottom_sheet_wallpaper" >
+        tools:layout="@layout/bottom_sheet_wallpaper">
         <argument
             android:name="photo"
             app:argType="com.example.pixar.model.UnsplashPhoto" />
@@ -57,13 +65,21 @@
         android:id="@+id/homeFragment"
         android:name="com.example.pixar.fragments.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" >
+        tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_homeFragment_to_searchFragment"
-            app:destination="@id/searchFragment" />
+            app:destination="@id/searchFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
         <action
             android:id="@+id/action_homeFragment_to_searchWallpaperFragment"
-            app:destination="@id/searchWallpaperFragment" />
+            app:destination="@id/searchWallpaperFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
         <action
             android:id="@+id/action_homeFragment_to_imageBottomSheetFragment"
             app:destination="@id/imageBottomSheetFragment" />
@@ -72,10 +88,14 @@
         android:id="@+id/searchWallpaperFragment"
         android:name="com.example.pixar.fragments.SearchWallpaperFragment"
         android:label="fragment_search_wallpaper"
-        tools:layout="@layout/fragment_search_wallpaper" >
+        tools:layout="@layout/fragment_search_wallpaper">
         <action
             android:id="@+id/action_searchWallpaperFragment_to_wallpaperFragment"
-            app:destination="@id/wallpaperFragment" />
+            app:destination="@id/wallpaperFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <dialog
         android:id="@+id/imageBottomSheetFragment"
