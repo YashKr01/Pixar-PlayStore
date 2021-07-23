@@ -176,18 +176,4 @@
         app:layout_constraintEnd_toEndOf="@+id/fab_download"
         app:tint="@color/colorWhite" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_save"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        android:contentDescription="@string/download"
-        android:focusable="true"
-        android:src="@drawable/ic_save_hollow"
-        android:visibility="invisible"
-        app:fabSize="normal"
-        app:layout_constraintBottom_toTopOf="@+id/fab_wallpaper"
-        app:layout_constraintEnd_toEndOf="@+id/fab_wallpaper"
-        app:tint="@color/colorWhite" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

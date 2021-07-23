@@ -6,13 +6,13 @@ import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -25,9 +25,10 @@ import com.bumptech.glide.request.target.Target
 import com.example.pixar.R
 import com.example.pixar.databinding.FragmentWallpaperBinding
 import com.example.pixar.model.UnsplashPhoto
-import com.example.pixar.utils.Constants
 import com.example.pixar.utils.Constants.Companion.UNSPLASH_URL
 import com.example.pixar.utils.Constants.Companion.imageToBitmap
+import com.example.pixar.utils.Constants.Companion.isOnline
+import com.example.pixar.utils.Constants.Companion.showSnackBar
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_wallpaper.*
 import kotlinx.coroutines.Dispatchers
@@ -132,28 +133,35 @@ class WallpaperFragment : Fragment() {
             // if device version is enough
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
                 val action =
-                    WallpaperFragmentDirections.actionWallpaperFragmentToWallpaperBottomSheetFragment(
-                        photo
-                    )
+                    WallpaperFragmentDirections
+                        .actionWallpaperFragmentToWallpaperBottomSheetFragment(photo)
                 findNavController().navigate(action)
             } else {
                 // else set wallpaper on home screen
-                lifecycleScope.launch(Dispatchers.IO) {
-                    val bitmap = imageToBitmap(photo.urls.regular)
+                if (isOnline(requireContext())) {
+                    lifecycleScope.launch(Dispatchers.IO) {
 
-                    if (bitmap != null) {
-                        val e = setWallpaperOnHomeScreen(bitmap)
-                        if (e != null) withContext(Dispatchers.Main) {
-                            snackBar(e)
-                        } else {
-                            withContext(Dispatchers.Main) {
-                                snackBar(getString(R.string.wallpaper_has_been_set))
-                                withContext(Dispatchers.IO) { delay(1000L) }
+                        val bitmap: Bitmap? = imageToBitmap(photo.urls.regular)
+
+                        if (bitmap != null) {
+                            val e = setWallpaperOnHomeScreen(bitmap)
+                            if (e != null) withContext(Dispatchers.Main) {
+                                snackBar(e)
+                            } else {
+                                withContext(Dispatchers.Main) {
+                                    snackBar(getString(R.string.wallpaper_has_been_set))
+                                    withContext(Dispatchers.IO) { delay(1000L) }
+                                }
                             }
                         }
-                    }
 
-                }
+                    }
+                } else showSnackBar(
+                    requireContext(),
+                    binding.root,
+                    getString(R.string.no_connection),
+                    Snackbar.LENGTH_SHORT
+                )
 
             }
 
@@ -171,9 +179,9 @@ class WallpaperFragment : Fragment() {
         }
     }
 
-    private fun snackBar(message: String) {
-        Constants.showSnackBar(requireContext(), binding.root, message, Snackbar.LENGTH_SHORT)
-    }
+    private fun snackBar(message: String) =
+        showSnackBar(requireContext(), binding.root, message, Snackbar.LENGTH_SHORT)
+
 
     private fun loadImage(source: UnsplashPhoto) {
 
@@ -222,17 +230,13 @@ class WallpaperFragment : Fragment() {
     private fun setAnimation(clicked: Boolean) {
         if (!clicked) {
             fab_download.isClickable = true
-            fab_save.isClickable = true
             fab_wallpaper.isClickable = true
-            fab_save.startAnimation(fromBottom)
             fab_wallpaper.startAnimation(fromBottom)
             fab_download.startAnimation(fromBottom)
             fab_open.startAnimation(rotateOpen)
         } else {
             fab_download.isClickable = false
-            fab_save.isClickable = false
             fab_wallpaper.isClickable = false
-            fab_save.startAnimation(toBottom)
             fab_wallpaper.startAnimation(toBottom)
             fab_download.startAnimation(toBottom)
             fab_open.startAnimation(rotateClose)
@@ -242,12 +246,10 @@ class WallpaperFragment : Fragment() {
     private fun setVisibility(clicked: Boolean) {
         if (!clicked) {
             fab_download.visibility = View.VISIBLE
-            fab_save.visibility = View.VISIBLE
-            fab_save.visibility = View.VISIBLE
+            fab_wallpaper.visibility = View.VISIBLE
         } else {
             fab_download.visibility = View.INVISIBLE
-            fab_save.visibility = View.INVISIBLE
-            fab_save.visibility = View.INVISIBLE
+            fab_download.visibility = View.INVISIBLE
         }
     }
 
