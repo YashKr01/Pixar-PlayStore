@@ -1,10 +1,12 @@
 package com.example.pixar.fragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -18,6 +20,12 @@ import com.example.pixar.model.Category
 import com.example.pixar.model.ViewPagerModel
 import com.example.pixar.utils.Constants.Companion.initList
 import com.example.pixar.utils.Constants.Companion.initViewPagerList
+import com.example.pixar.utils.Constants.Companion.isOnline
+import com.google.android.gms.ads.AdListener
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.LoadAdError
+import com.google.android.gms.ads.interstitial.InterstitialAd
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlin.math.abs
 
@@ -26,6 +34,8 @@ class HomeFragment : Fragment(), CategoryAdapter.CategoryClickListener,
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
+
+    private var mInterstitialAd: InterstitialAd? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,6 +50,32 @@ class HomeFragment : Fragment(), CategoryAdapter.CategoryClickListener,
 
         val viewPagerList = ArrayList<ViewPagerModel>()
         initViewPagerList(viewPagerList, requireContext())
+
+        val adRequest = AdRequest.Builder().build()
+        binding.bannerAd.loadAd(adRequest)
+
+        binding.bannerAd.adListener = object : AdListener() {
+            override fun onAdFailedToLoad(p0: LoadAdError) {
+                Log.d("ADS", "onAdFailedToLoad: ")
+                if (!isOnline(requireContext())) binding.bannerAd.isVisible = false
+                else binding.bannerAd.loadAd(adRequest)
+            }
+        }
+
+        InterstitialAd.load(
+            requireContext(),
+            "ca-app-pub-3940256099942544/1033173712",
+            adRequest,
+            object : InterstitialAdLoadCallback() {
+                override fun onAdFailedToLoad(p0: LoadAdError) {
+                    mInterstitialAd = null
+                }
+
+                override fun onAdLoaded(interstitialAd: InterstitialAd) {
+                    mInterstitialAd = interstitialAd
+                    if (mInterstitialAd != null) mInterstitialAd!!.show(requireActivity())
+                }
+            })
 
         val transformer = CompositePageTransformer()
         transformer.addTransformer(MarginPageTransformer(40))

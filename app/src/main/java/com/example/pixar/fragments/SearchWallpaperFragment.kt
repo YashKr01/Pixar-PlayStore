@@ -1,6 +1,7 @@
 package com.example.pixar.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
@@ -15,7 +16,11 @@ import com.example.pixar.adapters.UnsplashPhotoAdapter
 import com.example.pixar.databinding.FragmentSearchWallpaperBinding
 import com.example.pixar.model.UnsplashPhoto
 import com.example.pixar.paging.UnsplashLoadStateAdapter
+import com.example.pixar.utils.Constants
 import com.example.pixar.viewmodel.ImagesViewModel
+import com.google.android.gms.ads.AdListener
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.LoadAdError
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -31,6 +36,17 @@ class SearchWallpaperFragment : Fragment(), UnsplashPhotoAdapter.OnItemClickList
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentSearchWallpaperBinding.inflate(inflater, container, false)
+
+        val adRequest = AdRequest.Builder().build()
+        binding.bannerAd.loadAd(adRequest)
+
+        binding.bannerAd.adListener = object : AdListener() {
+            override fun onAdFailedToLoad(p0: LoadAdError) {
+                Log.d("ADS", "onAdFailedToLoad: ")
+                if (!Constants.isOnline(requireContext())) binding.bannerAd.isVisible = false
+                else binding.bannerAd.loadAd(adRequest)
+            }
+        }
 
         // paging and footer adapter
         val adapter = UnsplashPhotoAdapter(this)
