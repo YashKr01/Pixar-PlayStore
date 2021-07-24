@@ -13,17 +13,16 @@ class CategoryAdapter(
     private val list: List<Category>,
     private val context: Context,
     private val listener: CategoryClickListener
-) :
-    RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
-
+) : RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder =
         CategoryViewHolder(
-            ItemCattegoryBinding.inflate(
-                LayoutInflater.from(context),
-                parent,
-                false
-            )
+            ItemCattegoryBinding
+                .inflate(
+                    LayoutInflater.from(context),
+                    parent,
+                    false
+                )
         )
 
 

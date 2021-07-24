@@ -13,7 +13,6 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
-import com.example.pixar.R
 import com.example.pixar.databinding.ItemSearchImageBinding
 import com.example.pixar.model.UnsplashPhoto
 
@@ -30,10 +29,7 @@ class UnsplashPhotoAdapter(private val listener: OnItemClickListener) :
     override fun onBindViewHolder(holder: PhotoViewHolder, position: Int) {
         val currentItem = getItem(position)
 
-        if (currentItem != null) {
-            holder.bind(currentItem)
-        }
-
+        if (currentItem != null) holder.bind(currentItem)
     }
 
     inner class PhotoViewHolder(private val binding: ItemSearchImageBinding) :

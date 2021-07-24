@@ -69,9 +69,8 @@ class ImageBottomSheetFragment : BottomSheetDialogFragment() {
 
         val storagePermission =
             registerForActivityResult(ActivityResultContracts.RequestPermission()) { granted ->
-                if (granted) {
-                    pickImage.launch("image/*")
-                } else displaySnackBar()
+                if (granted) pickImage.launch(getString(R.string.image_intent))
+                else displaySnackBar()
             }
 
         val cameraPermission =
@@ -79,8 +78,8 @@ class ImageBottomSheetFragment : BottomSheetDialogFragment() {
                 if (granted) {
 
                     val photoFile = File.createTempFile(
-                        "IMG_",
-                        ".jpg",
+                        getString(R.string.image_uri),
+                        getString(R.string.suffix_uri),
                         requireContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES)
                     )
 
@@ -89,6 +88,7 @@ class ImageBottomSheetFragment : BottomSheetDialogFragment() {
                         "${requireContext().packageName}.provider",
                         photoFile
                     )
+
                     takePicture.launch(uri)
 
                 } else displaySnackBar()
@@ -108,9 +108,9 @@ class ImageBottomSheetFragment : BottomSheetDialogFragment() {
         Snackbar.make(
             requireContext(),
             binding.root,
-            "Permission Required",
+            getString(R.string.permission_required),
             Snackbar.LENGTH_INDEFINITE
-        ).setAction("Allow") {
+        ).setAction(getString(R.string.allow)) {
             redirectToPermissionScreen()
         }
             .setActionTextColor(resources.getColor(R.color.colorYellow, null))
@@ -119,7 +119,13 @@ class ImageBottomSheetFragment : BottomSheetDialogFragment() {
 
     private fun redirectToPermissionScreen() {
         val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
-        val uri = Uri.fromParts("package", requireContext().packageName, null)
+
+        val uri = Uri.fromParts(
+            getString(R.string.intent_package),
+            requireContext().packageName,
+            null
+        )
+
         intent.data = uri
         startActivity(intent)
     }

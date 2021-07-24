@@ -12,9 +12,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        MobileAds.initialize(this) {
-
-        }
+        MobileAds.initialize(this) { }
 
     }
 

@@ -39,6 +39,7 @@ class DownloadBottomSheetFragment : BottomSheetDialogFragment() {
     ): View {
 
         _binding = BottomSheetDownloadBinding.inflate(inflater, container, false)
+
         alertDialog = AlertDialog.Builder(requireActivity()).create()
         alertDialog.apply {
             setCancelable(false)
@@ -63,8 +64,6 @@ class DownloadBottomSheetFragment : BottomSheetDialogFragment() {
                     else download(photo.urls.regular)
 
                 } else displaySnackBar()
-
-
             }
 
         binding.buttonDownload.setOnClickListener {
@@ -73,7 +72,6 @@ class DownloadBottomSheetFragment : BottomSheetDialogFragment() {
         }
 
         binding.buttonDownloadCancel.setOnClickListener { dismiss() }
-
     }
 
     private fun download(url: String) {
@@ -103,9 +101,9 @@ class DownloadBottomSheetFragment : BottomSheetDialogFragment() {
         Snackbar.make(
             requireContext(),
             binding.root,
-            "Permission Required",
+            getString(R.string.permission_required),
             Snackbar.LENGTH_INDEFINITE
-        ).setAction("Allow") {
+        ).setAction(getString(R.string.allow)) {
             redirectToPermissionScreen()
         }
             .setActionTextColor(resources.getColor(R.color.colorYellow, null))
@@ -114,13 +112,21 @@ class DownloadBottomSheetFragment : BottomSheetDialogFragment() {
 
     private fun redirectToPermissionScreen() {
         val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
-        val uri = Uri.fromParts("package", requireContext().packageName, null)
+        val uri = Uri.fromParts(
+            getString(R.string.intent_package),
+            requireContext().packageName,
+            null
+        )
         intent.data = uri
         startActivity(intent)
     }
 
-    private fun snackBar(message: String) =
-        showSnackBar(requireContext(), binding.root, message, Snackbar.LENGTH_SHORT)
+    private fun snackBar(message: String) = showSnackBar(
+        requireContext(),
+        binding.root,
+        message,
+        Snackbar.LENGTH_SHORT
+    )
 
     private fun downloadImage(url: String) {
         val imageBitmap = imageToBitmap(url)

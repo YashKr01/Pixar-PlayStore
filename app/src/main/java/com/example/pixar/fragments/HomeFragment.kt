@@ -1,7 +1,6 @@
 package com.example.pixar.fragments
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -56,7 +55,6 @@ class HomeFragment : Fragment(), CategoryAdapter.CategoryClickListener,
 
         binding.bannerAd.adListener = object : AdListener() {
             override fun onAdFailedToLoad(p0: LoadAdError) {
-                Log.d("ADS", "onAdFailedToLoad: ")
                 if (!isOnline(requireContext())) binding.bannerAd.isVisible = false
                 else binding.bannerAd.loadAd(adRequest)
             }
@@ -93,12 +91,10 @@ class HomeFragment : Fragment(), CategoryAdapter.CategoryClickListener,
             setPageTransformer(transformer)
         }
 
-        TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
-
-        }.attach()
+        TabLayoutMediator(binding.tabLayout, binding.viewPager) { _, _ -> }.attach()
 
         val list = ArrayList<Category>()
-        initList(list)
+        initList(list, requireContext())
         binding.recyclerView.apply {
             adapter = CategoryAdapter(list, requireContext(), this@HomeFragment)
             setHasFixedSize(true)

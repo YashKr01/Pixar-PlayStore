@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
@@ -60,7 +59,6 @@ class WallpaperBottomSheetFragment : BottomSheetDialogFragment() {
         binding.buttonSetWallpaper.setOnClickListener {
 
             if (isOnline(requireContext())) {
-
                 alertDialog.show()
 
                 when {
@@ -74,6 +72,7 @@ class WallpaperBottomSheetFragment : BottomSheetDialogFragment() {
                             if (bitmap != null) {
                                 val e = setWallpaperOnHomeScreen(bitmap)
                                 if (e != null) withContext(Dispatchers.Main) {
+                                    alertDialog.dismiss()
                                     snackBar(e)
                                 } else {
                                     withContext(Dispatchers.Main) {
@@ -103,6 +102,7 @@ class WallpaperBottomSheetFragment : BottomSheetDialogFragment() {
                             if (bitmap != null) {
                                 val e = setWallpaperOnLockScreen(bitmap)
                                 if (e != null) withContext(Dispatchers.Main) {
+                                    alertDialog.dismiss()
                                     snackBar(e)
                                 } else {
                                     withContext(Dispatchers.Main) {
@@ -159,10 +159,7 @@ class WallpaperBottomSheetFragment : BottomSheetDialogFragment() {
 
         }
 
-        binding.buttonCancel.setOnClickListener {
-            dismiss()
-        }
-
+        binding.buttonCancel.setOnClickListener { dismiss() }
     }
 
     private fun setWallpaperOnHomeScreen(bitmap: Bitmap): String? {
@@ -179,7 +176,12 @@ class WallpaperBottomSheetFragment : BottomSheetDialogFragment() {
         val wallpaperManager = WallpaperManager.getInstance(requireContext())
         return try {
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-                wallpaperManager.setBitmap(bitmap, null, true, WallpaperManager.FLAG_LOCK)
+                wallpaperManager.setBitmap(
+                    bitmap,
+                    null,
+                    true,
+                    WallpaperManager.FLAG_LOCK
+                )
             }
             null
         } catch (e: IOException) {
@@ -187,9 +189,9 @@ class WallpaperBottomSheetFragment : BottomSheetDialogFragment() {
         }
     }
 
-    private fun snackBar(message: String) {
+    private fun snackBar(message: String) =
         Constants.showSnackBar(requireContext(), binding.root, message, Snackbar.LENGTH_SHORT)
-    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

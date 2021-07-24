@@ -32,6 +32,8 @@ class Constants {
         const val UNSPLASH_URL = "https://unsplash.com/?utm_source=Pixar&utm_medium=referral"
         const val IMAGE_DOWNLOAD_FOLDER_NAME = "Pixar"
 
+        const val DEFAULT = "patterns"
+
         // Methods
         fun showSnackBar(context: Context, view: View, message: String, duration: Int) =
             Snackbar.make(context, view, message, duration).show()
@@ -45,7 +47,6 @@ class Constants {
                 connection.connect()
                 BitmapFactory.decodeStream(connection.inputStream)
             } catch (e: Exception) {
-                Log.d("TAG", "convertToBitmap: $e")
                 null
             }
 
@@ -135,40 +136,40 @@ class Constants {
                 ViewPagerModel(
                     R.drawable.vp_search,
                     context.getString(R.string.vp_search),
-                    "Search & Download free wallpapers/images"
+                    context.getString(R.string.search_and_download)
                 )
             )
             viewPagerList.add(
                 ViewPagerModel(
                     R.drawable.vp_edit,
                     context.getString(R.string.vp_edit),
-                    "Edit a photo"
+                    context.getString(R.string.edit_photo)
                 )
             )
             viewPagerList.add(
                 ViewPagerModel(
                     R.drawable.vp_rating,
                     context.getString(R.string.vp_rate),
-                    "Rate PIXAR on PlayStore"
+                    context.getString(R.string.rate_app)
                 )
             )
             viewPagerList.add(
                 ViewPagerModel(
                     R.drawable.vp_share,
                     context.getString(R.string.vp_share),
-                    "Share PIXAR with your peers"
+                    context.getString(R.string.share_app)
                 )
             )
         }
 
-        fun initList(list: ArrayList<Category>) {
+        fun initList(list: ArrayList<Category>, context: Context) {
             list.clear()
-            list.add(Category("Nature", R.drawable.ic_nature))
-            list.add(Category("Patterns", R.drawable.ic_patterns))
-            list.add(Category("Wildlife", R.drawable.ic_wildlife))
-            list.add(Category("Sports", R.drawable.ic_sports))
-            list.add(Category("Food", R.drawable.ic_food))
-            list.add(Category("Cities", R.drawable.ic_cities))
+            list.add(Category(context.getString(R.string.nature), R.drawable.ic_nature))
+            list.add(Category(context.getString(R.string.patterns), R.drawable.ic_patterns))
+            list.add(Category(context.getString(R.string.wildlife), R.drawable.ic_wildlife))
+            list.add(Category(context.getString(R.string.sports), R.drawable.ic_sports))
+            list.add(Category(context.getString(R.string.food), R.drawable.ic_food))
+            list.add(Category(context.getString(R.string.cities), R.drawable.ic_cities))
         }
 
     }

@@ -42,4 +42,20 @@
     <string name="choose_from_gallery">Choose From Gallery</string>
     <string name="take_a_photo">Take A Photo</string>
     <string name="choose_an_action">Choose An Action</string>
+    <string name="allow">Allow</string>
+    <string name="permission_required">Permission Required</string>
+    <string name="intent_package">package</string>
+    <string name="image_intent">image/*</string>
+    <string name="image_uri">IMG_</string>
+    <string name="suffix_uri">.jpg</string>
+    <string name="search_and_download"><![CDATA[Search & Download free wallpapers]]></string>
+    <string name="edit_photo">Edit a photo</string>
+    <string name="rate_app">Rate PIXAR on PlayStore</string>
+    <string name="share_app">Share PIXAR with your peers</string>
+    <string name="nature">Nature</string>
+    <string name="patterns">Patterns</string>
+    <string name="wildlife">Wildlife</string>
+    <string name="sports">Sports</string>
+    <string name="food">Food</string>
+    <string name="cities">Cities</string>
 </resources>

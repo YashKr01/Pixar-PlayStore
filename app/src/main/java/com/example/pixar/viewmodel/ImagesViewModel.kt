@@ -3,6 +3,7 @@ package com.example.pixar.viewmodel
 import androidx.lifecycle.*
 import androidx.paging.cachedIn
 import com.example.pixar.repository.UnsplashRepository
+import com.example.pixar.utils.Constants
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -22,7 +23,7 @@ class ImagesViewModel @Inject constructor(
     }
 
     companion object {
-        private const val DEFAULT_QUERY = "Pattern"
+        private const val DEFAULT_QUERY = Constants.DEFAULT
     }
 
 }

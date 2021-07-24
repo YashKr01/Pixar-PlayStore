@@ -19,7 +19,7 @@ class UnSplashPagingSource(
         val position = params.key ?: UNSPLASH_STARTING_PAGE_INDEX
 
         return try {
-            val response = apiInterface.searchPhotos(query, position, params.loadSize,CLIENT_ID)
+            val response = apiInterface.searchPhotos(query, position, params.loadSize, CLIENT_ID)
             val photos = response.results
 
             LoadResult.Page(
@@ -36,8 +36,6 @@ class UnSplashPagingSource(
 
     }
 
-    override fun getRefreshKey(state: PagingState<Int, UnsplashPhoto>): Int? {
-        TODO("Not yet implemented")
-    }
+    override fun getRefreshKey(state: PagingState<Int, UnsplashPhoto>): Int? = null
 
 }
