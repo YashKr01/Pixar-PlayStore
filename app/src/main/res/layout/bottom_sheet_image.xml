@@ -14,7 +14,7 @@
 
         <LinearLayout
             android:id="@+id/linearLayout"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/zero_dimen"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/_48sdp"
             android:orientation="vertical"

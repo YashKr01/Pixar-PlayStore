@@ -9,7 +9,7 @@
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/item_category_image"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/zero_dimen"
         android:layout_height="@dimen/_240sdp"
         android:layout_margin="@dimen/_3sdp"
         android:background="@drawable/placeholder_image"
@@ -22,7 +22,7 @@
 
     <View
         android:id="@+id/gradient_view"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/zero_dimen"
         android:layout_height="@dimen/_100sdp"
         android:background="@drawable/gradient_background"
         app:layout_constraintBottom_toBottomOf="@id/item_category_image"
@@ -31,7 +31,7 @@
 
     <TextView
         android:id="@+id/text_category_name"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/zero_dimen"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/_8sdp"
         android:fontFamily="@font/ubuntu_bold"

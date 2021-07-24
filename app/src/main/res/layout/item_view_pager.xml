@@ -20,7 +20,7 @@
         app:shapeAppearanceOverlay="@style/roundCorners" />
 
     <View
-        android:layout_width="0dp"
+        android:layout_width="@dimen/zero_dimen"
         android:layout_height="@dimen/_140sdp"
         android:background="@drawable/gradient_background"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -42,7 +42,7 @@
 
     <TextView
         android:id="@+id/viewpagerDescription"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/zero_dimen"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/_8sdp"
         android:fontFamily="@font/ubuntu_medium"

@@ -14,7 +14,7 @@
 
         <Toolbar
             android:id="@+id/toolbar"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/zero_dimen"
             android:layout_height="?actionBarSize"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             android:title="@string/app_name"
@@ -24,7 +24,7 @@
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/viewPager"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/zero_dimen"
             android:layout_height="@dimen/_180sdp"
             android:paddingStart="@dimen/_24sdp"
             android:paddingEnd="@dimen/_24sdp"
@@ -64,7 +64,7 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/zero_dimen"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_2sdp"
             android:layout_marginBottom="@dimen/_32sdp"

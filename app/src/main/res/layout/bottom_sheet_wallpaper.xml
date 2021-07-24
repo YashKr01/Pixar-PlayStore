@@ -14,7 +14,7 @@
 
         <LinearLayout
             android:id="@+id/linearLayout"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/zero_dimen"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="@dimen/_8sdp"
@@ -72,7 +72,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="@dimen/zero_dimen"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/_48sdp"
             android:orientation="horizontal"
@@ -83,7 +83,7 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/buttonSetWallpaper"
-                android:layout_width="0dp"
+                android:layout_width="@dimen/zero_dimen"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/_4sdp"
                 android:layout_weight="1"
@@ -98,7 +98,7 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/buttonCancel"
-                android:layout_width="0dp"
+                android:layout_width="@dimen/zero_dimen"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/_4sdp"
                 android:layout_weight="1"

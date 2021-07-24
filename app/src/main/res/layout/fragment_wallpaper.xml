@@ -9,8 +9,8 @@
 
     <ImageView
         android:id="@+id/imageWallpaper"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="@dimen/zero_dimen"
+        android:layout_height="@dimen/zero_dimen"
         android:background="@drawable/placeholder_image"
         android:contentDescription="@string/wallpaper"
         android:foreground="?android:attr/selectableItemBackgroundBorderless"
@@ -69,7 +69,7 @@
 
     <View
         android:id="@+id/gradientBackground"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/zero_dimen"
         android:layout_height="@dimen/_50sdp"
         android:background="@drawable/gradient_background"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -78,7 +78,7 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/zero_dimen"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_8sdp"
         android:layout_marginTop="@dimen/_4sdp"

@@ -6,7 +6,7 @@
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/image"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/zero_dimen"
         android:layout_height="@dimen/_240sdp"
         android:layout_margin="@dimen/_3sdp"
         android:background="@drawable/placeholder_image"
