@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
-import com.example.pixar.databinding.ItemCattegoryBinding
+import com.example.pixar.databinding.ItemCategoryBinding
 import com.example.pixar.model.Category
 
 class CategoryAdapter(
@@ -17,7 +17,7 @@ class CategoryAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder =
         CategoryViewHolder(
-            ItemCattegoryBinding
+            ItemCategoryBinding
                 .inflate(
                     LayoutInflater.from(context),
                     parent,
@@ -45,7 +45,7 @@ class CategoryAdapter(
 
     override fun getItemCount(): Int = list.size
 
-    inner class CategoryViewHolder(val item: ItemCattegoryBinding) :
+    inner class CategoryViewHolder(val item: ItemCategoryBinding) :
         RecyclerView.ViewHolder(item.root)
 
     interface CategoryClickListener {

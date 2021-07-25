@@ -22,7 +22,7 @@
         android:id="@+id/recyclerView"
         android:layout_width="@dimen/zero_dimen"
         android:layout_height="@dimen/zero_dimen"
-        app:layout_constraintBottom_toBottomOf="parent"
+        ads:layout_constraintBottom_toTopOf="@id/bannerAd"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbar"

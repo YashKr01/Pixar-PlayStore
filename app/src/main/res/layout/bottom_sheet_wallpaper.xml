@@ -88,11 +88,11 @@
                 android:layout_margin="@dimen/_4sdp"
                 android:layout_weight="1"
                 android:fontFamily="@font/ubuntu_medium"
-                android:paddingTop="@dimen/_10sdp"
-                android:paddingBottom="@dimen/_10sdp"
+                android:paddingTop="@dimen/_8sdp"
+                android:paddingBottom="@dimen/_8sdp"
                 android:text="@string/set_wallpaper"
                 android:textColor="@color/colorWhite"
-                android:textSize="@dimen/_14ssp"
+                android:textSize="@dimen/_12ssp"
                 app:backgroundTint="@color/colorYellow"
                 app:cornerRadius="@dimen/_6sdp" />
 
@@ -103,11 +103,11 @@
                 android:layout_margin="@dimen/_4sdp"
                 android:layout_weight="1"
                 android:fontFamily="@font/ubuntu_medium"
-                android:paddingTop="@dimen/_10sdp"
-                android:paddingBottom="@dimen/_10sdp"
+                android:paddingTop="@dimen/_8sdp"
+                android:paddingBottom="@dimen/_8sdp"
                 android:text="@string/cancel"
                 android:textColor="@color/colorWhite"
-                android:textSize="@dimen/_14ssp"
+                android:textSize="@dimen/_12ssp"
                 app:backgroundTint="@color/colorThemeExtra"
                 app:cornerRadius="@dimen/_6sdp" />
 

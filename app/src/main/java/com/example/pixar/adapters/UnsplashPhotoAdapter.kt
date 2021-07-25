@@ -58,6 +58,7 @@ class UnsplashPhotoAdapter(private val listener: OnItemClickListener) :
                         isFirstResource: Boolean
                     ): Boolean {
                         binding.imageError.isVisible = true
+                        binding.textLoading.isVisible = false
                         return false
                     }
 
@@ -69,6 +70,7 @@ class UnsplashPhotoAdapter(private val listener: OnItemClickListener) :
                         isFirstResource: Boolean
                     ): Boolean {
                         binding.imageError.isVisible = false
+                        binding.textLoading.isVisible = false
                         return false
                     }
                 })
