@@ -37,7 +37,7 @@ class SplashScreenFragment : Fragment() {
             .into(binding.logo)
 
         lifecycleScope.launch(Dispatchers.IO) {
-            delay(900L)
+            delay(800L)
             launch(Dispatchers.Main) {
                 val action =
                     SplashScreenFragmentDirections.actionSplashScreenFragmentToHomeFragment()

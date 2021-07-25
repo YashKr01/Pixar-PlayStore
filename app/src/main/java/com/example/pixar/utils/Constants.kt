@@ -9,7 +9,6 @@ import android.net.NetworkCapabilities
 import android.net.Uri
 import android.os.Environment
 import android.provider.MediaStore
-import android.util.Log
 import android.view.View
 import com.example.pixar.R
 import com.example.pixar.model.Category
@@ -165,11 +164,11 @@ class Constants {
         fun initList(list: ArrayList<Category>, context: Context) {
             list.clear()
             list.add(Category(context.getString(R.string.nature), R.drawable.ic_nature))
-            list.add(Category(context.getString(R.string.patterns), R.drawable.ic_patterns))
             list.add(Category(context.getString(R.string.wildlife), R.drawable.ic_wildlife))
             list.add(Category(context.getString(R.string.sports), R.drawable.ic_sports))
             list.add(Category(context.getString(R.string.food), R.drawable.ic_food))
             list.add(Category(context.getString(R.string.cities), R.drawable.ic_cities))
+            list.add(Category(context.getString(R.string.patterns), R.drawable.ic_patterns))
         }
 
     }
