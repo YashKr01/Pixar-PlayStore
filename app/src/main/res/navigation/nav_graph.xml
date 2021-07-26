@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/searchFragment"
-        android:name="com.example.pixar.fragments.SearchFragment"
+        android:name="com.techk.pixar.fragments.SearchFragment"
         android:label="fragment_search"
         tools:layout="@layout/fragment_search">
         <action
@@ -30,7 +30,7 @@
     </fragment>
     <fragment
         android:id="@+id/wallpaperFragment"
-        android:name="com.example.pixar.fragments.WallpaperFragment"
+        android:name="com.techk.pixar.fragments.WallpaperFragment"
         android:label="fragment_wallpaper"
         tools:layout="@layout/fragment_wallpaper">
         <action
@@ -41,29 +41,29 @@
             app:destination="@id/wallpaperBottomSheetFragment" />
         <argument
             android:name="photo"
-            app:argType="com.example.pixar.model.UnsplashPhoto" />
+            app:argType="com.techk.pixar.model.UnsplashPhoto" />
     </fragment>
     <dialog
         android:id="@+id/downloadBottomSheetFragment"
-        android:name="com.example.pixar.bottomsheets.DownloadBottomSheetFragment"
+        android:name="com.techk.pixar.bottomsheets.DownloadBottomSheetFragment"
         android:label="download_bottom_sheet"
         tools:layout="@layout/bottom_sheet_download">
         <argument
             android:name="photo"
-            app:argType="com.example.pixar.model.UnsplashPhoto" />
+            app:argType="com.techk.pixar.model.UnsplashPhoto" />
     </dialog>
     <dialog
         android:id="@+id/wallpaperBottomSheetFragment"
-        android:name="com.example.pixar.bottomsheets.WallpaperBottomSheetFragment"
+        android:name="com.techk.pixar.bottomsheets.WallpaperBottomSheetFragment"
         android:label="wallpaper_bottom_sheet"
         tools:layout="@layout/bottom_sheet_wallpaper">
         <argument
             android:name="photo"
-            app:argType="com.example.pixar.model.UnsplashPhoto" />
+            app:argType="com.techk.pixar.model.UnsplashPhoto" />
     </dialog>
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.pixar.fragments.HomeFragment"
+        android:name="com.techk.pixar.fragments.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home">
         <action
@@ -86,7 +86,7 @@
     </fragment>
     <fragment
         android:id="@+id/searchWallpaperFragment"
-        android:name="com.example.pixar.fragments.SearchWallpaperFragment"
+        android:name="com.techk.pixar.fragments.SearchWallpaperFragment"
         android:label="fragment_search_wallpaper"
         tools:layout="@layout/fragment_search_wallpaper">
         <action
@@ -99,12 +99,12 @@
     </fragment>
     <dialog
         android:id="@+id/imageBottomSheetFragment"
-        android:name="com.example.pixar.bottomsheets.ImageBottomSheetFragment"
+        android:name="com.techk.pixar.bottomsheets.ImageBottomSheetFragment"
         android:label="bottom_sheet_image"
         tools:layout="@layout/bottom_sheet_image" />
     <fragment
         android:id="@+id/splashScreenFragment"
-        android:name="com.example.pixar.fragments.SplashScreenFragment"
+        android:name="com.techk.pixar.fragments.SplashScreenFragment"
         android:label="fragment_splash_screen"
         tools:layout="@layout/fragment_splash_screen">
         <action
