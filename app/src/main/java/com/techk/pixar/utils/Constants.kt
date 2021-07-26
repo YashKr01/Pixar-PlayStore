@@ -81,7 +81,6 @@ class Constants {
                 val values = contentValues()
                 values.put(MediaStore.Images.Media.RELATIVE_PATH, "Pictures/$folderName")
                 values.put(MediaStore.Images.Media.IS_PENDING, true)
-                // RELATIVE_PATH and IS_PENDING are introduced in API 29.
 
                 val uri: Uri? = context.contentResolver.insert(
                     MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
@@ -96,7 +95,6 @@ class Constants {
             } else {
                 val directory =
                     File(Environment.getExternalStorageState().toString() + separator + folderName)
-                // getExternalStorageDirectory is deprecated in API 29
 
                 if (!directory.exists()) directory.mkdirs()
 
@@ -107,7 +105,6 @@ class Constants {
 
                 val values = contentValues()
                 values.put(MediaStore.Images.Media.DESCRIPTION, file.absolutePath)
-                // .DATA is deprecated in API 29
                 context.contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values)
             }
         }
