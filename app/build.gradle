@@ -13,7 +13,7 @@ android {
 
     defaultConfig {
         applicationId "com.techk.pixar"
-        minSdkVersion 29
+        minSdkVersion 24
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -90,4 +90,7 @@ dependencies {
 
     // Admob Ads
     implementation 'com.google.android.gms:play-services-ads:20.2.0'
+
+    // PR Downloader
+    implementation 'com.mindorks.android:prdownloader:0.6.0'
 }

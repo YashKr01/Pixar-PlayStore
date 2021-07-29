@@ -34,24 +34,12 @@
         android:label="fragment_wallpaper"
         tools:layout="@layout/fragment_wallpaper">
         <action
-            android:id="@+id/action_wallpaperFragment_to_downloadBottomSheetFragment"
-            app:destination="@id/downloadBottomSheetFragment" />
-        <action
             android:id="@+id/action_wallpaperFragment_to_wallpaperBottomSheetFragment"
             app:destination="@id/wallpaperBottomSheetFragment" />
         <argument
             android:name="photo"
             app:argType="com.techk.pixar.model.UnsplashPhoto" />
     </fragment>
-    <dialog
-        android:id="@+id/downloadBottomSheetFragment"
-        android:name="com.techk.pixar.bottomsheets.DownloadBottomSheetFragment"
-        android:label="download_bottom_sheet"
-        tools:layout="@layout/bottom_sheet_download">
-        <argument
-            android:name="photo"
-            app:argType="com.techk.pixar.model.UnsplashPhoto" />
-    </dialog>
     <dialog
         android:id="@+id/wallpaperBottomSheetFragment"
         android:name="com.techk.pixar.bottomsheets.WallpaperBottomSheetFragment"

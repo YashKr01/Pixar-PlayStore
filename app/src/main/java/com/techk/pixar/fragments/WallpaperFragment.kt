@@ -9,8 +9,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.Animation
-import android.view.animation.AnimationUtils
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
@@ -30,7 +28,6 @@ import com.techk.pixar.utils.Constants.Companion.imageToBitmap
 import com.techk.pixar.utils.Constants.Companion.isOnline
 import com.techk.pixar.utils.Constants.Companion.showSnackBar
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.fragment_wallpaper.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -46,49 +43,16 @@ class WallpaperFragment : Fragment() {
     // nav args
     private val args by navArgs<WallpaperFragmentArgs>()
 
-    // animations
-    private val rotateOpen: Animation by lazy {
-        AnimationUtils.loadAnimation(
-            requireContext(),
-            R.anim.rotate_open_anim
-        )
-    }
-    private val rotateClose: Animation by lazy {
-        AnimationUtils.loadAnimation(
-            requireContext(),
-            R.anim.rotate_close_anim
-        )
-    }
-    private val fromBottom: Animation by lazy {
-        AnimationUtils.loadAnimation(
-            requireContext(),
-            R.anim.from_bottom_anim
-        )
-    }
-    private val toBottom: Animation by lazy {
-        AnimationUtils.loadAnimation(
-            requireContext(),
-            R.anim.to_bottom_anim
-        )
-    }
-
-    private var clicked = false
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentWallpaperBinding.inflate(inflater, container, false)
-
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        fab_open.setOnClickListener {
-            openButtonCLicked()
-        }
 
         val photo = args.photo
 
@@ -114,17 +78,6 @@ class WallpaperFragment : Fragment() {
                 startActivity(intent)
             }
 
-        }
-
-        // download button on click
-        binding.fabDownload.setOnClickListener {
-
-            val action =
-                WallpaperFragmentDirections.actionWallpaperFragmentToDownloadBottomSheetFragment(
-                    photo
-                )
-
-            findNavController().navigate(action)
         }
 
         // wallpaper button on click
@@ -182,7 +135,6 @@ class WallpaperFragment : Fragment() {
     private fun snackBar(message: String) =
         showSnackBar(requireContext(), binding.root, message, Snackbar.LENGTH_SHORT)
 
-
     private fun loadImage(source: UnsplashPhoto) {
 
         Glide.with(requireContext())
@@ -219,38 +171,6 @@ class WallpaperFragment : Fragment() {
             .transition(DrawableTransitionOptions.withCrossFade())
             .into(binding.imageWallpaper)
 
-    }
-
-    private fun openButtonCLicked() {
-        setVisibility(clicked)
-        setAnimation(clicked)
-        clicked = !clicked
-    }
-
-    private fun setAnimation(clicked: Boolean) {
-        if (!clicked) {
-            fab_download.isClickable = true
-            fab_wallpaper.isClickable = true
-            fab_wallpaper.startAnimation(fromBottom)
-            fab_download.startAnimation(fromBottom)
-            fab_open.startAnimation(rotateOpen)
-        } else {
-            fab_download.isClickable = false
-            fab_wallpaper.isClickable = false
-            fab_wallpaper.startAnimation(toBottom)
-            fab_download.startAnimation(toBottom)
-            fab_open.startAnimation(rotateClose)
-        }
-    }
-
-    private fun setVisibility(clicked: Boolean) {
-        if (!clicked) {
-            fab_download.visibility = View.VISIBLE
-            fab_wallpaper.visibility = View.VISIBLE
-        } else {
-            fab_download.visibility = View.INVISIBLE
-            fab_download.visibility = View.INVISIBLE
-        }
     }
 
     override fun onDestroyView() {
