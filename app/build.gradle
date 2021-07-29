@@ -91,6 +91,4 @@ dependencies {
     // Admob Ads
     implementation 'com.google.android.gms:play-services-ads:20.2.0'
 
-    // PR Downloader
-    implementation 'com.mindorks.android:prdownloader:0.6.0'
 }
