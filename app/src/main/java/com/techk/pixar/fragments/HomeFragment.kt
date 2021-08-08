@@ -1,6 +1,9 @@
 package com.techk.pixar.fragments
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -26,6 +29,7 @@ import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.google.android.material.tabs.TabLayoutMediator
+import com.techk.pixar.utils.Constants
 import kotlin.math.abs
 
 class HomeFragment : Fragment(), CategoryAdapter.CategoryClickListener,
@@ -55,6 +59,7 @@ class HomeFragment : Fragment(), CategoryAdapter.CategoryClickListener,
 
         binding.bannerAd.adListener = object : AdListener() {
             override fun onAdFailedToLoad(p0: LoadAdError) {
+                Log.d("TAG", "onAdFailedToLoad: BANNER $p0")
                 if (!isOnline(requireContext())) binding.bannerAd.isVisible = false
                 else binding.bannerAd.loadAd(adRequest)
             }
@@ -62,11 +67,12 @@ class HomeFragment : Fragment(), CategoryAdapter.CategoryClickListener,
 
         InterstitialAd.load(
             requireContext(),
-            "ca-app-pub-3940256099942544/1033173712",
+            "ca-app-pub-8685469236021524/4029183960",
             adRequest,
             object : InterstitialAdLoadCallback() {
                 override fun onAdFailedToLoad(p0: LoadAdError) {
                     mInterstitialAd = null
+                    Log.d("TAG", "onAdFailedToLoad: $p0")
                 }
 
                 override fun onAdLoaded(interstitialAd: InterstitialAd) {
@@ -120,10 +126,13 @@ class HomeFragment : Fragment(), CategoryAdapter.CategoryClickListener,
                 findNavController().navigate(action)
             }
             getString(R.string.vp_rate) -> {
-                // TODO : Rate app on play store
+                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(Constants.PLAY_STORE_URL)))
             }
             else -> {
-                // TODO : share app using intent
+                val intent = Intent(Intent.ACTION_SEND)
+                intent.type = "text/plain"
+                intent.putExtra(Intent.EXTRA_TEXT, Constants.PLAY_STORE_URL)
+                startActivity(Intent.createChooser(intent,"choose one"))
             }
         }
     }

@@ -1,7 +1,6 @@
 package com.techk.pixar.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
@@ -43,7 +42,6 @@ class SearchFragment : Fragment(), UnsplashPhotoAdapter.OnItemClickListener {
 
         binding.bannerAd.adListener = object : AdListener() {
             override fun onAdFailedToLoad(p0: LoadAdError) {
-                Log.d("ADS", "onAdFailedToLoad: ")
                 if (!Constants.isOnline(requireContext())) binding.bannerAd.isVisible = false
                 else binding.bannerAd.loadAd(adRequest)
             }

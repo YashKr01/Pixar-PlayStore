@@ -33,6 +33,8 @@ class Constants {
 
         const val DEFAULT = "patterns"
 
+        const val PLAY_STORE_URL = "https://play.google.com/store/apps/details?id=com.techk.pixar"
+
         // Methods
         fun showSnackBar(context: Context, view: View, message: String, duration: Int) =
             Snackbar.make(context, view, message, duration).show()
