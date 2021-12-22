@@ -25,7 +25,7 @@ Also User can choose or search Thousands of Images for Device wallpaper.**
 - Retrieve data with pagination.
 - Set Lock/ome Screen Wallpapers.
 - Material Design
-- Clean MVVM Architecture.
+- MVVM Architecture.
 
 
 ## ⚙ TECH USED
