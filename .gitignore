@@ -13,3 +13,5 @@
 .externalNativeBuild
 .cxx
 local.properties
+/app/src/main/java/com/techk/pixar/utils/Constants.kt
+/app/src/main/res/values/strings.xml
