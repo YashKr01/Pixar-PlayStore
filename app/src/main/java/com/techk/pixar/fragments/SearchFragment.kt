@@ -2,6 +2,7 @@ package com.techk.pixar.fragments
 
 import android.os.Bundle
 import android.view.*
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
@@ -75,7 +76,6 @@ class SearchFragment : Fragment(), UnsplashPhotoAdapter.OnItemClickListener {
             adapter.submitData(viewLifecycleOwner.lifecycle, it)
         }
 
-        binding.toolbar.title = searchQuery.query
         searchQuery.query?.let { viewModel.searchPhotos(it) }
 
         adapter.addLoadStateListener { loadState ->
