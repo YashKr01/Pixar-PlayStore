@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/yash/AndroidStudioProjects/Pixar-PlayStore/app/src/main/res/layout/fragment_home.xml" value="0.1" />
         <entry key="..\:/Users/yash/AndroidStudioProjects/Pixar-PlayStore/app/src/main/res/layout/fragment_splash_screen.xml" value="0.1796875" />
         <entry key="..\:/Users/yash/AndroidStudioProjects/Pixar-PlayStore/app/src/main/res/layout/fragment_wallpaper.xml" value="0.1796875" />
       </map>
