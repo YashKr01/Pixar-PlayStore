@@ -1,4 +1,4 @@
-package com.techk.pixar.fragments
+package com.techk.pixar.ui.fragments
 
 import android.app.WallpaperManager
 import android.content.Intent

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/searchFragment"
-        android:name="com.techk.pixar.fragments.SearchFragment"
+        android:name="com.techk.pixar.ui.fragments.SearchFragment"
         android:label="fragment_search"
         tools:layout="@layout/fragment_search">
         <action
@@ -24,7 +24,7 @@
     </fragment>
     <fragment
         android:id="@+id/wallpaperFragment"
-        android:name="com.techk.pixar.fragments.WallpaperFragment"
+        android:name="com.techk.pixar.ui.fragments.WallpaperFragment"
         android:label="fragment_wallpaper"
         tools:layout="@layout/fragment_wallpaper">
         <action
@@ -36,7 +36,7 @@
     </fragment>
     <dialog
         android:id="@+id/wallpaperBottomSheetFragment"
-        android:name="com.techk.pixar.bottomsheets.WallpaperBottomSheetFragment"
+        android:name="com.techk.pixar.ui.bottomsheets.WallpaperBottomSheetFragment"
         android:label="wallpaper_bottom_sheet"
         tools:layout="@layout/bottom_sheet_wallpaper">
         <argument
@@ -45,7 +45,7 @@
     </dialog>
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.techk.pixar.fragments.HomeFragment"
+        android:name="com.techk.pixar.ui.fragments.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home">
         <action
@@ -61,7 +61,7 @@
     </fragment>
     <dialog
         android:id="@+id/imageBottomSheetFragment"
-        android:name="com.techk.pixar.bottomsheets.ImageBottomSheetFragment"
+        android:name="com.techk.pixar.ui.bottomsheets.ImageBottomSheetFragment"
         android:label="bottom_sheet_image"
         tools:layout="@layout/bottom_sheet_image" />
 

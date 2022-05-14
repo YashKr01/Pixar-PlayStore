@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:background="@color/colorBlueLight"
     android:padding="@dimen/_4sdp"
-    tools:context=".bottomsheets.ImageBottomSheetFragment">
+    tools:context=".ui.bottomsheets.ImageBottomSheetFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

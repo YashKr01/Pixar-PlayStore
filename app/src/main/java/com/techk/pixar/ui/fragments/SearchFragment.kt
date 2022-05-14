@@ -1,8 +1,7 @@
-package com.techk.pixar.fragments
+package com.techk.pixar.ui.fragments
 
 import android.os.Bundle
 import android.view.*
-import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible

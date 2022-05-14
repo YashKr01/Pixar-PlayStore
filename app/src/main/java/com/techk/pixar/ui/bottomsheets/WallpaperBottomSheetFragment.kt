@@ -1,4 +1,4 @@
-package com.techk.pixar.bottomsheets
+package com.techk.pixar.ui.bottomsheets
 
 import android.app.WallpaperManager
 import android.graphics.Bitmap
