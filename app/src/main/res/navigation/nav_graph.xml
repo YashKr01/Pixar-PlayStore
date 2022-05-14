@@ -19,14 +19,8 @@
             app:popExitAnim="@anim/slide_out_right" />
         <argument
             android:name="query"
-            app:argType="string" />
-        <action
-            android:id="@+id/action_searchFragment_to_searchWallpaperFragment"
-            app:destination="@id/searchWallpaperFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
+            app:argType="string"
+            app:nullable="true" />
     </fragment>
     <fragment
         android:id="@+id/wallpaperFragment"
@@ -62,28 +56,8 @@
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
         <action
-            android:id="@+id/action_homeFragment_to_searchWallpaperFragment"
-            app:destination="@id/searchWallpaperFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
-        <action
             android:id="@+id/action_homeFragment_to_imageBottomSheetFragment"
             app:destination="@id/imageBottomSheetFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/searchWallpaperFragment"
-        android:name="com.techk.pixar.fragments.SearchWallpaperFragment"
-        android:label="fragment_search_wallpaper"
-        tools:layout="@layout/fragment_search_wallpaper">
-        <action
-            android:id="@+id/action_searchWallpaperFragment_to_wallpaperFragment"
-            app:destination="@id/wallpaperFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <dialog
         android:id="@+id/imageBottomSheetFragment"

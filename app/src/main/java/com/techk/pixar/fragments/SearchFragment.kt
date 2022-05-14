@@ -3,6 +3,7 @@ package com.techk.pixar.fragments
 import android.os.Bundle
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -19,6 +20,7 @@ import com.techk.pixar.viewmodel.ImagesViewModel
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.LoadAdError
+import com.techk.pixar.R
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -74,7 +76,7 @@ class SearchFragment : Fragment(), UnsplashPhotoAdapter.OnItemClickListener {
         }
 
         binding.toolbar.title = searchQuery.query
-        viewModel.searchPhotos(searchQuery.query)
+        searchQuery.query?.let { viewModel.searchPhotos(it) }
 
         adapter.addLoadStateListener { loadState ->
             binding.apply {
@@ -99,8 +101,31 @@ class SearchFragment : Fragment(), UnsplashPhotoAdapter.OnItemClickListener {
         }
 
         (activity as AppCompatActivity).setSupportActionBar(binding.toolbar)
+        setHasOptionsMenu(true)
 
         return binding.root
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.menu_gallery, menu)
+
+        val searchItem = menu.findItem(R.id.actionSearch)
+        val searchView = searchItem.actionView as SearchView
+
+        searchView.isSubmitButtonEnabled = true
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                binding.recyclerView.scrollToPosition(0)
+                if (query != null) viewModel.searchPhotos(query)
+                searchView.clearFocus()
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean = true
+        })
+
     }
 
     override fun onDestroyView() {

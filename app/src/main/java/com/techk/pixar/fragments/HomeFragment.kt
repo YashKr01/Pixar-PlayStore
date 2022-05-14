@@ -115,7 +115,7 @@ class HomeFragment : Fragment(), CategoryAdapter.CategoryClickListener,
     override fun onViewPagerClick(item: ViewPagerModel) {
         when (item.title) {
             getString(R.string.vp_search) -> {
-                val action = HomeFragmentDirections.actionHomeFragmentToSearchWallpaperFragment()
+                val action = HomeFragmentDirections.actionHomeFragmentToSearchFragment(null)
                 findNavController().navigate(action)
             }
             getString(R.string.vp_edit) -> {
