@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.techk.pixar">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -18,9 +19,11 @@
         android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Pixar">
+        android:theme="@style/Theme.SplashTheme">
         <activity android:name="com.techk.pixar.MainActivity"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -30,29 +33,33 @@
 
         <activity
             android:name="com.dsphotoeditor.sdk.activity.DsPhotoEditorActivity"
-            android:screenOrientation="portrait"
+            android:screenOrientation="fullSensor"
             android:theme="@android:style/Theme.Holo.NoActionBar" />
 
         <activity
             android:name="com.dsphotoeditor.sdk.activity.DsPhotoEditorStickerActivity"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Holo.NoActionBar" />
+            android:theme="@android:style/Theme.Holo.NoActionBar"
+            tools:ignore="LockedOrientationActivity" />
 
         <activity
             android:name="com.dsphotoeditor.sdk.activity.DsPhotoEditorTextActivity"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Holo.NoActionBar"
-            android:windowSoftInputMode="adjustPan" />
+            android:windowSoftInputMode="adjustPan"
+            tools:ignore="LockedOrientationActivity" />
 
         <activity
             android:name="com.dsphotoeditor.sdk.activity.DsPhotoEditorCropActivity"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Holo.NoActionBar" />
+            android:theme="@android:style/Theme.Holo.NoActionBar"
+            tools:ignore="LockedOrientationActivity" />
 
         <activity
             android:name="com.dsphotoeditor.sdk.activity.DsPhotoEditorDrawActivity"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Holo.NoActionBar" />
+            android:theme="@android:style/Theme.Holo.NoActionBar"
+            tools:ignore="LockedOrientationActivity" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

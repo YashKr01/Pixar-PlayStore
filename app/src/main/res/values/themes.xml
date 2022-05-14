@@ -8,4 +8,13 @@
         <item name="android:statusBarColor">@color/colorPrimaryBlue</item>
 
     </style>
+
+    <style name="Theme.SplashTheme" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/colorPrimaryBlue</item>
+        <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_launcher_foreground</item>
+        <item name="windowSplashScreenAnimationDuration">2000</item>
+        <item name="postSplashScreenTheme">@style/Theme.Pixar</item>
+        <item name="splashScreenIconSize">60dp</item>
+    </style>
+
 </resources>
