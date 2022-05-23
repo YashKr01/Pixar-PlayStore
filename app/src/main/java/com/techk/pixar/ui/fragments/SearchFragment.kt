@@ -13,7 +13,6 @@ import androidx.paging.LoadState
 import androidx.recyclerview.widget.GridLayoutManager
 import com.techk.pixar.adapters.UnsplashPhotoAdapter
 import com.techk.pixar.databinding.FragmentSearchBinding
-import com.techk.pixar.model.UnsplashPhoto
 import com.techk.pixar.paging.UnsplashLoadStateAdapter
 import com.techk.pixar.utils.Constants
 import com.techk.pixar.viewmodel.ImagesViewModel
@@ -24,7 +23,7 @@ import com.techk.pixar.R
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class SearchFragment : Fragment(), UnsplashPhotoAdapter.OnItemClickListener {
+class SearchFragment : Fragment() {
 
     private var _binding: FragmentSearchBinding? = null
     private val binding get() = _binding!!
@@ -50,7 +49,10 @@ class SearchFragment : Fragment(), UnsplashPhotoAdapter.OnItemClickListener {
         }
 
         // paging and footer adapter
-        val adapter = UnsplashPhotoAdapter(this)
+        val adapter = UnsplashPhotoAdapter(onWallpaperClick = {
+            val action = SearchFragmentDirections.actionSearchFragmentToWallpaperFragment(it)
+            findNavController().navigate(action)
+        })
         val footerAdapter = UnsplashLoadStateAdapter { adapter.retry() }
 
         val gridLayoutManager = GridLayoutManager(context, 2)
@@ -130,11 +132,6 @@ class SearchFragment : Fragment(), UnsplashPhotoAdapter.OnItemClickListener {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-
-    override fun onItemClicked(photo: UnsplashPhoto) {
-        val action = SearchFragmentDirections.actionSearchFragmentToWallpaperFragment(photo)
-        findNavController().navigate(action)
     }
 
 }

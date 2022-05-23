@@ -31,8 +31,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.techk.pixar.utils.Constants
 import kotlin.math.abs
 
-class HomeFragment : Fragment(), CategoryAdapter.CategoryClickListener,
-    ViewPagerAdapter.ViewPagerClickListener {
+class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
@@ -86,7 +85,9 @@ class HomeFragment : Fragment(), CategoryAdapter.CategoryClickListener,
         }
 
         binding.viewPager.apply {
-            adapter = ViewPagerAdapter(viewPagerList, this, this@HomeFragment)
+            adapter = ViewPagerAdapter(viewPagerList, onItemClick = { item ->
+                onViewPagerClick(item)
+            })
             clipToPadding = false
             clipChildren = false
             offscreenPageLimit = 3
@@ -99,7 +100,10 @@ class HomeFragment : Fragment(), CategoryAdapter.CategoryClickListener,
         val list = ArrayList<Category>()
         initList(list, requireContext())
         binding.recyclerView.apply {
-            adapter = CategoryAdapter(list, requireContext(), this@HomeFragment)
+            adapter = CategoryAdapter(list, requireContext(), onItemClick = { item ->
+                val action = HomeFragmentDirections.actionHomeFragmentToSearchFragment(item.title)
+                findNavController().navigate(action)
+            })
             setHasFixedSize(true)
             isNestedScrollingEnabled = false
             layoutManager = GridLayoutManager(requireContext(), 2)
@@ -107,12 +111,7 @@ class HomeFragment : Fragment(), CategoryAdapter.CategoryClickListener,
 
     }
 
-    override fun onCategoryCLicked(item: Category) {
-        val action = HomeFragmentDirections.actionHomeFragmentToSearchFragment(item.title)
-        findNavController().navigate(action)
-    }
-
-    override fun onViewPagerClick(item: ViewPagerModel) {
+    fun onViewPagerClick(item: ViewPagerModel) {
         when (item.title) {
             getString(R.string.vp_search) -> {
                 val action = HomeFragmentDirections.actionHomeFragmentToSearchFragment(null)

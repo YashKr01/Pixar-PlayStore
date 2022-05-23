@@ -16,23 +16,26 @@ import com.bumptech.glide.request.target.Target
 import com.techk.pixar.databinding.ItemSearchImageBinding
 import com.techk.pixar.model.UnsplashPhoto
 
-class UnsplashPhotoAdapter(private val listener: OnItemClickListener) :
+class UnsplashPhotoAdapter(private val onWallpaperClick: (UnsplashPhoto) -> Unit) :
     PagingDataAdapter<UnsplashPhoto, UnsplashPhotoAdapter.PhotoViewHolder>(PHOTO_COMPARATOR) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PhotoViewHolder {
         val binding =
             ItemSearchImageBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-
-        return PhotoViewHolder(binding)
+        return PhotoViewHolder(binding, onItemClick = {
+            onWallpaperClick(it)
+        })
     }
 
     override fun onBindViewHolder(holder: PhotoViewHolder, position: Int) {
         val currentItem = getItem(position)
-
         if (currentItem != null) holder.bind(currentItem)
     }
 
-    inner class PhotoViewHolder(private val binding: ItemSearchImageBinding) :
+    inner class PhotoViewHolder(
+        private val binding: ItemSearchImageBinding,
+        private val onItemClick: (UnsplashPhoto) -> Unit
+    ) :
         RecyclerView.ViewHolder(binding.root) {
 
         init {
@@ -40,7 +43,7 @@ class UnsplashPhotoAdapter(private val listener: OnItemClickListener) :
                 val position = bindingAdapterPosition
                 if (position != RecyclerView.NO_POSITION) {
                     val item = getItem(position)
-                    if (item != null) listener.onItemClicked(item)
+                    if (item != null) onItemClick(item)
                 }
             }
         }
@@ -78,10 +81,6 @@ class UnsplashPhotoAdapter(private val listener: OnItemClickListener) :
 
         }
 
-    }
-
-    interface OnItemClickListener {
-        fun onItemClicked(photo: UnsplashPhoto)
     }
 
     companion object {

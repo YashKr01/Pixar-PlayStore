@@ -12,7 +12,7 @@ import com.techk.pixar.model.Category
 class CategoryAdapter(
     private val list: List<Category>,
     private val context: Context,
-    private val listener: CategoryClickListener
+    private val onItemClick: (Category) -> Unit
 ) : RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder =
@@ -38,7 +38,7 @@ class CategoryAdapter(
         holder.item.textCategoryName.text = item.title
 
         holder.item.root.setOnClickListener {
-            listener.onCategoryCLicked(item)
+            onItemClick(item)
         }
 
     }
@@ -47,9 +47,5 @@ class CategoryAdapter(
 
     inner class CategoryViewHolder(val item: ItemCategoryBinding) :
         RecyclerView.ViewHolder(item.root)
-
-    interface CategoryClickListener {
-        fun onCategoryCLicked(item: Category)
-    }
 
 }

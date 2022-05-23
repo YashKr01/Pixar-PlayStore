@@ -11,10 +11,8 @@ import com.techk.pixar.model.ViewPagerModel
 
 class ViewPagerAdapter(
     private val list: ArrayList<ViewPagerModel>,
-    private val viewPager: ViewPager2,
-    private val listener: ViewPagerClickListener
-) :
-    RecyclerView.Adapter<ViewPagerAdapter.ViewPagerViewHolder>() {
+    private val onItemClick: (ViewPagerModel) -> Unit
+) : RecyclerView.Adapter<ViewPagerAdapter.ViewPagerViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewPagerViewHolder =
         ViewPagerViewHolder(
@@ -30,7 +28,7 @@ class ViewPagerAdapter(
 
         val item = list[position]
         holder.binding.root.setOnClickListener {
-            listener.onViewPagerClick(item)
+            onItemClick(item)
         }
     }
 
@@ -49,10 +47,6 @@ class ViewPagerAdapter(
             binding.viewpagerDescription.text = item.description
         }
 
-    }
-
-    interface ViewPagerClickListener {
-        fun onViewPagerClick(item: ViewPagerModel)
     }
 
 }
